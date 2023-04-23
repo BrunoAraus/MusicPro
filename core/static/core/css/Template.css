@@ -21,3 +21,14 @@ h3{
 img{
     width: 10%;
 }
+
+footer{
+    background: black;
+    height: 70px;
+    border-top: 2px solid rgba(0, 0, 0, 0.24);  
+    /*  poner footer abajo */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
