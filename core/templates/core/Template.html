@@ -15,22 +15,78 @@
 <body>
     <header>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <div class="Nav">
-        <img src="{% static 'core/img/Logo.png' %}" >
-        <h3>Tardes</h3>
-        <h3>Tardes</h3>
-        <h3>Tardes</h3>
-        <h3>Tardes</h3>
-        <h3>Tardes</h3>
-        <h3>Tardes</h3>
-        <h3>Tardes</h3>
-        <h3>Tardes</h3>
-    </div>
+        <nav>
+            <div class="nav1">
+                <div class="logo">
+                    <a href="#">
+                        <img class="imagenLogo" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+                        <img class="imagenLogo4" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+                        <img class="imagenLogo2" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+                        <img class="imagenLogo3" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+                    </a>
+                </div>
+                <div class="enlaces">
+                    <ul class="nav">
+                        <li>
+                            <form class="d-flex" role="search">
+                            <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Buscar">
+                            <button class="btn btn-light" type="submit">
+                                <img src="{% static 'core/imagenes/busqueda.gif' %}" alt="">
+                            </button>
+                            </form>
+                        </li>
+                        <div class="separacion1">
+    
+                        </div>
+                        <li class="nav-item">
+                          <a class="borde" href="#">
+                            <img class="logoEnlace" src="{% static 'core/imagenes/usuario.png' %}" alt="">
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="borde" href="#">
+                            <img class="logoEnlace" src="{% static 'core/imagenes/carrito.png' %}" alt="">
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
+
         {% block contenido %}
         {% endblock %}
-        <footer>
-            <h3>HolA Mundo</h3>  
-        </footer>
+
+    <footer>
+        <div class="info">
+            <ul class="links1">
+                <li>
+                    <a class="links" href="#">Redes sociales</a>
+                </li>
+                <li>
+                    <a class="links" href="#">Devoluciones</a>
+                </li>
+                <li>
+                    <a class="links" href="#">Despachos</a>
+                </li>
+                <li>
+                    <a class="links" href="#">Métodos de pago</a>
+                </li>
+            </ul>
+
+            <div class="separacion2"></div>
+
+            <div class="logoPagina">
+                <img class="logoFooter" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+            </div>
+
+            <div class="separacion2"></div>
+
+            <div class="metodosPago">
+                Metodos de Pago
+                <img class="imagenPago" src="{% static 'core/imagenes/pagos.png' %}" alt="">
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
