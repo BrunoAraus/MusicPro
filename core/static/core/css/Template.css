@@ -87,17 +87,15 @@ button{
 }
 
 
-
-
 /* ACA EL FOOTER */
 
 
-
-
 footer{
-    margin-top: 2%;
+    margin-top: 10px;
+    width: 100%;
     padding: 10px 10px 10px 10px;
     background-color: black;
+    position: absolute;
 }
 
 .links{
@@ -133,9 +131,10 @@ footer{
 }
 
 .imagenPago{
-    width: 300px;
+    padding-top: 2%;
+    width: 330px;
     height: 150px;
-    padding-top: 20px;
+    padding-right: 2%;
 }
 
 .metodosPago{
@@ -144,5 +143,6 @@ footer{
     align-items: center;
     padding-top: 10px;
     color: white;
-    padding-right: 5%;
+    padding-right: 2%;
+    box-shadow: white;
 }

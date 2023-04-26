@@ -4,10 +4,10 @@
 }
 
 .contenido{
-    height: 100%;
     width: 100%;
     background-image: url(/static/core/imagenes/Fondo.jpg);
     position: relative;
+    padding-bottom: 1%;
 }
 
 /* .imagenBanner{
@@ -32,14 +32,58 @@
 .content{
     display: flex;
     padding-top: 20px;
-    padding-bottom: 20px;
-    justify-content: space-around;
-    height: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: auto;
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
     backdrop-filter: blur(4px);
-    border-radius: 50px;
-    position: absolute;
-    top: 6.5%;
+    border-radius: 30px;
+    position: relative;
 }
+
+.imagenCatalogo{
+    height: 20%;
+    width: 100%;
+    padding-bottom: 3%;
+    padding-top: 45%;
+    position: relative;
+}
+.fondoDiseño{
+    position: absolute;
+}
+
+.bannerDiseño{
+    width: 100%;
+    padding: 5% 0px 5% 0px;
+    position: absolute;
+}
+
+#cartas{
+    margin: 30px 30px 30px 30px;
+}
+
+.card{
+    width: 15rem;
+    border-radius: 30px;
+    height: auto;
+}
+
+.imagenCarta{
+    width: 230px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.card-title{
+    padding-top: 15px;
+}
+
