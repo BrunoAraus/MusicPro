@@ -1,0 +1,13 @@
+Instalaciones
+
+Pip Install django-crispy-forms "django-crispy-forms==1.14.0"
+
+pip install djangorestframework
+
+pip install django
+
+
+-
+
+
+
