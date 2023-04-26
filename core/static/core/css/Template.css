@@ -55,6 +55,7 @@
 
 li{
     display: flex;
+    color: #fff;
 }
 
 .borde{
@@ -102,17 +103,19 @@ footer{
     height: 100%;
     width: 100%;
     text-decoration: none;
-    color: aliceblue;
+    color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding-top: 10px;
     padding-bottom: 20px;
 }
 
 .links1{
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 20%;
+    color: white;
 }
 
 .logoFooter{
@@ -145,4 +148,8 @@ footer{
     color: white;
     padding-right: 2%;
     box-shadow: white;
+}
+
+.colorTexto{
+    color: #fff;
 }
