@@ -35,19 +35,83 @@
                             </button>
                             </form>
                         </li>
-                        <div class="separacion1">
-    
-                        </div>
+
+                        <div class="separacion1"></div>
+
                         <li class="nav-item">
                           <a class="borde" href="#">
                             <img class="logoEnlace" src="{% static 'core/imagenes/usuario.png' %}" alt="">
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="borde" href="#">
-                            <img class="logoEnlace" src="{% static 'core/imagenes/carrito.png' %}" alt="">
-                          </a>
+                            <a class="borde" href="#">
+                                <img class="logoEnlace1" src="{% static 'core/imagenes/carrito.png' %}" alt="">
+                            </a>
                         </li>
+                            <div class="contenidoOculto">
+                            <div class="contenidoCarrito">
+                                <table class="listaCarrito">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <div class="pimg">
+                                                <td>
+                                                    <img class="imagenCarrito" src="{% static 'core/imagenes/teclado.jpg' %}">
+                                                </td>
+                                            </div>
+                                            <td class="datosTabla">Teclado conjunto de soporte</td>
+                                            <td class="datosTabla">$90.000</td>
+
+                                            <td><a href="#"><img src="{% static 'core/imagenes/icons8-añadir-24.png' %}" alt=""></a></td>
+                                            <td><a href="#"><img src="{% static 'core/imagenes/icons8-basura.gif' %}" alt=""></a></td>
+                                            <td><a href="#"><img src="{% static 'core/imagenes/icons8-información (1).gif' %}" alt=""></a></td>                                            
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        
+                                <div class="division3"></div>
+
+                                <!-- TODO ESTO ES DE EJEMPLO / BORRAR DESPUES -->
+                                <table class="listaCarrito">
+                                    <tbody>
+                                        <tr>
+                                            <div class="pimg">
+                                                <td>
+                                                    <img class="imagenCarrito" src="{% static 'core/imagenes/teclado.jpg' %}">
+                                                </td>
+                                            </div>
+                                            <td class="datosTabla">Teclado conjunto de soporte</td>
+                                            <td class="datosTabla">$90.000</td>
+
+                                            <td><a href="#"><img src="{% static 'core/imagenes/icons8-añadir-24.png' %}" alt=""></a></td>
+                                            <td><a href="#"><img src="{% static 'core/imagenes/icons8-basura.gif' %}" alt=""></a></td>
+                                            <td><a href="#"><img src="{% static 'core/imagenes/icons8-información (1).gif' %}" alt=""></a></td>                                            
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                
+                                <div class="division4"></div>
+                                    <a href="#" class="botonVaciar">
+                                        <a href="#" class="boton siete">
+                                            <div class="icono1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                                                </svg>
+                                            </div>
+                                            <span id="texto3">Pagar</span>
+                                        </a>
+                                    </a>
+                                </div>
+                            </div>
                     </ul>
                 </div>
             </div>

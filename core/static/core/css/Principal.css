@@ -47,17 +47,18 @@
     height: 20%;
     width: 100%;
     padding-bottom: 3%;
-    padding-top: 45%;
+    padding-top: 6%;
     position: relative;
 }
 .fondoDiseño{
-    position: absolute;
+    position: fixed;
 }
 
 .bannerDiseño{
+    height: 20%;
     width: 100%;
-    padding: 5% 0px 5% 0px;
-    position: absolute;
+    padding-top: 15%;
+    position: relative;
 }
 
 #cartas{
