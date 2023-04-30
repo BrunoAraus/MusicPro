@@ -303,3 +303,36 @@ th{
     border: 3px solid black;
     text-decoration: none;
 }
+
+.agregar{
+    display: flex;
+    justify-content: center;
+    width: 28px;
+    height: 29px;
+    text-decoration: none;
+    border-color: black;
+    background-color: black;
+    border-radius: 50px;
+}
+
+.botonAgregar{
+    display: flex;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    color: #fff;
+}
+
+.diseñoBotones{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 190%;
+}
+
+.contar{
+    padding: 2% 0% 2% 0%;
+    margin: 2% 0% 2% 0%;
+}
+
