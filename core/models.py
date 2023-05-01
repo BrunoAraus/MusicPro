@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     id = models.AutoField(primary_key=True)
     us = models.ForeignKey(User, on_delete=models.CASCADE)
-
     def __str__(self) -> str:
         return self.us
 
