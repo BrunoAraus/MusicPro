@@ -23,19 +23,27 @@ class Producto(models.Model):
     descuento = models.IntegerField(null=True, default=0)
     stock = models.IntegerField(null=False)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    Descripcion = models.CharField(null=False, max_length=50)
-    imagen = models.CharField(null=False, max_length=400, blank=True)
-
+    descripcion = models.CharField(null=False, max_length=50)
+    imagen1 = models.CharField(null=False, max_length=400, blank=True)
+    imagen2 = models.CharField(null=False, max_length=400, blank=True)
+    imagen3 = models.CharField(null=False, max_length=400, blank=True)
+    marca = models.CharField(blank=True, max_length=400, default='N/A')
+    diametro = models.CharField(blank=True, max_length=400, default='N/A')
+    independencia = models.CharField(blank=True, max_length=400, default='N/A')
+    peso = models.CharField(blank=True, max_length=400)
+    respuesta = models.CharField(blank=True, max_length=400, default='N/A')
+    
     def __str__(self) -> str:
         return self.nombre
 
 class Carrito(models.Model):
     idCarrito = models.AutoField(primary_key=True)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     nombre = models.CharField(null=False, max_length=100)
     precio = models.IntegerField(null=False)
-    cantidad = models.IntegerField(null=False)
-    imagen = models.CharField(null=False, max_length=400, blank=True)
+    cantidad = models.IntegerField(null=False, default=1)
+    imagen = models.CharField(null=False, max_length=400, blank=False)
 
     def __str__(self):
         return self.nombre
