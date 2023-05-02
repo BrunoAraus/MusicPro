@@ -38,7 +38,7 @@ class Producto(models.Model):
 
 class Carrito(models.Model):
     idCarrito = models.AutoField(primary_key=True)
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    productos = models.ManyToManyField(Producto)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     nombre = models.CharField(null=False, max_length=100)
     precio = models.IntegerField(null=False)
@@ -47,6 +47,5 @@ class Carrito(models.Model):
 
     def __str__(self):
         return self.nombre
-
 
 
