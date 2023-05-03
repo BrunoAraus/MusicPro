@@ -62,9 +62,9 @@
                                     {% for producto in productos %}
                                     <tr>
                                         <td>
-                                            <img class="imagenCarrito" src="{{ producto.imagen }}">
+                                            <img class="imagenCarrito" src="{{ producto.imagen1 }}">
                                         </td>
-                                        <td class="datosTabla">{{ producto.Nombre }}</td>
+                                        <td class="datosTabla">{{ producto.nombre }}</td>
                                         <td class="datosTabla">${{ producto.precio }}</td>
                                         <td><a href="#"><img src="{% static 'core/imagenes/icons8-basura.gif' %}" alt=""></a></td>
                                         <td><a href="#"><img src="{% static 'core/imagenes/icons8-información (1).gif' %}" alt=""></a></td>
@@ -73,7 +73,7 @@
                                 </tbody>
                             </table>
                             <div class="division4"></div>
-                            {% include 'core/contenido_adicional.html' %}
+                            {% include 'core/contenido_adicional.html' %} 
                         </div>
                     </ul>
                 </div>
