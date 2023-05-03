@@ -22,13 +22,16 @@
         
         <div class="card-body">
           <!-- CAMBIAR EL "{% static 'core/imagenes/catalogo.png' %}" POR { p.imagen1} PARA QUE NO SE REPITA LO MISMO -->
+<<<<<<< Updated upstream
           <img src="{{ p.imagen1 }}" class="imagenCarta" alt="...">
+=======
+          <img src="{{p.imagen1}}" class="imagenCarta" alt="...">
+>>>>>>> Stashed changes
           <h5 class="card-title">{{ p.nombre }}</h5>
           <p class="card-text">Precio: ${{ p.precio }}</p>
           <p class="card-text">Descuento: -{{ p.descuento }}%</p>
           <p class="card-text">Precio descuento: ${{ p.preciodescuento }}</p>
           <p class="card-text">Stock: {{ p.stock }}</p>
-          
           <hr>
 
           <a href="#" class="boton cinco">
