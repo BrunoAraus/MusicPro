@@ -20,7 +20,7 @@
 	margin: 20px;
 	height: 100vh;
 	padding-top: 10%;
-	margin-bottom: 10%;
+	margin-bottom: 20%;
 	background-color: white;
 	max-width: 1800px;
 }
@@ -47,6 +47,7 @@
 .main-image img {
 	width: 100%;
 	height: auto;
+	display: fixed;
 }
 
 .thumbnails-images {
