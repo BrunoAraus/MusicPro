@@ -11,24 +11,26 @@
 
 <div class="contenido">
 
-  <!-- <img class="fondoDiseño" src="{% static 'core/imagenes/Fondo.jpg' %}" alt=""> -->
   <img class="bannerDiseño" src="{% static 'core/imagenes/banner.png' %}" alt="">
 
   <img class="imagenCatalogo" src="{% static 'core/imagenes/catalogo.png' %}" alt="">
 
   <div class="content">
-
+    {% for p in productos %}
     <div id="cartas">
       <div class="card">
-
+        
         <div class="card-body">
-          <img src="{% static 'core/imagenes/guitarra.png' %}" class="imagenCarta" alt="...">
-          <h5 class="card-title">Hola</h5>
-          <p class="card-text">Precio descuento: $ 1111</p>
-          <p class="card-text">Precio: 2222</p>
-          <p class="card-text">Stock: 4</p>
-          <p class="card-text">Descuento: 20%</p>
+          <!-- CAMBIAR EL "{% static 'core/imagenes/catalogo.png' %}" POR { p.imagen1} PARA QUE NO SE REPITA LO MISMO -->
+          <img src="{% static 'core/imagenes/guitarra.jpg' %}" class="imagenCarta" alt="...">
+          <h5 class="card-title">{{ p.nombre }}</h5>
+          <p class="card-text">Precio: ${{ p.precio }}</p>
+          <p class="card-text">Descuento: -{{ p.descuento }}%</p>
+          <p class="card-text">Precio descuento: ${{ p.preciodescuento }}</p>
+          <p class="card-text">Stock: {{ p.stock }}</p>
+          
           <hr>
+
           <a href="#" class="boton cinco">
             <div class="icono">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
@@ -36,7 +38,6 @@
                 <path
                   d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
               </svg>
-
             </div>
             <span id="texto">Comprar</span>
           </a>
@@ -51,309 +52,14 @@
                   d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                 <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
               </svg>
-
             </div>
             <span id="texto2">Ver producto</span>
           </a>
         </div>
-
       </div>
     </div>
-
-    <div id="cartas">
-      <div class="card">
-
-        <div class="card-body">
-          <img src="{% static 'core/imagenes/guitarra.png' %}" class="imagenCarta" alt="...">
-          <h5 class="card-title">Hola</h5>
-          <p class="card-text">Precio descuento: $ 1111</p>
-          <p class="card-text">Precio: 2222</p>
-          <p class="card-text">Stock: 4</p>
-          <p class="card-text">Descuento: 20%</p>
-          <hr>
-          <a href="#" class="boton cinco">
-            <div class="icono">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg>
-
-            </div>
-            <span id="texto">Comprar</span>
-          </a>
-
-          <div class="division"></div>
-
-          <a href="#" class="boton seis">
-            <div class="icono1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
-                viewBox="0 0 16 16">
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-
-            </div>
-            <span id="texto2">Ver producto</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <div id="cartas">
-      <div class="card">
-
-        <div class="card-body">
-          <img src="{% static 'core/imagenes/guitarra.png' %}" class="imagenCarta" alt="...">
-          <h5 class="card-title">Hola</h5>
-          <p class="card-text">Precio descuento: $ 1111</p>
-          <p class="card-text">Precio: 2222</p>
-          <p class="card-text">Stock: 4</p>
-          <p class="card-text">Descuento: 20%</p>
-          <hr>
-          <a href="#" class="boton cinco">
-            <div class="icono">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg>
-
-            </div>
-            <span id="texto">Comprar</span>
-          </a>
-
-          <div class="division"></div>
-
-          <a href="#" class="boton seis">
-            <div class="icono1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
-                viewBox="0 0 16 16">
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-
-            </div>
-            <span id="texto2">Ver producto</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <div id="cartas">
-      <div class="card">
-
-        <div class="card-body">
-          <img src="{% static 'core/imagenes/guitarra.png' %}" class="imagenCarta" alt="...">
-          <h5 class="card-title">Hola</h5>
-          <p class="card-text">Precio descuento: $ 1111</p>
-          <p class="card-text">Precio: 2222</p>
-          <p class="card-text">Stock: 4</p>
-          <p class="card-text">Descuento: 20%</p>
-          <hr>
-          <a href="#" class="boton cinco">
-            <div class="icono">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg>
-
-            </div>
-            <span id="texto">Comprar</span>
-          </a>
-
-          <div class="division"></div>
-
-          <a href="#" class="boton seis">
-            <div class="icono1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
-                viewBox="0 0 16 16">
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-
-            </div>
-            <span id="texto2">Ver producto</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-    <div id="cartas">
-      <div class="card">
-
-        <div class="card-body">
-          <img src="{% static 'core/imagenes/guitarra.png' %}" class="imagenCarta" alt="...">
-          <h5 class="card-title">Hola</h5>
-          <p class="card-text">Precio descuento: $ 1111</p>
-          <p class="card-text">Precio: 2222</p>
-          <p class="card-text">Stock: 4</p>
-          <p class="card-text">Descuento: 20%</p>
-          <hr>
-          <a href="#" class="boton cinco">
-            <div class="icono">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg>
-
-            </div>
-            <span id="texto">Comprar</span>
-          </a>
-
-          <div class="division"></div>
-
-          <a href="#" class="boton seis">
-            <div class="icono1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
-                viewBox="0 0 16 16">
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-
-            </div>
-            <span id="texto2">Ver producto</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <div id="cartas">
-      <div class="card">
-
-        <div class="card-body">
-          <img src="{% static 'core/imagenes/guitarra.png' %}" class="imagenCarta" alt="...">
-          <h5 class="card-title">Hola</h5>
-          <p class="card-text">Precio descuento: $ 1111</p>
-          <p class="card-text">Precio: 2222</p>
-          <p class="card-text">Stock: 4</p>
-          <p class="card-text">Descuento: 20%</p>
-          <hr>
-          <a href="#" class="boton cinco">
-            <div class="icono">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg>
-
-            </div>
-            <span id="texto">Comprar</span>
-          </a>
-
-          <div class="division"></div>
-
-          <a href="#" class="boton seis">
-            <div class="icono1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
-                viewBox="0 0 16 16">
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-
-            </div>
-            <span id="texto2">Ver producto</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <div id="cartas">
-      <div class="card">
-
-        <div class="card-body">
-          <img src="{% static 'core/imagenes/guitarra.png' %}" class="imagenCarta" alt="...">
-          <h5 class="card-title">Hola</h5>
-          <p class="card-text">Precio descuento: $ 1111</p>
-          <p class="card-text">Precio: 2222</p>
-          <p class="card-text">Stock: 4</p>
-          <p class="card-text">Descuento: 20%</p>
-          <hr>
-          <a href="#" class="boton cinco">
-            <div class="icono">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg>
-
-            </div>
-            <span id="texto">Comprar</span>
-          </a>
-
-          <div class="division"></div>
-
-          <a href="#" class="boton seis">
-            <div class="icono1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
-                viewBox="0 0 16 16">
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-
-            </div>
-            <span id="texto2">Ver producto</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <div id="cartas">
-      <div class="card">
-
-        <div class="card-body">
-          <img src="{% static 'core/imagenes/guitarra.png' %}" class="imagenCarta" alt="...">
-          <h5 class="card-title">Hola</h5>
-          <p class="card-text">Precio descuento: $ 1111</p>
-          <p class="card-text">Precio: 2222</p>
-          <p class="card-text">Stock: 4</p>
-          <p class="card-text">Descuento: 20%</p>
-          <hr>
-          <a href="#" class="boton cinco">
-            <div class="icono">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg>
-
-            </div>
-            <span id="texto">Comprar</span>
-          </a>
-
-          <div class="division"></div>
-
-          <a href="#" class="boton seis">
-            <div class="icono1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
-                viewBox="0 0 16 16">
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-
-            </div>
-            <span id="texto2">Ver producto</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-
+    {% endfor %}
   </div>
+
 </div>
 {% endblock %}
