@@ -1,0 +1,136 @@
+{% extends 'core/Template.html' %}
+{% load static %}
+
+
+
+{% block contenido %}
+<head>
+  <link rel="stylesheet" href="{% static 'core/css/detalle_producto.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<div class="contenido">
+  
+    <div class="content">
+
+		<div id="image-section">
+			<div id="carouselExampleFade" class="carousel slide carousel-fade">
+				<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="https://audiomusicacl.vtexassets.com/arquivos/ids/177401/subwoofer-pasivo-db-
+					audiotechnik-ysub-600-watts-rms-18-pulgadas-1099179-1.jpg?v=637859851077170000" class="img-fluid" alt="imagen1">
+				</div>
+				<div class="carousel-item">
+					<img src="https://audiomusicacl.vtexassets.com/arquivos/ids/177402/subwoofer-pasivo-db-
+					audiotechnik-ysub-600-watts-rms-18-pulgadas-1099179-2.jpg?v=637859851081230000" class="img-fluid" alt="imagen2">
+				</div>
+				<div class="carousel-item">
+					<img src="https://audiomusicacl.vtexassets.com/arquivos/ids/177403/subwoofer-pasivo-db-
+					audiotechnik-ysub-600-watts-rms-18-pulgadas-1099179-3.jpg?v=637859851084670000" class="img-fluid" alt="imagen3">
+				</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+
+			<div class="gallery">
+				<div class="section2">
+					<div class="main-image">
+					<img src="imagen 1.jpg" alt="imagen principal">
+					</div>
+					<div class="thumbnails-images">
+						<div class="thumbnail">
+						<img src="imagen 2.jpg" alt="image 1">
+						</div>
+						<div class="thumbnail">
+						<img src="imagen 3.jpg" alt="image 2">
+						</div>
+						<div class="thumbnail">
+						<img src="imagen 1.jpg" alt="image 3">
+						</div>
+					</div>
+				</div>	
+							
+			</div>
+		</div>
+
+		<div id="detalles-producto">
+			<div class="detalles-container">
+				<div class="product-title">
+					<h1>{{ p.nombre }}</h1>
+				</div>
+				<div class="precio">
+					<p>$799.990</p>
+				</div>
+				<div class="descripcion-producto">
+					<h4>DESCRIPCIÓN DEL PRODUCTO</h4>
+					<p>El Y-SUB es un subwoofer cardioide compacto de alto rendimiento diseñado para complementar las cajas de la Serie V de D&B.</p>
+					<p>El Y-SUB aloja dos transductores de neodimio en una configuración cardioide integrada por: un parlante de 18 en un diseño 
+						bassreflex encarado hacia delante y un parlante de 12 en diseño bandpass de dos cámaras que emite hacia detrás. 
+						La disposición y el ajuste proporcionan un patrón de dispersión cardioide mediante un solo canal del amplificador.</p>
+					<p>La respuesta de frecuencia se extiende de 39 Hz a 140/110 Hz. La caja está hecha de contrachapado con un acabado de PCP 
+						(Protección de poliurea de la caja) resistente a los impactos y a las inclemencias meteorológicas. La parte frontal de la caja
+						del altavoz está protegida por una rejilla metálica rígida y una espuma acústica transparente.</p>
+					<p>Cada panel lateral incorpora dos asas, cuatro ruedas resistentes en el panel posterior y un reborde roscado M20 en el panel 
+						superior permite conectar un atril para parlantes.</p>
+				</div>
+				<div class="comprar">
+					<div class="form">
+						<input min="1" max="20" type="number" id="typeNumber" class="form-control" placeholder="Cantidad"/>
+					</div>
+					<button type="submit" id="agregar" class="btn btn-primary">
+						<span class="material-symbols-outlined">shopping_cart_checkout</span>
+						Agregar al carrito
+					</button>
+				</div>
+			</div>
+			<div class="detalles-container2">
+				<h4>FICHA TÉCNICA Y DIMENSIONES</h4>
+				<div class="ficha-tecnica">
+					<div class="specification">Marca</div>
+					<div class="description">D&B Audiotechnik</div>
+				</div>
+				<div class="ficha-tecnica">
+					<div class="specification">Diámetro</div>
+					<div class="description">1x18 pulgadas / 1x12 pulgadas imán de neodimio</div>
+				</div>
+				<div class="ficha-tecnica">
+					<div class="specification">Impedancia</div>
+					<div class="description">8 Ohms</div>
+				</div>
+				<div class="ficha-tecnica">
+					<div class="specification">Potencia</div>
+					<div class="description">600 watts rms / 2400 watts peak</div>
+				</div>
+				<div class="ficha-tecnica">
+					<div class="specification">Dimensiones</div>
+					<div class="description">500 x 630 x 700/804 mm</div>
+				</div>
+				<div class="ficha-tecnica">
+					<div class="specification">Peso</div>
+					<div class="description">52 kilos</div>
+				</div>
+				<div class="ficha-tecnica">
+					<div class="specification">Respuesta de frecuencia</div>
+					<div class="description">39 Hz - 140 Hz (-5 dB, estándar)
+						, 39 Hz - 110 Hz (-5 dB, modo 100 Hz)</div>
+				</div>
+				<div class="manual">
+					<a href="#"> Descargar Manual </a>
+				</div>
+
+			</div>
+		</div>
+
+
+    </div>
+    
+
+</div>
+{% endblock %}

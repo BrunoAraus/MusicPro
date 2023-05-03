@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Braah+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Extreme:wght@100&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.contenido{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.content {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px;
+	height: 100vh;
+	padding-top: 10%;
+	margin-bottom: 10%;
+	background-color: white;
+	max-width: 1800px;
+}
+
+/*lado izquierdo*/
+#image-section {
+	width: 48%;
+	display: flex;
+	flex-direction: column;
+}
+
+#carouselExampleFade{
+	max-width: 800px;
+}
+
+.section2 {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 5px;
+	width: 70%;
+}
+
+.main-image img {
+	width: 100%;
+	height: auto;
+}
+
+.thumbnails-images {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.thumbnail img {
+	width: 100px;
+	height: 100px;
+	margin: 5px 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.thumbnail img:hover {
+	transform: scale(1.2);
+}  
+
+/*lado derecho*/
+.product-title{
+	font-family: 'Montserrat', sans-serif;
+}
+
+#detalles-producto {
+	width: 50%;
+}
+
+.detalles-container {
+	padding: 5%;
+}
+
+.product-title{
+	font-size: 20px;
+	border-bottom: 1px solid rgba(29,54,82,.1294117647)!important;
+}
+
+.precio {
+	font-family: 'Braah One', sans-serif;
+	font-size: 4em;
+	border-bottom: 1px solid rgba(29,54,82,.1294117647)!important;
+}
+
+.descripcion-producto {
+	font-family: 'Pathway Extreme', sans-serif;
+	line-height: 1.5;
+	margin-bottom: 20px;
+}
+
+.comprar{
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid rgba(29,54,82,.1294117647)!important;
+	padding-bottom: 20px;
+}
+
+.form {
+	width: 40%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.comprar button{
+	width: 50%;
+}
+
+#agregar{
+	margin: 5px 5px 5px 5px;
+	display: flex;
+	justify-content: center;
+}
+
+#agregar span{
+	margin: 0px 10px;
+}
+
+
+.detalles-container2{
+	font-family: 'Pathway Extreme', sans-serif;
+	margin: 2px;
+	padding: 2%;
+}
+
+.ficha-tecnica{
+	display: flex;
+	padding-bottom: 2%;
+	border-bottom: 1px solid rgba(29,54,82,.1294117647)!important;
+}
+
+.specification{
+	width: 30%;
+}
+
+.description{
+	width: 70%;
+}
+
+.manual{
+	display: flex;
+	justify-content: center;
+}
+
+@media screen and (max-width: 1000px){
+	#image-section{
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+	content{
+		display: flex;
+		flex-direction: column;
+	}
+
+	#carouselExampleFade{
+		width: 60%;
+	}
+
+	.gallery{
+		width: 0%;
+	}
+
+	.section2{
+		display: flex;
+		justify-content: center;
+	}
+
+	.thumbnails-images {
+		display: flex;
+		flex-direction: row;
+	}
+
+	#detalles-producto {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+}
