@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import models
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
@@ -16,7 +15,7 @@ class Categoria(models.Model):
         return self.nombreCategoria
 
 class Producto(models.Model):
-    idProducto = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(null=False, max_length=100)
     precio = models.IntegerField(blank=True, default=0)
     preciodescuento = models.IntegerField(null=True, blank=True, default=0)
@@ -33,8 +32,8 @@ class Producto(models.Model):
     peso = models.CharField(blank=True, max_length=400)
     respuesta = models.CharField(blank=True, max_length=400, default='N/A')
     
-    def __str__(self) -> str:
-        return self.nombre
+    def __str__(self):
+        return f'{self.nombre} -> {self.precio}'
 
 class Carrito(models.Model):
     idCarrito = models.AutoField(primary_key=True)

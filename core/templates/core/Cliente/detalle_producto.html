@@ -90,10 +90,7 @@
 					<div class="form">
 						<input min="1" max="20" type="number" id="typeNumber" class="form-control" placeholder="Cantidad"/>
 					</div>
-					<button type="submit" id="agregar" class="btn btn-primary">
-						<span class="material-symbols-outlined">shopping_cart_checkout</span>
-						Agregar al carrito
-					</button>
+					<a href="{% url 'Add' producto.id %}" class="btn btn-primary">Agregar al carrito</a>
 				</div>
 			</div>
 			<div class="detalles-container2">

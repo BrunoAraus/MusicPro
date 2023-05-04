@@ -43,7 +43,8 @@
 
           <div class="division"></div>
 
-          <a href="{% url 'detalle_producto' p.idProducto %}" class="boton seis">
+          <a href="{% url 'detalle_producto' p.id %}" class="boton seis">
+            <a href="{% url 'Add' p.id %}" class="btn btn-primary">Agregar al carrito</a>
             <div class="icono1">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
                 viewBox="0 0 16 16">
