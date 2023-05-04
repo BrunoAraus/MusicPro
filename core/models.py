@@ -46,5 +46,7 @@ class Carrito(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+    
 
 

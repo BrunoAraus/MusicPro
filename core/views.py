@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import *
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from core.Carrito import *
+from django.contrib.auth.forms import UserCreationForm
+from core.models import *
 
 # Create your views here.
 
@@ -9,6 +11,19 @@ def principal(request):
     productos = Producto.objects.all()
     data = {'productos' : productos}
     return render(request, 'core/cliente/principal.html', data)
+
+
+
+def registro(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to="login")
+    else:
+        form = UserCreationForm()
+    return render(request, 'core/registro.html',{'form':form})
 
 def detalle_producto(request, id):
     verProducto = Producto.objects.get(idProducto=id)

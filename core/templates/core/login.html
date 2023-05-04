@@ -1,0 +1,27 @@
+{% extends 'core/Template.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<head>
+    <link rel="stylesheet" href="#">
+</head>
+
+{% block contenido %}
+<div class="cuerpo">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<div class="container" style="background-color: #272727e3;">
+<form action="" method="post" style="color: beige ;">
+    {% csrf_token %}
+    {{ form|crispy}}
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+<a href="{% url 'registro' %}">¿No Tienes una cuenta?</a>
+</div>
+</div>
+
+{% endblock %}

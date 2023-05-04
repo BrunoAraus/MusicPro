@@ -43,11 +43,27 @@
                         </li>
 
                         <div class="separacion1"></div>
-
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="borde" href="#">
                                 <img class="logoEnlace" src="{% static 'core/imagenes/usuario.png' %}" alt="">
                             </a>
+                        </li>
+                        {% else %}
+                        {% endif %}
+                        <li>
+                        {% if user.is_authenticated %}
+                            <b>{{user.username}}</b>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'logout' %}">Cerrar sesion</a>
+                        </li>
+                        {% else %}
+
+                        <li class="nav-item">
+                            <a href="{% url 'login' %}">Iniciar Sesion</a>
+                        </li>
+                        {% endif %}
                         </li>
                         <li class="nav-item">
                             <a class="borde" href="#">
@@ -95,8 +111,8 @@
                                     {% endif %}
                                     <tr>
                                         <th scope="row">Total:</th>
-                                        <td >$ {{total_carrito}}</td>
-                                      </tr>
+                                        <td>$ {{total_carrito}}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <div class="division4"></div>
