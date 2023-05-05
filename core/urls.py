@@ -6,7 +6,7 @@ from django.contrib.auth.views import logout_then_login
 
 urlpatterns = [
     path('', principal,name="principal"),
-    path('detalle_producto/<id>', detalle_producto, name="detalle_producto"),
+    path('detalle_producto/<int:producto_id>', detalle_producto, name="detalle_producto"),
     path('agregar/<int:producto_id>/', agregar_producto, name="Add"),
     path('eliminar/<int:producto_id>/', eliminar_producto, name="Del"),
     path('restar/<int:producto_id>/', restar_producto, name="Sub"),

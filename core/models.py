@@ -22,7 +22,7 @@ class Producto(models.Model):
     descuento = models.IntegerField(null=True, default=0)
     stock = models.IntegerField(null=False)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    descripcion = models.CharField(null=False, max_length=50)
+    descripcion = models.CharField(null=False, max_length=3000)
     imagen1 = models.CharField(null=False, max_length=400, blank=True)
     imagen2 = models.CharField(null=False, max_length=400, blank=True)
     imagen3 = models.CharField(null=False, max_length=400, blank=True)

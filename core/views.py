@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .models import *
 from django.shortcuts import render, redirect
-from core.Carrito import *
 from django.contrib.auth.forms import UserCreationForm
 from core.models import *
+from core.Carrito import *
 
 # Create your views here.
 
@@ -11,8 +11,6 @@ def principal(request):
     productos = Producto.objects.all()
     data = {'productos' : productos}
     return render(request, 'core/cliente/principal.html', data)
-
-
 
 def registro(request):
     form = UserCreationForm()
@@ -25,9 +23,9 @@ def registro(request):
         form = UserCreationForm()
     return render(request, 'core/registro.html',{'form':form})
 
-def detalle_producto(request, id):
-    verProducto = Producto.objects.get(idProducto=id)
-    data = {'verProducto' : verProducto}
+def detalle_producto(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    data = {'producto' : producto}
     return render(request, 'core/cliente/detalle_producto.html', data)
 
 def agregar_producto(request, producto_id):
@@ -52,7 +50,3 @@ def limpiar_carrito(request):
     carrito = Carrito(request)
     carrito.limpiar()
     return redirect("principal")
-
-
-
-

@@ -30,7 +30,7 @@
           <p class="card-text">Stock: {{ p.stock }}</p>
           <hr>
 
-          <a href="#" class="boton cinco">
+          <a href="{% url 'Add' p.id %}" class="boton cinco">
             <div class="icono">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
                 viewBox="0 0 16 16">
@@ -44,7 +44,6 @@
           <div class="division"></div>
 
           <a href="{% url 'detalle_producto' p.id %}" class="boton seis">
-            <a href="{% url 'Add' p.id %}" class="btn btn-primary">Agregar al carrito</a>
             <div class="icono1">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
                 viewBox="0 0 16 16">
@@ -55,6 +54,7 @@
             </div>
             <span id="texto2">Ver producto</span>
           </a>
+          
         </div>
       </div>
     </div>

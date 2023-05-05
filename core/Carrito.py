@@ -14,9 +14,10 @@ class Carrito:
         if id not in self.carrito.keys():
             self.carrito[id]={
                 "producto_id": producto.id,
+                "imagen": producto.imagen1,
                 "nombre": producto.nombre,
+                "precio1": producto.precio,
                 "acumulado": producto.precio,
-                "Imagen": producto.imagen1,
                 "cantidad": 1,
             }
         else:

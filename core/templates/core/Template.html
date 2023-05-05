@@ -43,26 +43,19 @@
                         </li>
 
                         <div class="separacion1"></div>
+                        
                         {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="borde" href="#">
-                                <img class="logoEnlace" src="{% static 'core/imagenes/usuario.png' %}" alt="">
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="borde" href="{% url 'logout' %}">
+                                    <img class="logoEnlace" src="{% static 'core/imagenes/salir.png' %}" alt="">
+                                </a>
+                            </li>
                         {% else %}
-                        {% endif %}
-                        <li>
-                        {% if user.is_authenticated %}
-                            <b>{{user.username}}</b>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{% url 'logout' %}">Cerrar sesion</a>
-                        </li>
-                        {% else %}
-
-                        <li class="nav-item">
-                            <a href="{% url 'login' %}">Iniciar Sesion</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="borde" href="{% url 'login' %}">
+                                    <img class="logoEnlace" src="{% static 'core/imagenes/usuario.png' %}" alt="">
+                                </a>
+                            </li>
                         {% endif %}
                         </li>
                         <li class="nav-item">
@@ -70,53 +63,80 @@
                                 <img class="logoEnlace1" src="{% static 'core/imagenes/carrito.png' %}" alt="">
                             </a>
                         </li>
-                        <div class="contenidoCarrito">
+                        <!-- NO ES UN ERROR, SOLO QUE EL HTML NO LO RECONOCE DENTRO DE LA ETIQUETA STYLE -->
+                        <div class="contenidoCarrito {% if request.session.carrito.items|length > 0 %} overflow-scroll {% else %} overflow-hidden{% endif %}">
                             <table class="listaCarrito">
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th>Cantidad</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     {% if request.session.carrito.items %}
                                     {% for key, value in request.session.carrito.items %}
                                     <tr>
-                                        <td>
-                                            <img class="imagenCarrito" src="{{ value.imagen1 }}">
-                                        </td>
-                                        <td class="datosTabla">{{ value.nombre }}</td>
-                                        <td class="datosTabla">${{ value.precio }}</td>
-                                        <td>{{value.acumulado}}
-                                            <a href="{% url 'Add' value.producto_id %}"
-                                                class="badge btn btn-dark badge-dark">+</a>
-                                            <a href="{% url 'Sub' value.producto_id %}"
-                                                class="badge btn btn-dark badge-dark">-</a>
-                                        </td>
-                                        <td><a href="#"><img src="{% static 'core/imagenes/icons8-basura.gif' %}"
-                                                    alt=""></a></td>
-                                        <td><a href="#"><img
-                                                    src="{% static 'core/imagenes/icons8-información (1).gif' %}"
-                                                    alt=""></a></td>
+                                        <thead>
+                                            <tr>
+                                                <th>Imagen</th>
+                                                <th >Nombre</th>
+                                                <th id="precioAco">Precio acomulado</th>
+                                                <th id="cantidad1">Cantidad</th>
+                                            </tr>
+                                        </thead>
+                                        <thead>
+                                            <tr>
+                                                <th><img class="imagenCarrito" src="{{ value.imagen }}"></th>
+                                                <th class="datosTabla">{{ value.nombre }}</th>
+                                                <th class="datosTabla">${{ value.acumulado }}</th>
+                                                <th class="datosTabla3">
+                                                    <a href="{% url 'Add' value.producto_id %}"
+                                                        class="badge btn btn-dark badge-dark">+</a>
+                                                        <span>{{value.cantidad}}</span>
+                                                    <a href="{% url 'Sub' value.producto_id %}"
+                                                        class="badge btn btn-dark badge-dark">-</a>
+                                                </th>
+                                                <th class="datosTabla2">
+                                                    <a href="{% url 'Del' value.producto_id %}">
+                                                        <img src="{% static 'core/imagenes/icons8-basura.gif' %}" alt="">
+                                                    </a>
+                                                </th>
+                                                <th class="datosTabla2">
+                                                    <a href="{% url 'detalle_producto' value.producto_id %}">
+                                                        <img src="{% static 'core/imagenes/icons8-información (1).gif' %}" alt="">
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
                                     </tr>
+                                    
                                     {% endfor %}
+                                    <tr>
+                                        <th class="precioTotal">Total: $ {{total_carrito}}</th>
+                                    </tr>
                                     {% else %}
-                                    <tr>
-                                        <td>
-                                            <div class="alert alert-danger text-center"> Sin Productos </div>
-                                        </td>
-                                    </tr>
+                                    
+                                    <div class="aviso">
+                                        <img src="{% static 'core/imagenes/empy.gif' %}" id="gifVacio" alt="">
+                                        <h3>Carrito Vacío :/</h2>
+                                    </div>
+                                    
                                     {% endif %}
-                                    <tr>
-                                        <th scope="row">Total:</th>
-                                        <td>$ {{total_carrito}}</td>
-                                    </tr>
                                 </tbody>
                             </table>
+
+                            {% if request.session.carrito.items %}
                             <div class="division4"></div>
-                            {% include 'core/contenido_adicional.html' %}
+
+                            <a href="#" class="boton siete">
+                                <div class="icono1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                        d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                    </svg>
+                                </div>
+
+                                <span id="texto3">Pagar</span>
+                                <!-- <a href="{% url 'limpiar' %}" class="btn btn-danger">Limpiar</a> -->
+                                <!-- <a href="{% url 'principal' %}" class="btn btn-success">Guardar</a> -->
+                            </a>
+                            {% endif %}
+
                         </div>
                     </ul>
                 </div>
