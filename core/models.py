@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Profile(models.Model):
     id = models.AutoField(primary_key=True)
     us = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -22,13 +23,15 @@ class Producto(models.Model):
     descuento = models.IntegerField(null=True, default=0)
     stock = models.IntegerField(null=False)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    descripcion = models.CharField(null=False, max_length=3000)
+    descripcion = models.CharField(null=False, max_length=5000)
     imagen1 = models.CharField(null=False, max_length=400, blank=True)
     imagen2 = models.CharField(null=False, max_length=400, blank=True)
     imagen3 = models.CharField(null=False, max_length=400, blank=True)
     marca = models.CharField(blank=True, max_length=400, default='N/A')
     diametro = models.CharField(blank=True, max_length=400, default='N/A')
-    independencia = models.CharField(blank=True, max_length=400, default='N/A')
+    independencia = models.CharField(blank=True, max_length=400, default='N/A') #impedancia*
+    # potencia = models.CharField(blank=True, max_length=400, default='N/A')
+    # dimensiones = models.CharField(blank=True, max_length=400, default='N/A')
     peso = models.CharField(blank=True, max_length=400)
     respuesta = models.CharField(blank=True, max_length=400, default='N/A')
     
