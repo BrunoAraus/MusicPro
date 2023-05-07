@@ -1,27 +1,27 @@
-{% extends 'core/Template.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 <head>
-    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
 </head>
 
-{% block contenido %}
-<div class="cuerpo">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-<div class="container" style="background-color: #272727e3;">
-<form action="" method="post" style="color: beige ;">
-    {% csrf_token %}
-    {{ form|crispy}}
-    <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
-<a href="{% url 'registro' %}">¿No Tienes una cuenta?</a>
-</div>
-</div>
+<div class="contenedor">
+    <div class="contenido">
 
-{% endblock %}
+        <div class="espacio1">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form|crispy}}
+                <button type="submit" class="botonEnviar">Enviar</button>
+            </form>
+        </div>
+    
+        <div class="espacio2">
+            <a href="{% url 'registro' %}" style="text-decoration: none; color: white;">
+                <span>
+                    → ¿No tienes una cuenta?, ¡Registrate aquí! ←
+                </span>
+            </a>
+        </div>
+
+    </div>
+</div>
