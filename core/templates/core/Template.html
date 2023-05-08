@@ -68,7 +68,6 @@
                             class="contenidoCarrito {% if request.session.carrito.items|length > 0 %} overflow-scroll {% else %} overflow-hidden{% endif %}">
                             <table class="listaCarrito">
                                 <tbody>
-                                    aqui quiero añadir el mensaje
                                     {% if request.session.carrito.items %}
                                     {% for key, value in request.session.carrito.items %}
                                     <tr>
@@ -91,7 +90,7 @@
                                                     <span>{{value.cantidad}}</span>
                                                     <a href="{% url 'Sub' value.producto_id %}"
                                                         class="badge btn btn-dark badge-dark">-</a>
-                                                        {{value.mensaje}}
+                                                        <h1 class="alertaStock">{{value.mensaje}}</h1>
                                                 </th>
                                                 <th class="datosTabla2">
                                                     <a href="{% url 'Del' value.producto_id %}">

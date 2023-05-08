@@ -38,19 +38,3 @@ class Producto(models.Model):
     
     def __str__(self):
         return f'{self.nombre} -> {self.precio}'
-
-class Carrito(models.Model):
-    idCarrito = models.AutoField(primary_key=True)
-    productos = models.ManyToManyField(Producto)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    nombre = models.CharField(null=False, max_length=100)
-    precio = models.IntegerField(null=False)
-    cantidad = models.IntegerField(null=False, default=1)
-    imagen = models.CharField(null=False, max_length=400, blank=False)
-
-    def __str__(self):
-        return self.nombre
-    
-    
-
-

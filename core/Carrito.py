@@ -24,12 +24,13 @@ class Carrito:
                 "mensaje": producto.nombre,
                 "cantidad": 1,
             }
+            self.carrito[id]["mensaje"] = ""
         else:
             if self.carrito[id]["cantidad"] + 1 <= producto.stock:
                 self.carrito[id]["cantidad"] += 1
                 self.carrito[id]["acumulado"] += producto.precio
             else:
-                self.carrito[id]["mensaje"] = "No Tiene Suficiente Stock"
+                self.carrito[id]["mensaje"] = "No hay suficiente stock"
         self.guardar_carrito()
 
     def guardar_carrito(self):
