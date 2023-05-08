@@ -27,12 +27,13 @@ class Producto(models.Model):
     imagen1 = models.CharField(null=False, max_length=400, blank=True)
     imagen2 = models.CharField(null=False, max_length=400, blank=True)
     imagen3 = models.CharField(null=False, max_length=400, blank=True)
+    imagen4 = models.CharField(null=False, max_length=400, blank=True)
     marca = models.CharField(blank=True, max_length=400, default='N/A')
     diametro = models.CharField(blank=True, max_length=400, default='N/A')
-    independencia = models.CharField(blank=True, max_length=400, default='N/A') #impedancia*
-    # potencia = models.CharField(blank=True, max_length=400, default='N/A')
-    # dimensiones = models.CharField(blank=True, max_length=400, default='N/A')
-    peso = models.CharField(blank=True, max_length=400)
+    impedancia = models.CharField(blank=True, max_length=400, default='N/A')
+    potencia = models.CharField(blank=True, max_length=400, default='N/A')
+    dimensiones = models.CharField(blank=True, max_length=400, default='N/A')
+    peso = models.CharField(blank=True, max_length=400,default='N/A')
     respuesta = models.CharField(blank=True, max_length=400, default='N/A')
     
     def __str__(self):

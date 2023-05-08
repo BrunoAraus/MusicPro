@@ -1,3 +1,5 @@
+from django.contrib import messages
+
 class Carrito:
     def __init__(self, request):
         self.request = request
@@ -12,21 +14,25 @@ class Carrito:
     def agregar(self, producto):
         id = str(producto.id)
         if id not in self.carrito.keys():
-            self.carrito[id]={
+            self.carrito[id] = {
                 "producto_id": producto.id,
                 "imagen": producto.imagen1,
                 "nombre": producto.nombre,
                 "precio1": producto.precio,
                 "acumulado": producto.precio,
+                "stock": producto.stock,
+                "mensaje": producto.nombre,
                 "cantidad": 1,
             }
         else:
-            self.carrito[id]["cantidad"] += 1
-            self.carrito[id]["acumulado"] += producto.precio
+            if self.carrito[id]["cantidad"] + 1 <= producto.stock:
+                self.carrito[id]["cantidad"] += 1
+                self.carrito[id]["acumulado"] += producto.precio
+            else:
+                self.carrito[id]["mensaje"] = "No Tiene Suficiente Stock"
         self.guardar_carrito()
 
     def guardar_carrito(self):
-        self.session["carrito"] = self.carrito
         self.session.modified = True
 
     def eliminar(self, producto):
@@ -40,7 +46,9 @@ class Carrito:
         if id in self.carrito.keys():
             self.carrito[id]["cantidad"] -= 1
             self.carrito[id]["acumulado"] -= producto.precio
-            if self.carrito[id]["cantidad"] <= 0: self.eliminar(producto)
+            self.carrito[id]["mensaje"] = ""
+            if self.carrito[id]["cantidad"] <= 0:
+                self.eliminar(producto)
             self.guardar_carrito()
 
     def limpiar(self):
