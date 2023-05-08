@@ -4,7 +4,7 @@
 
 {% block contenido %}
 <head>
-  <link rel="stylesheet" href="{% static 'core/css/detalle_productos.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/detalle_producto.css' %}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
@@ -65,8 +65,8 @@
 					<h1>{{ producto.nombre }}</h1>
 				</div>
 				<div class="precio">
-					<p class="preciogrande">{% money_localize producto.preciodescuento 'CLP' %}</p>
-					<p class="precioanterior">{% money_localize producto.precio 'CLP' %}</p>
+					<p class="preciogrande">${% money_localize producto.preciodescuento 'CLP' %}</p>
+					<p class="precioanterior">${% money_localize producto.precio 'CLP' %}</p>
 				</div>
 				<div class="descripcion-producto">
 					<h4>DESCRIPCIÓN DEL PRODUCTO</h4>
