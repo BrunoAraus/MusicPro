@@ -1,0 +1,181 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.contenido{
+    width: 100%;
+    background-image: url("/static/core/imagenes/Fondo.e562ac5c8584.jpg");
+    position: relative;
+    padding-bottom: 1%;
+}
+
+.content{
+    display: flex;
+    padding-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: auto;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    position: relative;
+}
+
+.imagenCatalogo{
+    height: 20%;
+    width: 100%;
+    padding-bottom: 3%;
+    padding-top: 6%;
+    position: relative;
+}
+.fondoDiseño{
+    position: fixed;
+}
+
+.bannerDiseño{
+    height: 20%;
+    width: 100%;
+    padding-top: 15%;
+    position: relative;
+}
+
+#cartas{
+    margin: 30px 30px 30px 30px;
+}
+
+.card{
+    width: 107%;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 10px 20px 15px;
+}
+
+.imagenCarta{
+    width: 220px;
+    height: 190px;
+    border-radius: 20px;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-family: sans-serif;
+}
+
+.card-title{
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+p{
+    margin-bottom: 7px;
+}
+
+.boton.cinco #texto {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: .3s ease-in-out all;
+    position: relative;
+    color: black;
+    font-family: sans-serif;
+}
+
+.boton.cinco .icono{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    transition: .3s ease-in-out all;
+    opacity: 0;
+}
+
+.boton.cinco:hover .icono{
+    left: calc(100% - 107px);
+    opacity: 1;
+}
+
+.boton.cinco:hover{
+    background: black;
+}
+
+.boton.cinco svg{
+    color: #fff;
+    width: 25px;
+    height: 25px;
+}
+
+.boton.cinco:hover #texto {
+    left: -9%;
+    color: white;
+}
+
+.boton.cinco {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 50px;
+    border-radius: 16px;
+    border: 3px solid black;
+    text-decoration: none;
+}
+
+
+
+
+.boton.seis #texto2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: .3s ease-in-out all;
+    position: relative;
+    color: black;
+    font-family: sans-serif;
+}
+
+.boton.seis .icono1{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    transition: .3s ease-in-out all;
+    opacity: 0;
+}
+
+.boton.seis:hover .icono1{
+    left: calc(100% - 55%);
+    opacity: 1;
+}
+
+.boton.seis:hover{
+    background: black;
+}
+
+.boton.seis svg{
+    color: #fff;
+    width: 25px;
+    height: 25px;
+}
+
+.boton.seis:hover #texto2  {
+    opacity: 0;
+}
+
+.boton.seis {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 50px;
+    border-radius: 16px;
+    border: 3px solid black;
+    text-decoration: none;
+}
+
+.division{
+    height: 10px;
+}
