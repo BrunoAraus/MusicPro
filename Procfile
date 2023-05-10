@@ -1,1 +1,0 @@
-web: guinicorn MusicPro.wsgi --log-file - 
