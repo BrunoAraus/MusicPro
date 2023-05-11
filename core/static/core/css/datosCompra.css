@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor{
+    width: 100%;
+    height: 100%;
+}
+
+.contenido{
+    display: flex;
+    justify-content: space-around;
+    background-color: aquamarine;
+    width: 100%;
+    height: 100%;
+}
+
+
+.datosPago{
+    width: 65%;
+    height: 95%;
+    margin: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    background-color: blue;
+}
+
+.carritoCompra{
+    width: 35%;
+    height: 95%;
+    margin: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    background-color: red;
+}
+
+.titulosAcordion{
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+/* DESDE ACÁ ES SÓLO EL CARRO */
+
+.contenidoCarrito{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    height: 80%;
+    background-color: #fff;
+    position: relative;
+    z-index: 9999;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.listaCarrito{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagenCarrito{
+    width: 170px;
+    height: 150px;
+    border-radius: 40px;
+    border: rgba(0, 0, 0, 0.041) 3px solid ;
+    margin: 15px 15px 20px 0px;
+}
+
+tr{
+    text-align: center;
+}
+
+th{
+    margin: 0px 20px 0px 0px;
+    padding: 15px 20px 0px 20px;
+}
+
+#espacioImagen{
+    padding: 15px 70px 0px 30px;
+}
+
+.datosTabla{
+    padding: 0px 40px 0px 0px;
+}
+
+.datosTabla2{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    width: 15%;
+    left: 15%;
+    bottom: 85px;
+    margin: 0px 0px 0px 10px;
+    padding: 12px 0px 0px 40px;;
+}
+
+.datosTabla3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 60px 0px 25px;
+    width: 10%;
+}
+
+.precioTotal{
+    position: relative;
+    left: 31%;
+    padding: 5px 0px 15px 0px;
+    font-style: italic;
+    width: 80%;
+    font-size: 20px;
+}
+
+.alertaStock{
+    width: 60px;
+    margin-top: 15px;
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+}

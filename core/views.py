@@ -32,21 +32,26 @@ def agregar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     carrito.agregar(producto)
-    return redirect("principal")
+    return redirect(request.META.get('HTTP_REFERER'))
 
 def eliminar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     carrito.eliminar(producto)
-    return redirect("principal")
+    return redirect(request.META.get('HTTP_REFERER'))
 
 def restar_producto(request, producto_id):
     carrito = Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     carrito.restar(producto)
-    return redirect("principal")
+    return redirect(request.META.get('HTTP_REFERER'))
 
 def limpiar_carrito(request):
     carrito = Carrito(request)
     carrito.limpiar()
-    return redirect("principal")
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+
+def compra(request):
+    return render(request, 'core/cliente/datosCompra.html')
