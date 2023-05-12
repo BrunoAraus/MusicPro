@@ -79,7 +79,7 @@
                                             <span>{{value.cantidad}}</span>
                                             <a href="{% url 'Sub' value.producto_id %}"
                                                 class="badge btn btn-dark badge-dark">-</a>
-                                            <h1 class="alertaStock">{{value.mensaje}}</h1>
+                                                <h1 class="alertaStock">{{value.mensaje}}</h1>
                                         </th>
                                         <th class="datosTabla2">
                                             <a href="{% url 'Del' value.producto_id %}">
@@ -98,10 +98,12 @@
                             </tr>
                           {% endfor %}
                         {% endif %}
+                        <tr>
+                            <th class="precioTotal">Total: $ {{total_carrito}}</th>
+                        </tr>
                     </tbody>
                 </table>
               </div>
-              <h1 class="precioTotal">Total: $ {{total_carrito}}</h1>
             </div>
         </div>
     </div>

@@ -93,9 +93,9 @@ th{
     position: relative;
     width: 15%;
     left: 15%;
-    bottom: 96px;
+    bottom: 85px;
     margin: 0px 0px 0px 10px;
-    padding: 12px 0px 0px 60px;;
+    padding: 12px 0px 0px 40px;;
 }
 
 .datosTabla3{
@@ -108,23 +108,14 @@ th{
 }
 
 .precioTotal{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    font-size: 35px;
+    position: relative;
+    left: 31%;
+    padding: 5px 0px 15px 0px;
+    font-style: italic;
+    width: 80%;
+    font-size: 20px;
     color: white;
 }
-
-/* .alertaStock{
-    width: 60px;
-    margin-top: 15px;
-    font-size: 12px;
-    color: red;
-    font-weight: bold;
-    position: relative;
-    top: 24%;
-} */
 
 .alertaStock{
     width: 60px;
@@ -132,4 +123,6 @@ th{
     font-size: 12px;
     color: red;
     font-weight: bold;
+    position: relative;
+    top: 24%;
 }
