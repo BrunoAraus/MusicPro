@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #b4b4b4ce;
+}
+
+.carrusel-item {
+  margin-left: 590px;
+  margin-right: 450px;
+  align-items: center;
+
+}
+
+.carrusel-item img {
+  width: 700px;
+}
+
+.Informacion {
+  text-align: center;
+  border: 2px solid #ccc;
+  padding: 20px;
+  width: 50%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: azure;
+}
+
+.titulo {
+  margin: 0;
+
+}
+
+.info {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: 40px;
+  margin-right: 40px;
+  justify-content: center;
+}
+
+table {
+  margin: 0 auto;
+  width: 40%;
+}
+
+.Subinfo {
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+th {
+  text-align: left;
+}
+
+button {
+  background-color: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
+/* table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+} */
+/* Esto es para el loop */
+
+/* .mensaje-container {
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.mensaje {
+  display: inline-block;
+  margin-right: 0;
+  margin-bottom: 0;
+  font-size: 24px;
+  animation: mover-mensaje 10s linear infinite;
+}
+@keyframes mover-mensaje {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+} */

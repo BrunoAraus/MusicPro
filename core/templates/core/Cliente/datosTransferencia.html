@@ -1,0 +1,124 @@
+{% load static %}
+{% load djmoney %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="{% static 'core/css/datostransferencia.css' %}">
+  <title>Datos de transferencia</title>
+</head>
+
+
+
+<body>
+
+
+  <div class="Informacion">
+    <h1 class="titulo">Datos transferencia</h1>
+    <br>
+    <hr>
+    <div class="info">
+      <br>
+      <h3>Por favor, realice una transferencia utilizando los siguientes datos de transferencia:</h3>
+      <br>
+      <div class="DatosDeTabla">
+        <table border="1">
+
+          <tr>
+            <td colspan="2">Haz la transferencia a la siguente Cuenta</td>
+          </tr>
+          <tr>
+            <td> Rut: </td>
+            <td> 19.983.213-k </td>
+          </tr>
+          <tr>
+            <td> N° de Cuenta: </td>
+            <td> 00019983213 </td>
+          </tr>
+          <tr>
+            <td> Tipo de cuenta: </td>
+            <td> Cuenta Rut</td>
+          </tr>
+          </tr>
+          <tr>
+            <td> Nombre del beneficiario: </td>
+            <td> Juan Pérez </td>
+          </tr>
+          <tr>
+            <td>
+              Cantidad a transferir:
+            </td>
+            <td> ${% money_localize total_carrito  'CLP' %} <!--  Aqui se pone la variable del precio total--></td> 
+          </tr>
+          <tr>
+            <td> Correo electronico: </td>
+            <td> MusicPro@musicpro.cl </td>
+          </tr>
+        </table>
+
+      </div>
+      <div class="Subinfo">
+        <p>
+          Es importante que revise cuidadosamente los datos de transferencia antes de realizar la transferencia para
+          asegurarse de que sean correctos.
+        </p>
+        <br>
+        <p> También es importante tener en cuenta que el proceso de transferencia puede tardar unos días hábiles en
+          completarse.
+        </p>
+        <br>
+        <p>
+          Si tiene alguna pregunta o necesita ayuda, no dude en ponerse en contacto con
+          nuestro equipo de soporte.
+
+        </p>
+      </div>
+
+    </div>
+    <button type="button" >Volver</button>
+
+  </div>
+
+
+  <!-- Este codigo es para el loop -->
+
+  <!--   
+<div class="mensaje-container">
+  <h3 class="mensaje"></h3>
+</div>
+<script>
+  let contador = 0;
+  const limite = 5;
+  const intervalo = setInterval(() => {
+    if (contador >= limite) {
+      clearInterval(intervalo);
+    } else {
+      const mensaje = document.createElement("span");
+      mensaje.textContent = "¡Gracias por su compra! ";
+      document.querySelector(".mensaje").appendChild(mensaje);
+      contador++;
+      if (contador === limite) {
+        // Reiniciar el bucle infinito después de que se agreguen todos los mensajes
+        setTimeout(() => {
+          document.querySelector(".mensaje").innerHTML = "";
+          contador = 0;
+        }, 10000);
+      }
+    }
+  }, 1000);
+  // Mover el mensaje horizontalmente
+  setInterval(() => {
+    const mensaje = document.querySelector(".mensaje");
+    const mensajeWidth = mensaje.offsetWidth;
+    const containerWidth = mensaje.parentNode.offsetWidth;
+    mensaje.style.transform = `translateX(-${mensajeWidth + containerWidth}px)`;
+  }, 100);
+</script> -->
+</body>
+
+</html>
