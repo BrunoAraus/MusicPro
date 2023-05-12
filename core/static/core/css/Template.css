@@ -228,6 +228,7 @@ footer{
     height: 400px;
     border: rgba(23, 94, 151, 0.685) solid 5px;
     border-radius: 15px;
+    padding-bottom: 20px;
     overflow-x: hidden !important; 
 }
 
