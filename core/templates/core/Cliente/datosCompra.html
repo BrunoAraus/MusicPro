@@ -1,4 +1,5 @@
 {% load static %}
+{% load djmoney %}
 
 <head>
     <link rel="stylesheet" href="{% static 'core/css/datosCompra.css' %}">
@@ -72,14 +73,14 @@
                                     <tr>
                                         <th><img class="imagenCarrito" src="{{ value.imagen }}"></th>
                                         <th class="datosTabla">{{ value.nombre }}</th>
-                                        <th class="datosTabla">${{ value.acumulado }}</th>
+                                        <th class="datosTabla">${% money_localize value.acumulado 'clp' %}</th>
                                         <th class="datosTabla3">
                                             <a href="{% url 'Add' value.producto_id %}"
                                                 class="badge btn btn-dark badge-dark">+</a>
                                             <span>{{value.cantidad}}</span>
                                             <a href="{% url 'Sub' value.producto_id %}"
                                                 class="badge btn btn-dark badge-dark">-</a>
-                                                <h1 class="alertaStock">{{value.mensaje}}</h1>
+                                            <h1 class="alertaStock">{{value.mensaje}}</h1>
                                         </th>
                                         <th class="datosTabla2">
                                             <a href="{% url 'Del' value.producto_id %}">
@@ -98,12 +99,20 @@
                             </tr>
                           {% endfor %}
                         {% endif %}
-                        <tr>
-                            <th class="precioTotal">Total: $ {{total_carrito}}</th>
-                        </tr>
+<<<<<<< HEAD
+
                     </tbody>
                 </table>
               </div>
+              <tr>
+                <th class="precioTotal">Total: ${% money_localize total_carrito 'clp' %}</th>
+              </tr>
+=======
+                    </tbody>
+                </table>
+              </div>
+              <h1 class="precioTotal">Total: $ {{total_carrito}}</h1>
+>>>>>>> 73e2e9789a7c5198cbbd8c85c07018782f195925
             </div>
         </div>
     </div>
