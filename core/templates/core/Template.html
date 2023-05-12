@@ -1,4 +1,5 @@
 {% load static %}
+{% load djmoney %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -85,7 +86,7 @@
                                             <tr>
                                                 <th><img class="imagenCarrito" src="{{ value.imagen }}"></th>
                                                 <th class="datosTabla">{{ value.nombre }}</th>
-                                                <th class="datosTabla">${{ value.acumulado }}</th>
+                                                <th class="datosTabla">${% money_localize value.acumulado  'CLP' %}</th>
                                                 <th class="datosTabla3">
                                                     <a href="{% url 'Add' value.producto_id %}"
                                                         class="badge btn btn-dark badge-dark">+</a>
@@ -111,7 +112,7 @@
                                     </tr>
                                     {% endfor %}
                                     <tr>
-                                        <th class="precioTotal">Total: $ {{total_carrito}}</th>
+                                        <th class="precioTotal">Total: ${% money_localize total_carrito  'CLP' %}</th>
                                     </tr>
                                     {% else %}
 

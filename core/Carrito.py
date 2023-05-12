@@ -14,23 +14,49 @@ class Carrito:
     def agregar(self, producto):
         id = str(producto.id)
         if id not in self.carrito.keys():
-            self.carrito[id] = {
-                "producto_id": producto.id,
-                "imagen": producto.imagen1,
-                "nombre": producto.nombre,
-                "precio1": producto.precio,
-                "acumulado": producto.precio,
-                "stock": producto.stock,
-                "mensaje": producto.nombre,
-                "cantidad": 1,
-            }
-            self.carrito[id]["mensaje"] = ""
-        else:
-            if self.carrito[id]["cantidad"] + 1 <= producto.stock:
-                self.carrito[id]["cantidad"] += 1
-                self.carrito[id]["acumulado"] += producto.precio
+            if producto.descuento == 0:
+                self.carrito[id] = {
+                    "producto_id": producto.id,
+                    "imagen": producto.imagen1,
+                    "nombre": producto.nombre,
+                    "precio1": producto.precio,
+                    "precio2": producto.preciodescuento,
+                    "descuento": producto.descuento,
+                    "acumulado": producto.precio,
+                    "stock": producto.stock,
+                    "mensaje": producto.nombre,
+                    "cantidad": 1,
+                }
+                self.carrito[id]["mensaje"] = ""
+                self.guardar_carrito()
             else:
-                self.carrito[id]["mensaje"] = "No hay suficiente stock"
+                self.carrito[id] = {
+                    "producto_id": producto.id,
+                    "imagen": producto.imagen1,
+                    "nombre": producto.nombre,
+                    "precio1": producto.precio,
+                    "precio2": producto.preciodescuento,
+                    "descuento": producto.descuento,
+                    "acumulado": producto.preciodescuento,
+                    "stock": producto.stock,
+                    "mensaje": producto.nombre,
+                    "cantidad": 1,
+                }
+                self.carrito[id]["mensaje"] = ""
+            self.guardar_carrito()
+        else:
+            if producto.descuento == 0:
+                if self.carrito[id]["cantidad"] + 1 <= producto.stock:
+                    self.carrito[id]["cantidad"] += 1
+                    self.carrito[id]["acumulado"] += producto.precio
+                else:
+                    self.carrito[id]["mensaje"] = "No hay suficiente stock"
+            else:
+                if self.carrito[id]["cantidad"] + 1 <= producto.stock:
+                    self.carrito[id]["cantidad"] += 1
+                    self.carrito[id]["acumulado"] += producto.preciodescuento
+                else:
+                    self.carrito[id]["mensaje"] = "No hay suficiente stock"
         self.guardar_carrito()
 
     def guardar_carrito(self):
@@ -45,12 +71,20 @@ class Carrito:
     def restar(self, producto):
         id = str(producto.id)
         if id in self.carrito.keys():
-            self.carrito[id]["cantidad"] -= 1
-            self.carrito[id]["acumulado"] -= producto.precio
-            self.carrito[id]["mensaje"] = ""
-            if self.carrito[id]["cantidad"] <= 0:
-                self.eliminar(producto)
-            self.guardar_carrito()
+            if producto.descuento == 0:
+                self.carrito[id]["cantidad"] -= 1
+                self.carrito[id]["acumulado"] -= producto.precio
+                self.carrito[id]["mensaje"] = ""
+                if self.carrito[id]["cantidad"] <= 0:
+                    self.eliminar(producto)
+                self.guardar_carrito()
+            else:
+                self.carrito[id]["cantidad"] -= 1
+                self.carrito[id]["acumulado"] -= producto.preciodescuento
+                self.carrito[id]["mensaje"] = ""
+                if self.carrito[id]["cantidad"] <= 0:
+                    self.eliminar(producto)
+                self.guardar_carrito()
 
     def limpiar(self):
         self.session["carrito"] = {}

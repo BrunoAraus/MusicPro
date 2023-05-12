@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Extreme:wght@100&display=swap');
+
 *{
     padding: 0;
     margin: 0;
@@ -70,6 +72,13 @@
 .card-title{
     padding-top: 30px;
     padding-bottom: 10px;
+    font-family: 'Pathway Extreme', sans-serif;
+    font-weight: bold;
+}
+
+.card-text_precio{
+    font-weight: bold;
+    font-size: 1.4rem;
 }
 
 p{

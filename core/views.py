@@ -9,7 +9,14 @@ from core.Carrito import *
 
 def principal(request):
     productos = Producto.objects.all()
-    data = {'productos' : productos}
+    for producto in productos:
+        if producto.descuento > 0:
+            producto.preciodescuento = producto.precio - (producto.precio * producto.descuento/100)
+        else:
+            producto.precio = producto.precio
+            producto.preciodescuento = 0
+        producto.save()
+    data = {'productos': productos}
     return render(request, 'core/cliente/principal.html', data)
 
 def registro(request):
