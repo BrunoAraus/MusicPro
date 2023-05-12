@@ -62,3 +62,7 @@ def limpiar_carrito(request):
 
 def compra(request):
     return render(request, 'core/cliente/datosCompra.html')
+
+#MARCO
+# def (request):
+#     return render(request, 'core/cliente/.html')

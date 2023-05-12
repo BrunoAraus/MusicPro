@@ -16,4 +16,6 @@ urlpatterns = [
     path('logout/', logout_then_login, {'login_url': 'principal'}, name='logout'),
     path('registro', registro,name="registro"),
     path('accounts/profile/', lambda request: redirect('principal'), name='redireccionar_principal'),
+    #MARCO
+    # path('', , name=""),
 ]
