@@ -8,8 +8,7 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    height: 55px;
-    min-height: 200px;
+    min-height: 170px;
     width: 100%;
     background: black;
     position: fixed;
@@ -22,30 +21,30 @@
 }
 
 .imagenLogo{
-    height: 200px;
-    width: 350px;
+    height: 150px;
+    width: 300px;
     position: relative;
 }
 
 .imagenLogo4{
-    height: 200px;
-    width: 350px;
+    height: 150px;
+    width: 300px;
     opacity: 15%;
     left: 10%;
     position: absolute;
 }
 
 .imagenLogo2{
-    height: 200px;
-    width: 350px;
+    height: 150px;
+    width: 300px;
     opacity: 10%;
     left: 6%;
     position: absolute;
 }
 
 .imagenLogo3{
-    height: 200px;
-    width: 350px;
+    height: 150px;
+    width: 300px;
     opacity: 5%;
     left: 2%;
     position: absolute;
