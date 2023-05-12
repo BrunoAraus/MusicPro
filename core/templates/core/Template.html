@@ -33,14 +33,16 @@
                 </div>
                 <div class="enlaces">
                     <ul class="nav">
-                        <li>
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Buscar">
-                                <button class="btn btn-light" type="submit">
-                                    <img src="{% static 'core/imagenes/busqueda.gif' %}" alt="">
-                                </button>
-                            </form>
-                        </li>
+                        <div class="navegador">
+                            <li>
+                                <form class="d-flex" role="search"> 
+                                    <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Buscar"  id="buscador">
+                                    <button class="btn btn-light" type="submit">
+                                        <img src="{% static 'core/imagenes/busqueda.gif' %}" alt="">
+                                    </button>
+                                </form>
+                            </li>
+                        </div>
 
                         <div class="separacion1"></div>
 
@@ -75,7 +77,7 @@
                                             <tr>
                                                 <th>Imagen</th>
                                                 <th>Nombre</th>
-                                                <th id="precioAco">Precio acomulado</th>
+                                                <th id="precioAco">Precio</th>
                                                 <th id="cantidad1">Cantidad</th>
                                             </tr>
                                         </thead>
@@ -125,7 +127,7 @@
                             {% if request.session.carrito.items %}
                             <div class="division4"></div>
 
-                            <a href="#" class="boton siete">
+                            <a href="{% url 'compra' %}" class="boton siete">
                                 <div class="icono1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-bag-check-fill" viewBox="0 0 16 16">

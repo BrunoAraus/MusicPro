@@ -121,3 +121,14 @@ li{
     color: rgba(255, 255, 255, 0.822);
 }
 
+@media (max-width: 1790px){
+    .contenido{
+        min-width: 400px;
+    }
+}
+
+@media (max-height: 1790px){
+    .contenido{
+        min-height: 350px;
+    }
+}

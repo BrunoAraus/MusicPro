@@ -181,3 +181,14 @@ strong{
     color: rgb(255, 146, 146);
 }
 
+@media (max-width: 1800px){
+    .content{
+        min-width: 750px;
+    }
+}
+
+@media (max-height: 1800px){
+    .content{
+        min-height: 700px;
+    }
+}
