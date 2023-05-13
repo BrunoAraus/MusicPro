@@ -63,8 +63,12 @@
 					<h1>{{ producto.nombre }}</h1>
 				</div>
 				<div class="precio">
+					{% if producto.descuento == 0 %}
+					<p class="preciogrande">${% money_localize producto.precio 'clp' %}</p>
+					{% else %}
 					<p class="preciogrande">${% money_localize producto.preciodescuento 'clp' %}</p>
 					<p class="precioanterior">${% money_localize producto.precio 'clp' %}</p>
+					{% endif %}
 				</div>
 				<div class="descripcion-producto">
 					<h4>DESCRIPCIÓN DEL PRODUCTO</h4>
