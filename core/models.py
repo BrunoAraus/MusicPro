@@ -45,3 +45,21 @@ class Producto(models.Model):
     
     def __str__(self):
         return f'{self.nombre} -> {self.precio}'
+    
+
+class Datos_compra(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nombre = models.CharField(null=False, max_length=100)
+    apellido = models.CharField(null=False, max_length=100)
+    correo = models.EmailField(null=False, max_length=100)
+    celular = models.IntegerField(null=False)
+    despacho = models.CharField(null=False,max_length=10)
+    nombre_calle = models.CharField(null=False,max_length=100)
+    numero_calle = models.IntegerField(null=False)
+    tipo_pago = models.CharField(null=False,max_length=15)
+
+
+    
+    
+

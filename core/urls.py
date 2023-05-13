@@ -6,7 +6,9 @@ from django.contrib.auth.views import logout_then_login
 
 urlpatterns = [
     path('', principal,name="principal"),
-    path('compra', compra, name="compra"),
+    path('accounts/profile/', lambda request: redirect('/'), name='redireccionar_principal'),
+    path('datosCompra', datosCompra , name="datosCompra"),
+    path('datosTransferencia', datosTransferencia , name="datosTransferencia"),
     path('productos/', filtro_productos, name='filtro_productos'),
     path('detalle_producto/<int:producto_id>', detalle_producto, name="detalle_producto"),
     path('agregar/<int:producto_id>/', agregar_producto, name="Add"),
@@ -16,6 +18,4 @@ urlpatterns = [
     path('login', LoginView.as_view(template_name='core/login.html'), name="login"),
     path('logout/', logout_then_login, {'login_url': 'principal'}, name='logout'),
     path('registro', registro,name="registro"),
-    path('accounts/profile/', lambda request: redirect('principal'), name='redireccionar_principal'),
-    path('datosTransferencia',datosTransferencia , name="datosTransferencia"),
 ]

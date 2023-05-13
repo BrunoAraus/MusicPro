@@ -1,6 +1,7 @@
 {% extends 'core/Template.html' %}
 {% load static %}
 {% load djmoney %}
+{% load crispy_forms_tags %}
 
 {% block contenido %}
 <head>
@@ -63,6 +64,12 @@
                     <div class="accordion-body">
 
                       <!-- ACA HABRÁ UN APARTADO PARA RELLENAR LA INFORMACIÓN DE ENVÍO -->
+                      <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form|crispy}}
+                        <button type="submit" class="botonEnviar">Enviar</button>
+                    </form>
+                      
 
                       <form class="row g-3">
                         <div class="botonesCheck">
