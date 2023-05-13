@@ -37,7 +37,7 @@
 				</button>
 			</div>
 			
-			<!--GALERÍA DE IMÁGENES-->
+			<!--PEQUEÑA GALERÍA DE IMÁGENES-->
 			<div class="gallery">
 				<div class="section2">					
 					<div class="thumbnails-images">
@@ -105,7 +105,7 @@
 					<div class="description">{{ producto.potencia }}</div>
 				</div>
 				<div class="ficha-tecnica">
-					<div class="specification">Altavoz</div>
+					<div class="specification">Altavoces</div>
 					<div class="description">{{ producto.altavoz }}</div>
 				</div>
 				<div class="ficha-tecnica">
@@ -121,12 +121,16 @@
 					<div class="description">{{ producto.otros }}</div>
 				</div>
 				<div class="manual">
-					<a href="#"> Descargar Manual </a>
+					<a href="{{ producto.manual }}" target="_blank"> Descargar Manual</a>
 					<!--
-						spider v https://line6.com/data/6/0a020a4027f15b3519da4a00a/application/pdf/Spider
-						boss od-200 https://static.roland.com/assets/media/pdf/OD-200_esp02_W.pdf
-						epiphone https://www.epiphone.com/en-US/Electric-Guitar/EPI1ME911/Caribbean-Blue-Fade
-						bajo https://www.michaelkellyguitars.com/en/products/view/element-4op
+						spider v 20: https://line6.com/data/6/0a020a4027f15b3519da4a00a/application/pdf/Spider
+						boss od-200: https://static.roland.com/assets/media/pdf/OD-200_esp02_W.pdf
+						epiphone:    https://www.epiphone.com/en-US/Electric-Guitar/EPI1ME911/Caribbean-Blue-Fade
+						bajo: 		 https://www.michaelkellyguitars.com/en/products/view/element-4op
+						roland 120:  https://static.roland.com/assets/media/pdf/JC-120_Owners_Manual_ES.pdf
+						multiefecto: https://line6.com/data/6/0a020a3fc94660b81020579e6/application/pdf/POD%20Go%201.20%20Owner
+						ibanez:		 https://www.ibanez.com/usa/products/detail/jemjr_1p_03.html
+						prs:		 https://prsguitars.com/electrics/model/se_standard_24_2021
 					-->
 				</div>
 

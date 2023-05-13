@@ -29,23 +29,18 @@
 }
 
 #tituloCategoria1{
-    font-size: 50px;
+    font-size: 3rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: italic;
 }
 
-.imagenesCategorias{
-    color: black;
-}
-
 .ul1{
-    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;    
-    gap: 180px;
-    padding: 20px 10px 100px 10px;
+    gap: 100px;
+    padding: 20px 10px 80px 10px;
 }
 
 .imagenesAdentro{

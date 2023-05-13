@@ -40,6 +40,8 @@ class Producto(models.Model):
     #guitarras
     cuerpo = models.CharField(blank=True, max_length=400, default='N/A')
     pastillas = models.CharField(blank=True, max_length=400, default='N/A')
+    #manual
+    manual = models.CharField(blank=True, max_length=400, default='N/A')
     
     def __str__(self):
         return f'{self.nombre} -> {self.precio}'
