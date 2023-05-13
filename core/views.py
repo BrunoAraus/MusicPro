@@ -58,6 +58,19 @@ def limpiar_carrito(request):
     carrito.limpiar()
     return redirect(request.META.get('HTTP_REFERER'))
 
+def filtro_productos(request):
+    categorias = Categoria.objects.all()
+    categoria_seleccionada = request.GET.get('categoria')
+
+    if categoria_seleccionada == 'todas_las_categorias':
+        productos = Producto.objects.all()
+    elif categoria_seleccionada:
+        productos = Producto.objects.filter(categoria__nombreCategoria=categoria_seleccionada)
+    else:
+        productos = Producto.objects.all()
+
+    context = {'categorias': categorias, 'productos': productos, 'categoria_seleccionada': categoria_seleccionada}
+    return render(request, 'core/cliente/categoriaProductos.html', context)
 
 
 def compra(request):

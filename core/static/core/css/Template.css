@@ -172,8 +172,8 @@ footer{
     }
 
     .imagenPago{
-        padding-top: 0%;
-        padding-right: 0%;
+        padding-top: 3%;
+        padding-right: 3%;
     }
 
     .logoFooter{
@@ -264,13 +264,7 @@ footer{
 
 @media (max-width: 1500px){
     .contenidoCarrito{
-        min-width: 450px;
-    }
-}
-
-@media (max-width: 1500){
-    .contenidoCarrito{
-        min-width: 450px;
+        min-width: 490px;
     }
 }
 
@@ -285,7 +279,7 @@ footer{
     }
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1015px) {
     .enlaces{
         padding: 0px 0px 0px 15%;
     }

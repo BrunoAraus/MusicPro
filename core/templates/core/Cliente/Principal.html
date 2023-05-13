@@ -13,6 +13,21 @@
 
   <img class="bannerDiseño" src="{% static 'core/imagenes/banner.png' %}" alt="">
 
+  <div class="categorias">
+
+    <div id="tituloCategoria">
+      <h1 id="tituloCategoria1">~ Categorías ~</h1>
+    </div>
+
+    <ul class="ul1">
+      <li class="imagenesCategorias"><a href="{% url 'filtro_productos' %}" style="text-decoration: none;"><img class="imagenesAdentro" src="{% static 'core/imagenes/imagen1.png' %}" alt=""></a></li>
+      <li class="imagenesCategorias"><a href="{% url 'filtro_productos' %}" style="text-decoration: none;"><img class="imagenesAdentro" src="{% static 'core/imagenes/imagen2.png' %}" alt=""></a></li>
+      <li class="imagenesCategorias"><a href="{% url 'filtro_productos' %}" style="text-decoration: none;"><img class="imagenesAdentro" src="{% static 'core/imagenes/imagen3.png' %}" alt=""></a></li>
+      <li class="imagenesCategorias"><a href="{% url 'filtro_productos' %}" style="text-decoration: none;"><img class="imagenesAdentro" src="{% static 'core/imagenes/imagen4.png' %}" alt=""></a></li>
+    </ul>
+
+  </div>
+
   <img class="imagenCatalogo" src="{% static 'core/imagenes/catalogo.png' %}" alt="">
 
   <div class="content">
@@ -64,7 +79,6 @@
       </div>
     </div>
     {% endfor %}
-  </div>
-
+  </div>  
 </div>
 {% endblock %}
