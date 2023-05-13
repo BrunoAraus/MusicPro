@@ -3,34 +3,92 @@
     padding: 0;
 }
 
+.contenidoCarrito{
+    display: none;
+}
+
+.logoEnlace1{
+    display: none;
+}
+
+
 .contenedor{
     width: 100%;
     height: 100%;
 }
 
 .contenido{
+    padding-top: 200px;
     display: flex;
     justify-content: space-around;
-    background-color: aquamarine;
+    background-image: url(/static/core/imagenes/FondoBorroso.png);
     width: 100%;
     height: 100%;
 }
 
 
 .datosPago{
+    display: flex;
+    flex-direction: column;
     width: 65%;
-    height: 95%;
-    margin: 20px 20px 20px 20px;
+    height: auto;
+    margin: 20px 20px 50px 20px;
     padding: 20px 20px 20px 20px;
-    background-color: blue;
+    background-color: #fff;
+    border: solid 3px rgba(0, 0, 0, 0.055);
+    border-radius: 40px;
+    box-shadow: 0px 10px 30px black;
 }
 
-.carritoCompra{
+.carritoCompra1{
     width: 35%;
-    height: 95%;
-    margin: 20px 20px 20px 20px;
+    height: 100%;
+    margin: 20px 20px 50px 20px;
     padding: 20px 20px 20px 20px;
-    background-color: red;
+    background-color: #fff;
+    border: solid 3px rgba(0, 0, 0, 0.055);
+    border-radius: 40px;
+    box-shadow: 0px 10px 30px black;
+}
+
+.botonesCheck{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 40px;
+    padding-bottom: 30px;
+}
+
+.datosEnvio{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+#sucursalTitulo1{
+    text-align: center;
+    font-size: 20px;
+}
+
+.ordenPago{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.imagenesPagos{
+    width: 132px;
+    height: 90;
+    border-radius: 20px;
+    box-shadow: 0px 5px 25px black;
+}
+
+#sucursalTitulo2{
+    text-align: center;
+    font-style: italic;
+    font-size: 20px;
+    padding-bottom: 40px;
 }
 
 .titulosAcordion{
@@ -39,26 +97,35 @@
 }
 
 
+/* ACA DISEÑO DEL BOOSTRAP */
+
+
+
+
+
+
+
 /* DESDE ACÁ ES SÓLO EL CARRO */
 
-.contenidoCarrito{
+.contenidoCarrito1{
     display: flex;
     flex-direction: column;
     align-items: center;
     height: auto;
     width: 100%;
-    height: 80%;
+    height: 100%;
     background-color: #fff;
     position: relative;
-    z-index: 9999;
+    z-index: 9994;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.listaCarrito{
+.listaCarrito1{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 500px;
 }
 
 .imagenCarrito{
@@ -111,14 +178,22 @@ th{
     width: 10%;
 }
 
-.precioTotal{
+.precioTotal1{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
     font-size: 35px;
-    color: white;
+    color: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.contenidoCarrito{
+    padding-right: 0%;
+}
+
+.precioTotal{
+    display: none;
 }
 
 .alertaStock{
