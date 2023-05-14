@@ -36,47 +36,53 @@
       <div class="card">
         
         <div class="card-body">
-          <!-- CAMBIAR EL "{% static 'core/imagenes/catalogo.png' %}" POR { p.imagen1} PARA QUE NO SE REPITA LO MISMO -->
-          <img src="{{ p.imagen1 }}" class="imagenCarta" alt="...">
-          <h5 class="card-title">{{ p.nombre }}</h5>
-          {% if p.descuento == 0 %}
-          <p class="card-text_precio">${% money_localize p.precio 'CLP' %}</p>
-          {% else %}
-          <p class="card-text_descuento" style='text-decoration: line-through;'>Precio original: ${% money_localize p.precio 'CLP' %}</p>
-          <p class="card-text_precio">${% money_localize p.preciodescuento 'CLP' %}</p>
-          <p class="card-text">Descuento: -{{ p.descuento }}%</p>
-          {% endif %}
-          <p class="card-text">Stock: {{ p.stock }}</p>
+          <div class="card-mitad-arriba">
+            <!-- CAMBIAR EL "{% static 'core/imagenes/catalogo.png' %}" POR { p.imagen1} PARA QUE NO SE REPITA LO MISMO -->
+            <img src="{{ p.imagen1 }}" class="imagenCarta" alt="...">
+            <h5 class="card-title">{{ p.nombre }}</h5>
+            {% if p.descuento == 0 %}
+            <p class="card-text_precio">${% money_localize p.precio 'CLP' %}</p>
+            {% else %}
+            <p class="card-text_descuento" style='text-decoration: line-through; color: brown;'>Precio original: ${% money_localize p.precio 'CLP' %}</p>
+            <p class="card-text_precio" style="color: rgb(0, 56, 0)">${% money_localize p.preciodescuento 'CLP' %}</p>
+            <p class="card-text">Descuento: -{{ p.descuento }}%</p>
+            {% endif %}
+            <p class="card-text">Stock: {{ p.stock }}</p>
+          </div>
           <hr>
-          <a href="{% url 'Add' p.id %}" class="boton cinco">
-            <div class="icono">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 
-                  12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 
-                  0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg>
-            </div>
-            <span id="texto">Comprar</span>
-          </a>
+          <div class="card-botones">
+            <!--BOTON COMPRAR-->
+            <a href="{% url 'Add' p.id %}" class="boton cinco">
+              <div class="icono">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 
+                    12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 
+                    0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                </svg>
+              </div>
+              <span id="texto">Comprar</span>
+            </a>
 
-          <div class="division"></div>
+            <div class="division"></div>
 
-          <a href="{% url 'detalle_producto' p.id %}" class="boton seis">
-            <div class="icono1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
-                viewBox="0 0 16 16">
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668
-                   5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288
-                   -.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 
-                   13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-            </div>
-            <span id="texto2">Ver producto</span>
-          </a>
+            <!--BOTON VER PRODUCTO-->
+            <a href="{% url 'detalle_producto' p.id %}" class="boton seis">
+              <div class="icono1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668
+                    5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288
+                    -.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 
+                    13.134 0 0 1 1.172 8z" />
+                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                </svg>
+              </div>
+              <span id="texto2">Ver producto</span>
+            </a>
+          </div>
           
         </div>
       </div>
