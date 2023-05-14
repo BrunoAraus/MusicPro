@@ -205,7 +205,12 @@
             </table>
           </div>
           <tr>
+            {% if user.is_authenticated %}
+            <p class="precioTotal1">Total 20% descuento: ${% money_localize total_carrito_descuento 'clp' %}</p>
+            <p class="precioTotal1" style="text-decoration: line-through;">Total: ${% money_localize total_carrito 'clp' %}</p>
+            {% else %}
             <p class="precioTotal1">Total: ${% money_localize total_carrito 'clp' %}</p>
+            {% endif %}
           </tr>
         </div>
     </div>

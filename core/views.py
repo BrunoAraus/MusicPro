@@ -87,7 +87,6 @@ def filtro_productos(request):
 def datosTransferencia(request):
     return render(request, 'core/cliente/datosTransferencia.html')
 
-
 #aqui se carga la pagina detectando el formulario
 def datosCompra(request):
     contexto = {'form': PagoForm()}

@@ -58,6 +58,7 @@ class Datos_compra(models.Model):
     nombre_calle = models.CharField(null=False,max_length=100)
     numero_calle = models.IntegerField(null=False)
     tipo_pago = models.CharField(null=False,max_length=15)
+    region = models.CharField(null=False,max_length=100)
 
 
     
