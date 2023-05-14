@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Pathway+Extreme:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,600&display=swap');
 
 *{
     padding: 0;
@@ -17,7 +18,7 @@
     width: 100%;
     height: 90%;
     margin-top: 6%;
-    background-color: #fff;
+    background-color: #f5f5f5;
     box-shadow: 0px 20px 25px black;
 }
 
@@ -30,8 +31,7 @@
 
 #tituloCategoria1{
     font-size: 3rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-style: italic;
+    font-family: 'Exo 2', sans-serif;
 }
 
 .ul1{
@@ -41,6 +41,10 @@
     justify-content: center;
     gap: 100px;
     padding: 20px 10px 80px 10px;
+}
+
+.imagenesCategorias{
+    background-color: #fff;
 }
 
 .imagenesAdentro{
@@ -89,27 +93,40 @@
 
 #cartas{
     margin: 30px 30px 30px 30px;
+    width: 300px;
 }
 
 .card{
-    width: 107%;
-    height: auto;
+    height: 100%;
     border-radius: 30px;
     box-shadow: 10px 20px 15px;
 }
 
 .imagenCarta{
     width: 220px;
-    height: 190px;
+    height: 220px;
     border-radius: 20px;
 }
 
 .card-body{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+.card-mitad-arriba{    
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    position: relative;
-    font-family: sans-serif;
+    justify-content: space-between;
+    height: 80%;
+}
+
+.card-botones{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
 }
 
 .card-title{
