@@ -1,7 +1,7 @@
 {% extends 'core/Template.html' %}
 {% load static %}
 {% load djmoney %}
-
+<!-- ESTAS ETIQUETAS SON PARA TRAER RECURSOS DEL PROYECTO, EJEMPLO: EXTENDS, TRAER HTML A ESTA VISTA, LOAD STATIC, TRAE LA HOJA DE ESTILOS, LOAD DJMONEY, ES PARA CAMBIAR EL FORMATO DE MONEDA  -->
 
 {% block contenido %}
 
@@ -27,7 +27,9 @@
     </div>
 
     <div class="content">
+        <!-- ACA EL SISTEMA PREGUNTA SI TIENE PRODUCTOS SELECCIONADOS POR CATEGORIA, SINO TIENE NADA, MUESTRA TODOS LOS PRODUCTOS, SINO LOS FILTRA -->
         {% if categoria_seleccionada %}
+            <!-- SE RECORREN TODOS LOS PRODUCTOS (EL DISEÑO ES EL MISMO DEL INDEX) -->
             {% for p in productos %}
                 <div id="cartas">
                     <div class="card">                        
@@ -47,7 +49,7 @@
                             </div>
                             <hr>
                             <div class="card-botones">
-                                <!--BTN_COMPRAR-->
+                                <!-- ESTE BOTÓN ES PARA AGREGAR EL PRODUCTO AL CARRITO -->
                                 <a href="{% url 'Add' p.id %}" class="boton cinco">
                                     <div class="icono">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
@@ -61,7 +63,7 @@
                                     <span id="texto">Comprar</span>
                                 </a>
                                 <div class="division"></div>
-                                <!--BTN_VER PRODUCTO-->
+                                <!-- ESTE BOTÓN ES PARA VER EN DETALLE EL PRODUCTO QUE QUIERO -->
                                 <a href="{% url 'detalle_producto' p.id %}" class="boton seis">
                                     <div class="icono1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
@@ -80,10 +82,12 @@
                         </div>
                     </div>
                 </div>
+            <!-- SI NO HAY PRODUCTOS EN ESTA CATEGORIA, SE MUESTRA ESTE MENSAJE -->
             {% empty %}
                 <p>No hay productos en esta categoría.</p>
             
             {% endfor %}
+        <!-- SI NO TIENE PRODUCTOS FILTRADOS AQUÍ SE MUESTRAN TODOS COMO ELSE, EN SU ÚLTIMA OPCIÓN -->
         {% else %}
             {% for p in productos %}
             <div id="cartas">
@@ -134,10 +138,12 @@
                     </div>
                 </div>
             </div>
+            <!-- SI NO HAY PRODUCTOS EN ESTA CATEGORIA, SE MUESTRA ESTE MENSAJE -->
             {% empty %}
                 <p>No hay productos en esta categoría.</p>
         {% endfor %}
         {% endif %}
+        <!-- TERMINA CICLO FOR Y TAMBIEN EL IF -->
     </div>
 </div>
 

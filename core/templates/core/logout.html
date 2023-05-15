@@ -1,6 +1,9 @@
 {% extends 'core/Template.html' %}
 {% load crispy_forms_tags %}
 {% block contenido %}
+
+<!-- ESTAS ETIQUETAS SON PARA TRAER RECURSOS DEL PROYECTO, EJEMPLO: EXTENDS, TRAER HTML A ESTA VISTA, LOAD STATIC, TRAE LA HOJA DE ESTILOS  -->
+
 <div class="cuerpo">
     <br>
     <br>
@@ -9,6 +12,7 @@
     <br>
 <div id="cartas">
 <h5 style="color:aliceblue ; padding-right: 10%;">Has cerrado sesion</h5>
+<!-- ACA ES PARA QUE AL CERRAR SESIÓN MUESTRE SÓLO UN BOTÓN DE VOLVER A LA PÁGINA PRINCIPAL/ IMPLENTACIÓN FUTURA -->
 <a href="{% url 'principal' %}">Volver</a>
 </div>
 </div>

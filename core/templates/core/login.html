@@ -1,5 +1,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
+<!-- ESTAS ETIQUETAS SON PARA TRAER RECURSOS DEL PROYECTO, EJEMPLO: LOAD STATIC, TRAE LA HOJA DE ESTILOS, CRISPY FORMS PARA TRABAJAR FORMULARIOS  -->
+
 <head>
     <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
 </head>
@@ -8,6 +10,7 @@
     <div class="contenido">
 
         <div class="espacio1">
+            <!-- ACA, GRACIAS A DJANGO Y SUS FORMULARIOS, TIENE ACCESO A TODOS LOS USUARIOS, CLAVES, ETC. EL "{{ form|crispy}}" TRAE TODO EL FORM PARA UN USUARIO -->
             <form action="" method="post">
                 {% csrf_token %}
                 {{ form|crispy}}
@@ -16,6 +19,7 @@
         </div>
     
         <div class="espacio2">
+            <!-- EN CASO DE NO TENER UNA CUENTA, ESTE BOTÓN MANDA A UN APARTADO PARA REGISTRARSE, TIENE TODO LO NECESARIO, COMO POR EJEMPLO, USUARIO, CONTRASEÑA Y REPETIR CONTRASEÑA. -->
             <a href="{% url 'registro' %}" style="text-decoration: none; color: white;">
                 <span>
                     → ¿No tienes una cuenta?, ¡Registrate aquí! ←

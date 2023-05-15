@@ -1,7 +1,7 @@
 {% extends 'core/Template.html' %}
 {% load static %}
 {% load djmoney %}
-
+<!-- ESTAS ETIQUETAS SON PARA TRAER RECURSOS DEL PROYECTO, EJEMPLO: EXTENDS, TRAER HTML A ESTA VISTA, LOAD STATIC, TRAE LA HOJA DE ESTILOS, LOAD DJMONEY, ES PARA CAMBIAR EL FORMATO DE MONEDA -->
 
 {% block contenido %}
 
@@ -10,9 +10,10 @@
 </head>
 
 <div class="contenido">
-
+  <!-- ESTO ES UNA IMAGEN PARA DARLE MÁS DISEÑO A LA PÁGINA -->
   <img class="bannerDiseño" src="{% static 'core/imagenes/banner.png' %}" alt="">
 
+  <!-- ESTE APARTADO SON LAS CATEGORIAS, EL CUAL, MANDA MEDIANTE EL URL href="{% url 'filtro_productos' %}" EL APARTADO DE PRODUCTOS POR CATEGORIA, EN DONDE SE PUEDEN FILTRAR -->
   <div class="categorias">
 
     <div id="tituloCategoria">
@@ -28,18 +29,21 @@
 
   </div>
 
+  <!-- ESTO ES UNA IMAGEN PARA DARLE MÁS DISEÑO A LA PÁGINA -->
   <img class="imagenCatalogo" src="{% static 'core/imagenes/catalogo.png' %}" alt="">
 
   <div class="content">
+    <!-- ACA SE ITERAN TODOS LOS PRODUCTOS, TODO ESTO ES APLICADO A CSS Y ETIQUETAS HTML PARA QUE AL MOMENTO DE AGREGAR MÁS CONTENIDO, SE AGREGUE DE FORMA ORDENADA Y RESPETANDO EL DISEÑO -->
     {% for p in productos %}
     <div id="cartas">
       <div class="card">
         
         <div class="card-body">
           <div class="card-mitad-arriba">
-            <!--CARD-INFO-PRODUCTO-->
+            <!-- ACA VA TODA LA INFO DEL PRODUCTO -->
             <img src="{{ p.imagen1 }}" class="imagenCarta" alt="...">
             <h5 class="card-title">{{ p.nombre }}</h5>
+            <!-- ESTE "IF" ES PARA PREGUNTAR SI EXITEN DESCUENTOS, SI NO EXISTEN, SE MUESTRA EL PRECIO NORMAL, SINO, SE MUESTRA TODO EN DETALLE CUANDO SE DESCUENTA TACHANDO ADEMÁS EL PRECIO ORIGINAL -->
             {% if p.descuento == 0 %}
             <p class="card-text_precio">${% money_localize p.precio 'CLP' %}</p>
             {% else %}
@@ -51,7 +55,7 @@
           </div>
           <hr>
           <div class="card-botones">            
-            <!--BTN_COMPRAR-->
+            <!-- ESTE BOTÓN ES PARA QUE AL PRECIONARLO SE AGREGUE AL CARRITO, MEDIANTE LA URL href="{% url 'Add' p.id %}" Y AL MISMO TIEMPO SE ACTUALICE EN TIEMPO REAL EL AÑADIR PRODUCTOS -->
             <a href="{% url 'Add' p.id %}" class="boton cinco">
               <div class="icono">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill"
@@ -65,7 +69,7 @@
               <span id="texto">Comprar</span>
             </a>
             <div class="division"></div>
-            <!--BTN_VER PRODUCTO-->
+            <!-- ESTE BOTÓN ES PARA VER EN MAYOR DETALLE EL PRODUCTO QUE QUERRAMOS VER, ESTE SE PASA CON SU ID Y AL ENTRAR EN LA OTRA PAGINA RECONOCE EL PRODUCTO QUE SE DESEA VER -->
             <a href="{% url 'detalle_producto' p.id %}" class="boton seis">
               <div class="icono1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"

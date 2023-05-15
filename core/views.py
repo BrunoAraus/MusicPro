@@ -9,8 +9,9 @@ from .forms import *
 # Create your views here.
 
 
-#aqui se crea la view que muestra la pagina principal
-#esta view realiza un calculo automatico del precio descuento en base al descuento
+#Aqui se crea la view que muestra la pagina principal
+#Esta view realiza un calculo automatico del precio descuento en base al descuento
+#Tambien para redigirir al index cuando se desea con el nombre "principal"
 def principal(request):
     productos = Producto.objects.all()
     for producto in productos:
@@ -69,6 +70,7 @@ def limpiar_carrito(request):
 
 #-----------------------------------------------------------------------------------------------
 
+# Aca es una función para que exista un filtro por la categoria que elija, y se muestre lo que corresponde.
 def filtro_productos(request):
     categorias = Categoria.objects.all()
     categoria_seleccionada = request.GET.get('categoria')
@@ -83,7 +85,7 @@ def filtro_productos(request):
     context = {'categorias': categorias, 'productos': productos, 'categoria_seleccionada': categoria_seleccionada}
     return render(request, 'core/cliente/categoriaProductos.html', context)
 
-
+# Aca se redirige al html de transferencia en donde se muestran información de este html.
 def datosTransferencia(request):
     return render(request, 'core/cliente/datosTransferencia.html')
 
