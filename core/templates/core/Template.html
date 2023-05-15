@@ -15,6 +15,15 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'core/css/Template.css' %}">
 
+    <!-- alertas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
+
+    <!-- Agrega jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Agrega Sweet Alert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+
 </head>
 
 <body>
@@ -130,8 +139,7 @@
 
                             <!-- ESTO ES PARA QUE EL BOTÓN DE "COMPRAR" APAREZCA SIEMPRE Y CUANDO HAYAN PRODUCTOS EN EL CARRO -->
                             {% if request.session.carrito.items %}
-                            <div class="division4"></div>
-
+                            {% if user.is_authenticated %}
                             <a href="{% url 'datosCompra' %}" class="boton siete">
                                 <div class="icono1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -146,8 +154,57 @@
                                 <!-- <a href="{% url 'limpiar' %}" class="btn btn-danger">Limpiar</a> -->
                                 <!-- <a href="{% url 'principal' %}" class="btn btn-success">Guardar</a> -->
                             </a>
-                            {% endif %}
+                            {% else %}
+                                <div class="division4"></div>
+                                
+                                <script>
+                                    $(document).ready(function() {
+                                        // Selecciona el botón "Comprar"
+                                        var btnComprar = $('#texto3').parent();
+                            
+                                        // Agrega un evento click al botón "Comprar"
+                                        btnComprar.click(function(e) {
+                                            e.preventDefault();
+                            
+                                            // Muestra la alerta Sweet Alert
+                                            Swal.fire({
+                                                title: 'Inicia sesión para obtener descuento del 20%',
+                                                text: "¿Deseas iniciar sesión?",
+                                                showCancelButton: true,
+                                                confirmButtonText: 'Sí, iniciar sesión',
+                                                cancelButtonText: 'No, continuar sin iniciar sesión',
+                                                reverseButtons: true,
+                                                confirmButtonColor: '#28a745', // Cambia el color del botón "Sí, iniciar sesión" a verde
+                                                cancelButtonColor: '#007bff' // Cambia el color del botón "No, continuar sin iniciar sesión" a azul
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Redirige a la página de inicio de sesión
+                                                    window.location.href = "{% url 'login' %}";
+                                                } else {
+                                                    // Continúa con la compra sin iniciar sesión
+                                                    window.location.href = "{% url 'datosCompra' %}";
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
 
+                                <a href="{% url 'datosCompra' %}" class="boton siete">
+                                    <div class="icono1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                        </svg>
+                                    </div>
+
+                                    <span id="texto3">Comprar</span>
+                                    <!-- ESTOS SON BOTONES QUE EN UN FUTURO QUIZÁS LOS USEMOS -->
+                                    <!-- <a href="{% url 'limpiar' %}" class="btn btn-danger">Limpiar</a> -->
+                                    <!-- <a href="{% url 'principal' %}" class="btn btn-success">Guardar</a> -->
+                                </a>
+                            {% endif %}
+                            {% endif %}
                         </div>
                     </ul>
                 </div>
@@ -208,6 +265,13 @@
     </footer>
 
     <script src="{% static 'core/js/template.js' %}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
+
+    <!-- Agrega jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Agrega Sweet Alert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
 
 </body>
 
