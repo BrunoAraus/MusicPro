@@ -54,8 +54,8 @@ class Datos_compra(models.Model):
     apellido = models.CharField(null=False, max_length=100)
     correo = models.EmailField(null=False, max_length=100)
     celular = models.IntegerField(null=False)
-    nombre_calle = models.CharField(null=True,max_length=100)
-    numero_calle = models.IntegerField(null=True)
+    nombre_calle = models.CharField(null=True,max_length=100, default='N/A')
+    numero_calle = models.IntegerField(null=True,default=0)
     region = models.CharField(null=True,max_length=50)
     tipo_pago = models.CharField(null=False,max_length=15)
     

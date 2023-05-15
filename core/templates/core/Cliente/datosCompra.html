@@ -24,16 +24,50 @@
 
       <div class="datosPago">
         <form action="" method="post" class="ordenPago">
-              {% csrf_token %}
+          {% csrf_token %}
+          <div class="contenidoFormulario">
+            <div class="identificacion">
+              <h1 class="titulosFormularios">Identificación</h1>
               {{ form.nombre|as_crispy_field }}
               {{ form.apellido|as_crispy_field }}
               {{ form.correo|as_crispy_field }}
               {{ form.celular|as_crispy_field }}
-              {{ form.nombre_calle|as_crispy_field }}
-              {{ form.numero_calle|as_crispy_field }}
-              {{ form.region|as_crispy_field }}
+            </div>
+            <div class="despacho">
+              <h1 class="titulosFormularios">Envío</h1>
+              <div class="ckecks">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Despacho a domicilio
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Retiro en tienda
+                  </label>
+                </div>
+              </div>
+              <div class="despachoDomicilio">
+                {{ form.nombre_calle|as_crispy_field }}
+                {{ form.numero_calle|as_crispy_field }}
+                {{ form.region|as_crispy_field }}
+              </div>
+              <div class="retiroTienda" style="display:none; padding: 20px 0px 20px 0px;">
+                <h1 id="tituloSucursal">Sucursal</h1>
+                <h2 id="tituloDireccion">Avad Pablo Neruda 350 Dpto. 11</h2>
+              </div>
+            </div>
+            <div class="tipoPago">
+              <h1 class="titulosFormularios">Métodos de pago</h1>
               {{ form.tipo_pago|as_crispy_field }}
-              <button type="submit" class="botonEnviar">Enviar</button>
+              <hr>
+            </div>
+            <div class="botonEnviarDatos">
+              <button type="submit" class="btn btn-primary" id="diseñoBoton">Pagar</button>
+            </div>
+          </div>
         </form>
       </div>
 

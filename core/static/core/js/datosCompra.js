@@ -1,21 +1,18 @@
-const domicilioRadio = document.getElementById('domicilio');
-const retiroRadio = document.getElementById('retiro');
+var despachoDomicilio = document.querySelector('.despachoDomicilio');
+var retiroTienda = document.querySelector('.retiroTienda');
+var despachoRadio = document.getElementById('flexRadioDefault1');
+var retiroRadio = document.getElementById('flexRadioDefault2');
 
-const calleDiv = document.getElementById('calle-div');
-const numeroCalleDiv = document.getElementById('numeroCalle-div');
-const regionDiv = document.getElementById('region-div');
-const tiendaDiv = document.getElementById('tienda-div');
-
-domicilioRadio.addEventListener('change', () => {
-  calleDiv.style.display = 'block';
-  numeroCalleDiv.style.display = 'block';
-  regionDiv.style.display = 'block';
-  tiendaDiv.style.display = 'none';
+despachoRadio.addEventListener('change', function() {
+  if (despachoRadio.checked) {
+    despachoDomicilio.style.display = 'block';
+    retiroTienda.style.display = 'none';
+  }
 });
 
-retiroRadio.addEventListener('change', () => {
-  calleDiv.style.display = 'none';
-  numeroCalleDiv.style.display = 'none';
-  regionDiv.style.display = 'none';
-  tiendaDiv.style.display = 'block';
+retiroRadio.addEventListener('change', function() {
+  if (retiroRadio.checked) {
+    despachoDomicilio.style.display = 'none';
+    retiroTienda.style.display = 'block';
+  }
 });

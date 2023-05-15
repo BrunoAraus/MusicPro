@@ -26,6 +26,238 @@
     height: 100%;
 }
 
+.contenidoFormulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.identificacion{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 50px;
+    box-shadow: 0px 20px 30px black;
+}
+
+.titulosFormularios{
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#div_id_nombre{
+    width: 100%;
+}
+
+#id_nombre{
+    width: 50%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.459);
+    color: black;
+    border: solid 2px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#id_nombre:hover {
+    background-color: rgba(128, 128, 128, 0.253);
+}
+
+#id_apellido{
+    width: 50%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.459);
+    color: black;
+    border: solid 2px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#id_apellido:hover {
+    background-color: rgba(128, 128, 128, 0.253);
+}
+
+#id_celular{
+    width: 50%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.459);
+    color: black;
+    border: solid 2px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#id_celular:hover {
+    background-color: rgba(128, 128, 128, 0.253);
+}
+
+#id_correo{
+    width: 50%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.459);
+    color: black;
+    border: solid 2px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#id_correo:hover {
+    background-color: rgba(128, 128, 128, 0.253);
+}
+
+.asteriskField{
+    display: none;
+}
+
+.despacho{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 50px;
+    box-shadow: 0px 20px 30px black;
+    padding-top: 50px;
+}
+
+#id_nombre_calle{
+    width: 50%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.459);
+    color: black;
+    border: solid 2px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#id_nombre_calle:hover {
+    background-color: rgba(128, 128, 128, 0.253);
+}
+
+#id_numero_calle{
+    width: 50%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.459);
+    color: black;
+    border: solid 2px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#id_numero_calle:hover {
+    background-color: rgba(128, 128, 128, 0.253);
+}
+
+#id_region{
+    width: 50%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.459);
+    color: black;
+    border: solid 2px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#id_region:hover {
+    background-color: rgba(128, 128, 128, 0.253);
+}
+
+.tipoPago{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 50px;
+    box-shadow: 0px 20px 30px black;
+    padding-top: 50px;
+}
+
+#id_tipo_pago{
+    width: 50%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.459);
+    color: black;
+    border: solid 2px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#id_tipo_pago:hover {
+    background-color: rgba(128, 128, 128, 0.253);
+}
+
+.ckecks{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.botonEnviarDatos{
+    width: 50%;
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+
+#tituloSucursal{
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#tituloDireccion{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    padding: 0px 5px 0px 5px;
+}
+
+#diseñoBoton{
+    width: 60%;
+    height: 120%;
+}
 
 .datosPago{
     display: flex;
@@ -75,6 +307,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
+    height: 100%;
 }
 
 .imagenesPagos{
