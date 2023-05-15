@@ -1,8 +1,9 @@
+{% extends 'core/Template.html' %}
 {% load static %}
 {% load djmoney %}
 
-<!DOCTYPE html>
-<html lang="en">
+
+{% block contenido %}
 
 <head>
   <meta charset="UTF-8">
@@ -18,110 +19,86 @@
 <body>
 
 
-  <div class="Informacion">
-    <h1 class="titulo">Datos transferencia</h1>
-    <br>
-    <hr>
-    <div class="info">
-      <br>
-      <h3>Por favor, realice una transferencia utilizando los siguientes datos de transferencia:</h3>
-      <br>
-      <div class="DatosDeTabla">
-        <table border="1">
+  <div class="contenido">
 
-          <tr>
-            <td colspan="2">Haz la transferencia a la siguente Cuenta</td>
-          </tr>
-          <tr>
-            <td> Rut: </td>
-            <td> 19.983.213-k </td>
-          </tr>
-          <tr>
-            <td> N° de Cuenta: </td>
-            <td> 00019983213 </td>
-          </tr>
-          <tr>
-            <td> Tipo de cuenta: </td>
-            <td> Cuenta Rut</td>
-          </tr>
-          </tr>
-          <tr>
-            <td> Nombre del beneficiario: </td>
-            <td> Juan Pérez </td>
-          </tr>
-          <tr>
-            <td>
-              Cantidad a transferir:
-            </td>
-            <td> ${% money_localize total_carrito  'CLP' %} <!--  Aqui se pone la variable del precio total--></td> 
-          </tr>
-          <tr>
-            <td> Correo electronico: </td>
-            <td> MusicPro@musicpro.cl </td>
-          </tr>
-        </table>
+    <div class="Informacion">
+      <h1 class="titulo">Datos transferencia</h1>
+      <hr>
+      <h6>Por favor, realice una transferencia utilizando los siguientes datos de transferencia:</h6>
+      <div class="info">
+
+
+        <div class="DatosDeTabla">
+          <table>
+
+            <tr>
+              <td colspan="2">Haz la transferencia a la siguente Cuenta</td>
+            </tr>
+            <tr>
+              <td> Rut: </td>
+              <td> 19.983.213-k </td>
+            </tr>
+            <tr>
+              <td> N° de Cuenta: </td>
+              <td> 00019983213 </td>
+            </tr>
+            <tr>
+              <td> Tipo de cuenta: </td>
+              <td> Cuenta Rut</td>
+            </tr>
+            </tr>
+            <tr>
+              <td> Nombre del beneficiario: </td>
+              <td> Juan Pérez </td>
+            </tr>
+            <tr>
+              <td>
+                Cantidad a transferir:
+              </td>
+              <td> ${% money_localize total_carrito 'CLP' %} <!--  Aqui se pone la variable del precio total--></td>
+            </tr>
+            <tr>
+              <td> Correo electronico: </td>
+              <td> MusicPro@musicpro.cl </td>
+            </tr>
+          </table>
+
+        </div>
+        <div class="Subinfo">
+          <p>
+            Es importante que revise cuidadosamente los datos de transferencia antes de realizar la transferencia para
+            asegurarse de que sean correctos.
+          </p>
+          <p>Si este no es el método de pago que seleccionó, simplemente presione el botón "Volver" y realice el proceso nuevamente con el método de pago correcto.</p>
+          <p>
+            También es importante tener en cuenta que el proceso de transferencia puede tardar unos días hábiles en
+            completarse. Por favor, planifique en consecuencia y asegúrese de tener suficientes fondos disponibles en su
+            cuenta para completar la transferencia.
+          </p>
+          <p>
+            Gracias por elegir nuestros servicios de transferencia. Estamos aquí para ayudarlo en todo lo que necesite.
+          </p>
+
+
+          <hr>
+          <p>
+            Si tiene alguna pregunta o necesita ayuda, no dude en ponerse en contacto con
+            nuestro equipo de soporte.
+
+          </p>
+          <br>
+          <div class="back">      <a href="{% url 'limpiar' %}">
+            <button type="button">Volver</button>
+          </a></div>
+        </div>
 
       </div>
-      <div class="Subinfo">
-        <p>
-          Es importante que revise cuidadosamente los datos de transferencia antes de realizar la transferencia para
-          asegurarse de que sean correctos.
-        </p>
-        <br>
-        <p> También es importante tener en cuenta que el proceso de transferencia puede tardar unos días hábiles en
-          completarse.
-        </p>
-        <br>
-        <p>
-          Si tiene alguna pregunta o necesita ayuda, no dude en ponerse en contacto con
-          nuestro equipo de soporte.
 
-        </p>
-      </div>
+
 
     </div>
-    <a href="{% url 'limpiar' %}">
-      <button type="button" >Volver</button>
-    </a>
-    
 
   </div>
-
-
-  <!-- Este codigo es para el loop -->
-
-  <!--   
-<div class="mensaje-container">
-  <h3 class="mensaje"></h3>
-</div>
-<script>
-  let contador = 0;
-  const limite = 5;
-  const intervalo = setInterval(() => {
-    if (contador >= limite) {
-      clearInterval(intervalo);
-    } else {
-      const mensaje = document.createElement("span");
-      mensaje.textContent = "¡Gracias por su compra! ";
-      document.querySelector(".mensaje").appendChild(mensaje);
-      contador++;
-      if (contador === limite) {
-        // Reiniciar el bucle infinito después de que se agreguen todos los mensajes
-        setTimeout(() => {
-          document.querySelector(".mensaje").innerHTML = "";
-          contador = 0;
-        }, 10000);
-      }
-    }
-  }, 1000);
-  // Mover el mensaje horizontalmente
-  setInterval(() => {
-    const mensaje = document.querySelector(".mensaje");
-    const mensajeWidth = mensaje.offsetWidth;
-    const containerWidth = mensaje.parentNode.offsetWidth;
-    mensaje.style.transform = `translateX(-${mensajeWidth + containerWidth}px)`;
-  }, 100);
-</script> -->
 </body>
 
-</html>
+{% endblock %}
