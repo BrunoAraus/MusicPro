@@ -1,8 +1,11 @@
+<!-- ES UNA FUNCION DE DJANGO PARA EXTRAER DESDE OTRO HTML LA ETIQUETA DE HEADER & FOOTER -->
 {% extends 'core/Template.html' %}
+<!-- ESTA FUNCIÓN DE PLANTILLA DE DJANGO CARGA LOS ARCHIVOS ESTÁTICOS EN UNA PÁGINA WEB -->
 {% load static %}
+<!-- ESTA FUNCIÓN CARGA EL PAQUETE "DJANGO-MONEY",PROPORCIONA HERRAMIENTAS PARA TRABAJAR CON VALORES MONETARIOS -->
 {% load djmoney %}
 
-
+<!-- ESTA FUNCION LLAMA LO QUE ES EL HEADER & FOOTER DEL TEMPLATES -->
 {% block contenido %}
 
 <head>
@@ -10,24 +13,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+<!-- ESTA ES LA CONEXION A CSS -->
   <link rel="stylesheet" href="{% static 'core/css/datostransferencia.css' %}">
+
+
   <title>Datos de transferencia</title>
 </head>
 
-
-
+<!-- CUERPO DE LA PAGINA -->
 <body>
 
 
   <div class="contenido">
-
     <div class="Informacion">
       <h1 class="titulo">Datos transferencia</h1>
       <hr>
       <h6>Por favor, realice una transferencia utilizando los siguientes datos de transferencia:</h6>
+      <!-- ESTE ENGLOBA TANTO LOS DATOSDETABLA COMO SUBINFO -->
       <div class="infoDatos">
 
-
+<!-- DATOSDETABLA ES LA SECCION DONDE SE ENCUENTRA INFORMACION DE LA TIENDA PARA ENVIAR TRANSFERENCIAS -->
         <div class="DatosDeTabla">
           <table>
 
@@ -64,6 +70,8 @@
           </table>
 
         </div>
+
+        <!-- SUBINFO ES LA SECCION DONDE SE ENCUENTRAN LOS TEXTOS Y EL BOTON LOS CUALES SE MUESTRAN EN LA CAJA DE DATOS DE TRANSFERENCIA -->
         <div class="Subinfo">
           <p>
             Es importante que revise cuidadosamente los datos de transferencia antes de realizar la transferencia para
@@ -85,6 +93,7 @@
 
           </p>
           <br>
+          <!-- ESTE BOTON CON LA CLASE BACK REDIRECCIONA A LIMPIAR, LO CUAL ELIMINA LOS DATOS YA PUESTOS EN EL CARRITO Y DEVUELVE A LA VISTA PRINCIPAL -->
           <div class="back">      <a href="{% url 'limpiar' %}">
             <button type="button">Volver</button>
           </a></div>
@@ -98,6 +107,6 @@
 
   </div>
 </body>
-
+<!-- ES DONDE FINALIZA EL BLOCK CONTENIDO -->
 {% endblock %}
 
