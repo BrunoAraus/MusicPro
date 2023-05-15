@@ -32,7 +32,6 @@ class Carrito:
                     "cantidad": 1,
                 }
                 self.carrito[id]["mensaje"] = ""
-                self.carrito[id]["descuento_login"] = ""
                 self.guardar_carrito()
             else:
                 self.carrito[id] = {
@@ -45,12 +44,9 @@ class Carrito:
                     "acumulado": producto.preciodescuento,
                     "stock": producto.stock,
                     "mensaje": producto.nombre,
-                    "descuentio_login": producto.precio,
                     "cantidad": 1,
                 }
                 self.carrito[id]["mensaje"] = ""
-                self.carrito[id]["descuento_login"] = ""
-
             self.guardar_carrito()
             # en caso de ya existir el producto en el carro solo lo suma
         else:
