@@ -1,22 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Pathway+Extreme:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,600&display=swap');
-
 * {
     padding: 0;
     margin: 0;
 }
 
 .contenido{
-    padding-top: 240px;
+    padding-top: 12%;
     width: 100%;
+    height: 100%;
     background-image: url(/static/core/imagenes/Fondo.jpg);
     position: relative;
     padding-bottom: 1%;
-}
-
-.formatoForm{
-    height: 100%;
-    padding: 5px 0px;
 }
 
 .filtros{
@@ -25,70 +18,22 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 180px;
     background-color: white;
     margin-bottom: 40px;
     padding-bottom: 10px;
     box-shadow: 0px 15px 20px black;
 }
 
+.detallesFiltro{
+    font-family: 'Times New Roman', Times, serif;
+}
+
 #tituloFiltro{
-    font-size: 2.2rem;
-    font-family: 'Exo 2', sans-serif;
+    font-size: 30px;
+    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
-select{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: none;
-    box-shadow: none;
-    border: 0!important;
-    background: #e6e6e6;
-    background-image: none;
-}
-
-select::-ms-expand{
-    display: none;
-}
-
-.select{
-    position: relative;
-    display: flex;
-    width: 20em;
-    height: 3em;
-    line-height: 3;
-    overflow: hidden;
-    border-radius: .25em;
-    align-items: center;
-}
-
-select{
-    font-size: 1em;
-    font-family: 'Pathway Extreme', sans-serif;
-    flex: 1;
-    padding: 0.5em;
-    color: #000000;
-    cursor: pointer;
-}
-
-.select::after{
-    content: '\25BC';
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0 1em;
-    background: #ffa600;
-    cursor: pointer;
-    pointer-events: none;
-    transition: .25s all ease;
-}
-
-.select:hover::after{
-    color: #ffffff
-}
-
 
 .formatoForm{
     display: flex;
@@ -98,6 +43,7 @@ select{
     gap: 20px;
     width: 50%;
 }
+
 
 .content{
     display: flex;
@@ -126,40 +72,27 @@ select{
 
 #cartas{
     margin: 30px 30px 30px 30px;
-    width: 300px;
 }
 
 .card{
-    height: 100%;
+    width: 107%;
+    height: auto;
     border-radius: 30px;
     box-shadow: 10px 20px 15px;
 }
 
 .imagenCarta{
     width: 220px;
-    height: 220px;
+    height: 190px;
     border-radius: 20px;
 }
 
 .card-body{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-}
-
-.card-mitad-arriba{    
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 80%;
-}
-
-.card-botones{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 20%;
+    position: relative;
+    font-family: sans-serif;
 }
 
 .card-title{
