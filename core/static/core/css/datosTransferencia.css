@@ -6,8 +6,13 @@
 body {
   background-image: url(/static/core/imagenes/FondoBorroso.png);
 }
-.contenido{
-  padding-top: 920px;
+
+.nav-item .borde .logoEnlace1 {
+  display: none;
+}
+
+.contenido {
+  padding-top: 1120px;
 }
 
 .Informacion {
@@ -21,21 +26,25 @@ body {
   border-radius: 20px;
   margin: 0 auto;
   position: absolute;
-  top: 60%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: azure;
   box-shadow: 0px 10px 30px black;
 }
+
 .titulo {
   margin: 0;
 
 }
-h6{
+
+h6 {
   font-weight: bold;
   font-style: italic;
 }
-.info {
+
+.infoDatos {
+  text-align: center;
   margin-top: 10px;
   margin-bottom: 15px;
   margin-left: 40px;
@@ -43,10 +52,17 @@ h6{
   justify-content: center;
 }
 
+.DatosDeTabla {
+  justify-content: center;
+  text-align: center;
+  width: 50%;
+}
+
 table {
   margin: 0 auto;
-  width: 40%;
-  border: 2px solid #ccc;
+  width: 60%;
+  margin-left: 250px;
+  border: 2px solid #4b4b4b;
 }
 
 .Subinfo {
@@ -67,16 +83,20 @@ button {
 }
 
 table {
+
   font-weight: bold;
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
+
 td[colspan="2"] {
   font-weight: bold;
   text-align: center;
 }
-td, th {
+
+td,
+th {
   text-align: left;
   padding: 8px;
 }
