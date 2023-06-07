@@ -18,4 +18,5 @@ urlpatterns = [
     path('login', LoginView.as_view(template_name='core/login.html'), name="login"),
     path('logout/', logout_then_login, {'login_url': 'principal'}, name='logout'),
     path('registro', registro,name="registro"),
+    path('transbank/', transbank, name='transbank'),
 ]

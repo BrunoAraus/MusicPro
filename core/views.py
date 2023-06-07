@@ -6,6 +6,11 @@ from core.models import *
 from core.Carrito import *
 from .forms import *
 
+# LIBRERIA E IMPORTACIÓN PARA USAR LAS "API'S"
+from django.http import JsonResponse, HttpResponseRedirect
+import requests
+import uuid
+import json
 # Create your views here.
 
 
@@ -114,6 +119,109 @@ def datosCompra(request):
                 return redirect('datosTransferencia')
             else:
                 # colocar pagina falsa de webpay
-                return redirect('principal')
+                return redirect('transbank')
         contexto["mensaje"] = "Datos Guardados."
     return render(request, 'core/cliente/datosCompra.html', contexto)
+
+
+# FALTA SACAR LOS TOKEN DE LA URL
+# FALTA CREAR UNA PAGINA QUE MUESTRE SI ESTÁ APROBADO O RECHAZADO
+# FALTA COLOCAR LOS DATOS DE LA TIENDA, ES DECIR, SESSION ID DEL CLIENTE, ORDEN DE COMPRA, EL MONTO QUE LE CORRESPONDE PAGAR... 
+
+
+# API WEBPAY PLUS
+def get_ws(data, method, type, endpoint):
+    if type == 'live':
+        TbkApiKeyId = '597055555532'
+        TbkApiKeySecret = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
+        url = "https://webpay3g.transbank.cl" + endpoint  # Live
+    else:
+        TbkApiKeyId = '597055555532'
+        TbkApiKeySecret = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
+        url = "https://webpay3gint.transbank.cl" + endpoint  # Testing
+
+    headers = {
+        'Tbk-Api-Key-Id': TbkApiKeyId,
+        'Tbk-Api-Key-Secret': TbkApiKeySecret,
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request(method, url, headers=headers, data=data)
+    return response.json()
+
+def transbank(request):
+    baseurl = request.build_absolute_uri('/')
+
+    action = request.GET.get("action", "init")
+    message = None
+
+    if action == "init":
+        message = 'init'
+        buy_order = 'AAA1'
+        session_id = 'A1A1'
+        amount = 150000
+        return_url = baseurl + "?action=getResult"
+        type = "sandbox"
+        data = {
+            "buy_order": buy_order,
+            "session_id": session_id,
+            "amount": amount,
+            "return_url": return_url
+        }
+        data = json.dumps(data)
+        method = 'POST'
+        endpoint = '/rswebpaytransaction/api/webpay/v1.2/transactions'
+
+        response = get_ws(data, method, type, endpoint)
+        token = response.get("token")
+        url = response.get("url")
+        redirect_url = f"{url}?token_ws={token}"
+        return HttpResponseRedirect(redirect_url)
+
+    elif action == "getResult":
+        message = request.POST
+        if 'token_ws' not in request.POST:
+            return JsonResponse({'message': message})
+
+        token = request.POST.get('token_ws')
+
+        data = json.dumps({'token': token})
+        method = 'PUT'
+        type = 'sandbox'
+        endpoint = f'/rswebpaytransaction/api/webpay/v1.2/transactions/{token}'
+
+        response = get_ws(data, method, type, endpoint)
+        return JsonResponse(response)
+
+    elif action == "getStatus":
+        message = request.POST
+        if 'token_ws' not in request.POST:
+            return JsonResponse({'message': message})
+
+        token = request.POST.get('token_ws')
+
+        data = json.dumps({'token': token})
+        method = 'GET'
+        type = 'sandbox'
+        endpoint = f'/rswebpaytransaction/api/webpay/v1.2/transactions/{token}'
+
+        response = get_ws(data, method, type, endpoint)
+        return JsonResponse(response)
+
+    elif action == "refund":
+        message = request.POST
+        if 'token_ws' not in request.POST:
+            return JsonResponse({'message': message})
+
+        token = request.POST.get('token_ws')
+        amount = 150000
+
+        data = json.dumps({'amount': amount})
+        method = 'POST'
+        type = 'sandbox'
+        endpoint = f'/rswebpaytransaction/api/webpay/v1.2/transactions/{token}/refunds'
+
+        response = get_ws(data, method, type, endpoint)
+        return JsonResponse(response)
+
+    return JsonResponse({'message': message})

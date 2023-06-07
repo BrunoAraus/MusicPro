@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'crispy_forms',
     'djmoney',
+    'requests',
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,8 @@ class Carrito:
     def __init__(self, request):
         self.request = request
         self.session = request.session
+        self.user = request.user
+
         carrito = self.session.get("carrito")
         if not carrito:
             self.session["carrito"] = {}
@@ -100,3 +102,15 @@ class Carrito:
     def limpiar(self):
         self.session["carrito"] = {}
         self.session.modified = True
+
+
+    #aqui se realiza el calculo del total a pagar o total de precio de todos los productos
+    def total_carrito(request):
+        total = 0
+        total2 = 0
+        if "carrito" in request.session.keys():
+            for key, value in request.session["carrito"].items():
+                total += int(value["acumulado"])
+            if request.user.is_authenticated:  # Acceder al atributo 'user' a través de 'request'
+                total2 = total * 0.8
+        return {"total_carrito": total, "total_carrito_descuento": total2}

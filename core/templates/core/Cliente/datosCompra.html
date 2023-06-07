@@ -61,14 +61,26 @@
                 <h2 id="tituloDireccion">Avad Pablo Neruda 350 Dpto. 11</h2>
               </div>
             </div>
+
+            <!-- TIPO DE PAGO -->
             <div class="tipoPago">
               <h1 class="titulosFormularios">Métodos de pago</h1>
               {{ form.tipo_pago|as_crispy_field }}
               <hr>
             </div>
-            <div class="botonEnviarDatos">
+
+            <!-- BOTÓN PAGAR -->
+            <!-- <div class="botonEnviarDatos">
               <button type="submit" class="btn btn-primary" id="diseñoBoton">Pagar</button>
-            </div>
+            </div> -->
+
+            <form action="{% url 'transbank' %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Pagar con Transbank">
+            </form>
+            
+            <!-- TIPO DE PAGO -->
+
           </div>
         </form>
       </div>
