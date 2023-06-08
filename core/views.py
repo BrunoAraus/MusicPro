@@ -155,16 +155,28 @@ def transbank(request):
     action = request.GET.get("action", "init")
     message = None
 
+    # Generar el idSesion único
+    id_sesion = str(uuid.uuid4())
+
+    # Obtener el objeto Datos_compra correspondiente a la compra más reciente
+    datos_compra = Datos_compra.objects.latest('id')
+
+    # Crear una instancia de la clase Carrito
+    carrito = Carrito(request)
+
+    # Obtener el precio total del carrito
+    total_carrito_data = carrito.total_carrito()
+    total_carrito = total_carrito_data["total_carrito"]
+    total_carrito_descuento = total_carrito_data["total_carrito_descuento"]
+
     if action == "init":
         message = 'init'
-        buy_order = 'AAA1'
-        session_id = 'A1A1'
-        amount = 150000
+        amount = total_carrito_descuento if total_carrito_descuento > 0 else total_carrito
         return_url = baseurl + "?action=getResult"
         type = "sandbox"
         data = {
-            "buy_order": buy_order,
-            "session_id": session_id,
+            "buy_order": datos_compra.id,
+            "session_id": id_sesion,
             "amount": amount,
             "return_url": return_url
         }
@@ -214,7 +226,7 @@ def transbank(request):
             return JsonResponse({'message': message})
 
         token = request.POST.get('token_ws')
-        amount = 150000
+        amount = total_carrito_descuento if total_carrito_descuento > 0 else total_carrito
 
         data = json.dumps({'amount': amount})
         method = 'POST'
