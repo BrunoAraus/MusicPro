@@ -96,20 +96,26 @@ def datosTransferencia(request):
 
 
 #aqui se carga la pagina detectando el formulario
+import random
+
 def datosCompra(request):
     contexto = {'form': PagoForm()}
     if request.method == "POST":
         datos = PagoForm(request.POST)
         if datos.is_valid():
-            # aqui se Crea una nueva instancia de Datos_compra con el usuario actual o un usuario temporal
+            # Aquí se crea una nueva instancia de Datos_compra con el usuario actual o un usuario temporal
             if request.user.is_authenticated:
                 nueva_compra = datos.save(commit=False)
                 nueva_compra.user = request.user
                 nueva_compra.save()
             else:
-                # aqui se utiliza el nombre del formulario para nombrar al usuario temporal
-                username = datos.cleaned_data['nombre']
-                password = 'temporal123'  # aqui se establece una contraseña temporal para el usuario
+                # Aquí se utiliza el nombre del formulario para nombrar al usuario temporal
+                nombre = datos.cleaned_data['nombre']
+                password = 'temporal123'  # Aquí se establece una contraseña temporal para el usuario
+                # Generar un número aleatorio entre 1000 y 9999
+                numero_aleatorio = random.randint(1000, 9999)
+                # Concatenar el número aleatorio al nombre
+                username = f"{nombre}_{numero_aleatorio}"
                 user = User.objects.create_user(
                     username=username, password=password)
                 nueva_compra = datos.save(commit=False)
@@ -118,12 +124,10 @@ def datosCompra(request):
             if nueva_compra.tipo_pago == 'Transferencia':
                 return redirect('datosTransferencia')
             else:
-                # colocar pagina falsa de webpay
+                # Colocar página falsa de webpay
                 return redirect('transbank')
         contexto["mensaje"] = "Datos Guardados."
     return render(request, 'core/cliente/datosCompra.html', contexto)
-
-
 # FALTA SACAR LOS TOKEN DE LA URL
 # FALTA CREAR UNA PAGINA QUE MUESTRE SI ESTÁ APROBADO O RECHAZADO
 # FALTA COLOCAR LOS DATOS DE LA TIENDA, ES DECIR, SESSION ID DEL CLIENTE, ORDEN DE COMPRA, EL MONTO QUE LE CORRESPONDE PAGAR... 
