@@ -19,4 +19,5 @@ urlpatterns = [
     path('logout/', logout_then_login, {'login_url': 'principal'}, name='logout'),
     path('registro', registro,name="registro"),
     path('transbank/', transbank, name='transbank'),
+    path('resultado_compra/', resultado_compra, name='resultado_compra'),
 ]

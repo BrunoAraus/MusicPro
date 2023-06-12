@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultado de Compra</title>
+</head>
+<body>
+    <h1>Resultado de Compra</h1>
+
+    <table>
+        <tr>
+            <th>Estado</th>
+            <th>Número de Tarjeta</th>
+            <th>Fecha</th>
+            <th>Tipo de Pago</th>
+            <th>Monto Pagado</th>
+            <th>Comprobante</th>
+            <th>Número de Orden</th>
+        </tr>
+        <tr>
+            <td>{{ estado }}</td>
+            <td>{{ numero_tarjeta }}</td>
+            <td>{{ fecha }}</td>
+            <td>{{ tipo_pago }}</td>
+            <td>{{ monto_pagado }}</td>
+            <td>{{ comprobante }}</td>
+            <td>{{ numero_orden }}</td>
+        </tr>
+    </table>
+
+    <a href="{% url 'principal' %}">Volver al Menú Principal</a>
+</body>
+</html>
