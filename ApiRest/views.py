@@ -7,6 +7,12 @@ from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from core.models import Producto
 from .serializers import ProductoSerializer
+#mapa
+from django.shortcuts import render
+from django.conf import settings
+
+
+
 
 
 
@@ -45,3 +51,32 @@ def detalle_prod(request, id):
     elif request.method == 'DELETE':
         sus.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+
+
+
+
+
+def mapa(request):
+    context = {
+    'api_key' : 'AIzaSyB2tWManwQ46akf6zW_YTNDTSY9Zf2hTbI'
+    }
+    return render(request, 'mapa.html', context)
+
+# API GOOGLE MAP
+#CLAVE DE LA API: AIzaSyB2tWManwQ46akf6zW_YTNDTSY9Zf2hTbI
+#from pprint import pprint
+#import googlemaps # pip instal googlemaps
+#api_key = 'AIzaSyB2tWManwQ46akf6zW_YTNDTSY9Zf2hTbI'
+
+#map_client = googlemaps.Client(api_key)
+#work_place_address = 'DuocUC, melipilla'
+#response = map_client.geocode(work_place_address)
+#pprint(response)
+#print(response[0]['geometry'])
+
+
+

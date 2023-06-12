@@ -14,7 +14,8 @@ import uuid
 import json
 # Create your views here.
 
-
+def mapa(request):
+    return render(request, 'core/cliente/mapa.html')
 #Aqui se crea la view que muestra la pagina principal
 #Esta view realiza un calculo automatico del precio descuento en base al descuento
 #Tambien para redigirir al index cuando se desea con el nombre "principal"
