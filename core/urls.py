@@ -20,4 +20,5 @@ urlpatterns = [
     path('registro', registro,name="registro"),
     path('transbank/', transbank, name='transbank'),
     path('resultado_compra/', resultado_compra, name='resultado_compra'),
+    path('resultado_compra_error/', resultado_compra_error, name='resultado_compra_error'),
 ]

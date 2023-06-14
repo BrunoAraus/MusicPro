@@ -9,6 +9,7 @@ from .forms import *
 # LIBRERIA E IMPORTACIÓN PARA USAR LAS "API'S"
 from django.http import JsonResponse, HttpResponseRedirect
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 import requests
 import uuid
 import json
@@ -48,34 +49,7 @@ def detalle_producto(request, producto_id):
     data = {'producto' : producto}
     return render(request, 'core/cliente/detalle_producto.html', data)
 
-def resultado_compra(request):
-    token_ws = request.GET.get('token_ws')
-    if not token_ws:
-        return HttpResponse('Token not found')
 
-    url = f'https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.0/transactions/{token_ws}'
-    response = requests.get(url)
-    data = response.json()
-
-    # Obtén los datos relevantes del pago exitoso desde la respuesta de la API
-    estado = data.get('status')
-    fecha = data.get('transaction_date')
-    numero_tarjeta = data.get('card_detail', {}).get('card_number')
-    tipo_pago = data.get('payment_type_code')
-    monto_pagado = data.get('amount')
-    comprobante = data.get('authorization_code')
-    numero_orden = data.get('buy_order')
-
-    # Renderiza la plantilla con los datos del resultado de compra
-    return render(request, 'core/cliente/resultadoCompra.html', {
-        'estado': estado,
-        'numero_tarjeta': numero_tarjeta,
-        'fecha': fecha,
-        'tipo_pago': tipo_pago,
-        'monto_pagado': monto_pagado,
-        'comprobante': comprobante,
-        'numero_orden': numero_orden
-    })
 
 
 #views para las funciones del carrito de compra
@@ -158,12 +132,46 @@ def datosCompra(request):
                 return redirect('transbank')
         contexto["mensaje"] = "Datos Guardados."
     return render(request, 'core/cliente/datosCompra.html', contexto)
-# FALTA SACAR LOS TOKEN DE LA URL
+
 # FALTA CREAR UNA PAGINA QUE MUESTRE SI ESTÁ APROBADO O RECHAZADO
 # FALTA COLOCAR LOS DATOS DE LA TIENDA, ES DECIR, SESSION ID DEL CLIENTE, ORDEN DE COMPRA, EL MONTO QUE LE CORRESPONDE PAGAR... 
 
+def resultado_compra_error(request):
+    return render(request, 'core/cliente/resultadoCompraError.html')
 
-# API WEBPAY PLUS
+@csrf_exempt
+def resultado_compra(request):
+    token_ws = request.GET.get('token_ws')
+    if not token_ws:
+        return redirect('/resultado_compra_error')  # Redirige a la página de error
+
+    url = f'https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions/{token_ws}'
+    response = requests.get(url)
+    data = response.json()
+
+    # Obtén los datos relevantes del pago exitoso desde la respuesta de la API
+    estado = data.get('status')
+    if estado == 'rejected' or estado == 'failed':
+        return redirect('/resultado_compra_error')  # Redirige a la página de error
+
+    fecha = data.get('transaction_date')
+    numero_tarjeta = data.get('card_detail', {}).get('card_number')
+    tipo_pago = data.get('payment_type_code')
+    monto_pagado = data.get('amount')
+    comprobante = data.get('authorization_code')
+    numero_orden = data.get('buy_order')
+
+    # Renderiza la plantilla con los datos del resultado de compra
+    return render(request, 'core/cliente/resultadoCompra.html', {
+        'estado': estado,
+        'numero_tarjeta': numero_tarjeta,
+        'fecha': fecha,
+        'tipo_pago': tipo_pago,
+        'monto_pagado': monto_pagado,
+        'comprobante': comprobante,
+        'numero_orden': numero_orden
+    })
+
 def get_ws(data, method, type, endpoint):
     if type == 'live':
         TbkApiKeyId = '597055555532'
@@ -221,15 +229,13 @@ def transbank(request):
         token = response.get("token")
         url = response.get("url")
         redirect_url = f"{url}?token_ws={token}"
-        request.session['action'] = 'getResult'
-        request.session['token_ws'] = token
+
         return redirect(redirect_url)
 
     elif action == "getResult":
-        if 'token_ws' not in request.GET:
-            return JsonResponse({'message': 'Token not found'})
-
         token = request.GET.get('token_ws')
+        if not token:
+            return redirect('/resultado_compra_error')  # Redirige a la página de error
 
         data = json.dumps({'token': token})
         method = 'PUT'
@@ -238,13 +244,15 @@ def transbank(request):
 
         response = get_ws(data, method, type, endpoint)
 
+        if response.get('status') == 'FAILED':
+            return redirect('resultado_compra_error/')
+
         return JsonResponse(response)
 
     elif action == "getStatus":
-        if 'token_ws' not in request.session:
-            return JsonResponse({'message': 'Token not found'})
-
-        token = request.session['token_ws']
+        token = request.GET.get('token_ws')
+        if not token:
+            return redirect('/resultado_compra_error')  # Redirige a la página de error
 
         data = json.dumps({'token': token})
         method = 'GET'
@@ -252,15 +260,18 @@ def transbank(request):
         endpoint = f'/rswebpaytransaction/api/webpay/v1.2/transactions/{token}/status'
 
         response = get_ws(data, method, type, endpoint)
-        
+
+        if response.get('status') == 'FAILED':
+            return redirect('resultado_compra_error/')
+
         return JsonResponse(response)
 
     elif action == "refund":
+        token = request.GET.get('token_ws')
         message = request.POST
-        if 'token_ws' not in request.POST:
-            return JsonResponse({'message': message})
+        if not token:
+            return redirect('/resultado_compra_error')  # Redirige a la página de error
 
-        token = request.POST.get('token_ws')
         amount = total_carrito_descuento if total_carrito_descuento > 0 else total_carrito
 
         data = json.dumps({'amount': amount})
