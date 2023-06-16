@@ -142,22 +142,21 @@ def resultado_compra_error(request):
 
 @csrf_exempt
 def resultado_compra(request):
+    # Cuando el token no existe (o cambia) me manda a la página de error
     token_ws = request.GET.get('token_ws')
     if not token_ws:
         return redirect('/resultado_compra_error')  # Redirige a la página de error
-
-    url = f'https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions/{token_ws}'
+    
     endpoint = f'/rswebpaytransaction/api/webpay/v1.2/transactions/{token_ws}'
     response = get_ws('', 'PUT', type, endpoint)
-    # response = requests.get(url)
+    # data es la variable que tendrá toda la respuesta de la API que viene de 'response'
     data = response
+    
+    # Ejemplo de los datos que trae
     print(data)
-
-    # Obtén los datos relevantes del pago exitoso desde la respuesta de la API
+    
+    # Datos que deseo pasar al html, y los almaceno
     estado = data.get('status')
-    if estado == 'rejected' or estado == 'failed':
-        return redirect('/resultado_compra_error')  # Redirige a la página de error
-
     fecha = data.get('transaction_date')
     numero_tarjeta = data.get('card_detail', {}).get('card_number')
     tipo_pago = data.get('payment_type_code')
@@ -165,7 +164,11 @@ def resultado_compra(request):
     comprobante = data.get('authorization_code')
     numero_orden = data.get('buy_order')
 
-    # Renderiza la plantilla con los datos del resultado de compra
+    # Todo aquello distinto a este estado 'AUTHORIZED', mandará error.
+    if estado != 'AUTHORIZED':
+        return redirect('/resultado_compra_error') # Redirige a la página de error
+    
+    # Manda los datos del resultado de compra al html
     return render(request, 'core/cliente/resultadoCompra.html', {
         'estado': estado,
         'numero_tarjeta': numero_tarjeta,
@@ -234,11 +237,9 @@ def transbank(request):
         token = response.get("token")
         url = response.get("url")
         redirect_url = f"{url}?token_ws={token}"
-        print(redirect_url)
         return redirect(redirect_url)
 
     elif action == "getResult":
-        print("Obteniendo resultados")
         token = request.GET.get('token_ws')
         if not token:
             return redirect('/resultado_compra_error')  # Redirige a la página de error
@@ -250,7 +251,7 @@ def transbank(request):
 
         response = get_ws(data, method, type, endpoint)
 
-        if response.get('status') == 'FAILED':
+        if response.get('status') != 'AUTHORIZED':
             return redirect('resultado_compra_error/')
 
         return JsonResponse(response)
@@ -267,7 +268,7 @@ def transbank(request):
 
         response = get_ws(data, method, type, endpoint)
 
-        if response.get('status') == 'FAILED':
+        if response.get('status') != 'AUTHORIZED':
             return redirect('resultado_compra_error/')
 
         return JsonResponse(response)
