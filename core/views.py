@@ -147,8 +147,11 @@ def resultado_compra(request):
         return redirect('/resultado_compra_error')  # Redirige a la página de error
 
     url = f'https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.2/transactions/{token_ws}'
-    response = requests.get(url)
-    data = response.json()
+    endpoint = f'/rswebpaytransaction/api/webpay/v1.2/transactions/{token_ws}'
+    response = get_ws('', 'PUT', type, endpoint)
+    # response = requests.get(url)
+    data = response
+    print(data)
 
     # Obtén los datos relevantes del pago exitoso desde la respuesta de la API
     estado = data.get('status')
@@ -186,7 +189,8 @@ def get_ws(data, method, type, endpoint):
     headers = {
         'Tbk-Api-Key-Id': TbkApiKeyId,
         'Tbk-Api-Key-Secret': TbkApiKeySecret,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
     }
 
     response = requests.request(method, url, headers=headers, data=data)
@@ -230,10 +234,11 @@ def transbank(request):
         token = response.get("token")
         url = response.get("url")
         redirect_url = f"{url}?token_ws={token}"
-
+        print(redirect_url)
         return redirect(redirect_url)
 
     elif action == "getResult":
+        print("Obteniendo resultados")
         token = request.GET.get('token_ws')
         if not token:
             return redirect('/resultado_compra_error')  # Redirige a la página de error
