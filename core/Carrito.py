@@ -111,6 +111,8 @@ class Carrito:
         if "carrito" in request.session.keys():
             for key, value in request.session["carrito"].items():
                 total += int(value["acumulado"])
-            if request.user.is_authenticated:  # Acceder al atributo 'user' a través de 'request'
-                total2 = total * 0.8
+            if request.user.is_authenticated:  #aqui se verifica si el usuario está logeado
+                descuento = total * 0.2
+                total2 = total - descuento
+                total2 = round(total2)
         return {"total_carrito": total, "total_carrito_descuento": total2}

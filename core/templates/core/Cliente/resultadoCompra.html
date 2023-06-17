@@ -1,32 +1,66 @@
-<!DOCTYPE html>
-<html>
+{% extends 'core/Template.html' %}
+{% load static %}
+{% load djmoney %}
+<!-- ESTAS ETIQUETAS SON PARA TRAER RECURSOS DEL PROYECTO, EJEMPLO: EXTENDS, TRAER HTML A ESTA VISTA, LOAD STATIC, TRAE LA HOJA DE ESTILOS, LOAD DJMONEY, ES PARA CAMBIAR EL FORMATO DE MONEDA -->
+
+{% block contenido %}
+
 <head>
-    <title>Resultado de Compra</title>
+  <link rel="stylesheet" href="{% static 'core/css/resultadoCompra.css' %}">
 </head>
-<body>
-    <h1>Resultado de Compra</h1>
 
-    <table>
-        <tr>
-            <th>Estado</th>
-            <th>Número de Tarjeta</th>
-            <th>Fecha</th>
-            <th>Tipo de Pago</th>
-            <th>Monto Pagado</th>
-            <th>Comprobante</th>
-            <th>Número de Orden</th>
-        </tr>
-        <tr>
-            <td>{{ estado }}</td>
-            <td>{{ numero_tarjeta }}</td>
-            <td>{{ fecha }}</td>
-            <td>{{ tipo_pago }}</td>
-            <td>{{ monto_pagado }}</td>
-            <td>{{ comprobante }}</td>
-            <td>{{ numero_orden }}</td>
-        </tr>
-    </table>
+<div class="contenedor">
+    <div class="contenido">
 
-    <a href="{% url 'principal' %}">Volver al Menú Principal</a>
-</body>
-</html>
+       <h1 id="tituloResultado">¡Compra exitosa!</h1>
+
+       <table>
+            <tr>
+                <th>Estado</th>
+                <td>{{ estado }}</td>
+            </tr>
+            <tr>
+                <th>Número de Tarjeta</th>
+                <td>**** **** **** {{ numero_tarjeta }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ fecha }}</td>
+            </tr>
+            <tr>
+                <th>Monto Pagado</th>
+                <td>${% money_localize monto_pagado 'clp' %}</td>
+            </tr>
+            <tr>
+                <th>Comprobante</th>
+                <td>{{ comprobante }}</td>
+            </tr>
+            <tr>
+                <th>Número de Orden</th>
+                <td>{{ numero_orden }}</td>
+            </tr>
+        </table>
+
+        <a href="{% url 'principal' %}"  class="btn btn-primary" id="botonVolver">Volver al menú</a>
+
+    </div>
+
+    <script src="{% static 'core/js/confetti.js' %}"></script>
+
+    <script>
+        const start = () => {
+            setTimeout(function() {
+                confetti.start()
+            });
+        };
+        const stop = () => {
+            setTimeout(function() {
+                confetti.stop()
+            }, 3000);
+        };
+        start();
+        stop();
+    </script>
+
+</div>
+{% endblock %}

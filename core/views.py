@@ -126,16 +126,45 @@ def datosCompra(request):
                 nueva_compra = datos.save(commit=False)
                 nueva_compra.user = user
                 nueva_compra.save()
+            carrito = Carrito(request)
+            productos_carrito = carrito.carrito.values()  # Obtener los productos del carrito
+            for producto in productos_carrito:
+                nuevo_producto_carrito = Productos_Carrito(
+                    id_compra=nueva_compra,
+                    producto=producto['producto_id'],
+                    nombre=producto['nombre'],
+                    precio=producto['acumulado'],
+                    cantidad=producto['cantidad']
+                )
+                nuevo_producto_carrito.save()
             if nueva_compra.tipo_pago == 'Transferencia':
                 return redirect('datosTransferencia')
             else:
-                # Colocar página falsa de webpay
                 return redirect('transbank')
         contexto["mensaje"] = "Datos Guardados."
     return render(request, 'core/cliente/datosCompra.html', contexto)
 
 # FALTA CREAR UNA PAGINA QUE MUESTRE SI ESTÁ APROBADO O RECHAZADO
 # FALTA COLOCAR LOS DATOS DE LA TIENDA, ES DECIR, SESSION ID DEL CLIENTE, ORDEN DE COMPRA, EL MONTO QUE LE CORRESPONDE PAGAR... 
+def get_ws(data, method, type, endpoint):
+    if type == 'live':
+        TbkApiKeyId = '597055555532'
+        TbkApiKeySecret = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
+        url = "https://webpay3g.transbank.cl" + endpoint  # Live
+    else:
+        TbkApiKeyId = '597055555532'
+        TbkApiKeySecret = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
+        url = "https://webpay3gint.transbank.cl" + endpoint  # Testing
+
+    headers = {
+        'Tbk-Api-Key-Id': TbkApiKeyId,
+        'Tbk-Api-Key-Secret': TbkApiKeySecret,
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+    }
+
+    response = requests.request(method, url, headers=headers, data=data)
+    return response.json()
 
 def resultado_compra_error(request):
     return render(request, 'core/cliente/resultadoCompraError.html')
@@ -159,7 +188,6 @@ def resultado_compra(request):
     estado = data.get('status')
     fecha = data.get('transaction_date')
     numero_tarjeta = data.get('card_detail', {}).get('card_number')
-    tipo_pago = data.get('payment_type_code')
     monto_pagado = data.get('amount')
     comprobante = data.get('authorization_code')
     numero_orden = data.get('buy_order')
@@ -168,36 +196,27 @@ def resultado_compra(request):
     if estado != 'AUTHORIZED':
         return redirect('/resultado_compra_error') # Redirige a la página de error
     
+
+    # Se guardan los valores en Models.py (Datos_venta), asociar ID del Datos_compra
+    # Guardar los datos de la venta acá
+
+    
+
+    # Guardar los datos de la venta acá
+
+    # Funcion para eliminar el carrito del usuario.
+    carrito = Carrito(request)
+    carrito.limpiar()
+
     # Manda los datos del resultado de compra al html
     return render(request, 'core/cliente/resultadoCompra.html', {
         'estado': estado,
         'numero_tarjeta': numero_tarjeta,
         'fecha': fecha,
-        'tipo_pago': tipo_pago,
         'monto_pagado': monto_pagado,
         'comprobante': comprobante,
         'numero_orden': numero_orden
     })
-
-def get_ws(data, method, type, endpoint):
-    if type == 'live':
-        TbkApiKeyId = '597055555532'
-        TbkApiKeySecret = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
-        url = "https://webpay3g.transbank.cl" + endpoint  # Live
-    else:
-        TbkApiKeyId = '597055555532'
-        TbkApiKeySecret = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
-        url = "https://webpay3gint.transbank.cl" + endpoint  # Testing
-
-    headers = {
-        'Tbk-Api-Key-Id': TbkApiKeyId,
-        'Tbk-Api-Key-Secret': TbkApiKeySecret,
-        'Content-Type': 'application/json;charset=UTF-8',
-        "Access-Control-Allow-Origin": "*",
-    }
-
-    response = requests.request(method, url, headers=headers, data=data)
-    return response.json()
 
 def transbank(request):
     baseurl = request.build_absolute_uri('/')

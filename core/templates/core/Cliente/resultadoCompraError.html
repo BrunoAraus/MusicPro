@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Resultado de Compra</title>
-</head>
-<body>
-    <h1>ERROR COMPRA</h1>
+{% extends 'core/Template.html' %}
+{% load static %}
+{% load djmoney %}
 
-    <h2>(Puedes volver a intentarlo cuando gustes)</h2>
+{% block contenido %}
+    <head>
+        <title>Resultado de Compra</title>
+        <link rel="stylesheet" href="{% static 'core/css/resultadoCompraError.css' %}">
+    </head>
+    <div class="contenedor">
+        <div class="contenido">
+           <h1 class="tituloResultado1">¡Error de compra!</h1>
+            <h2 class="tituloResultado2">~ Puedes volver a intentarlo cuando gustes ~</h2>
 
-    <a href="{% url 'principal' %}">Volver al Menú Principal</a>
-</body>
-</html>
+            <a href="{% url 'principal' %}" class="btn btn-danger" id="botonVolver">Volver al menú</a> 
+        </div>
+    </div>
+{% endblock %}

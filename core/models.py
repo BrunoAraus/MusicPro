@@ -59,8 +59,23 @@ class Datos_compra(models.Model):
     region = models.CharField(null=True,max_length=50)
     tipo_pago = models.CharField(null=False,max_length=15)
     
+class Productos_Carrito(models.Model):
+    id_compra = models.ForeignKey(Datos_compra, on_delete=models.CASCADE)
+    producto = models.IntegerField(null=False)
+    nombre = models.CharField(null=False,max_length=100)
+    precio = models.IntegerField(null=False)
+    cantidad = models.IntegerField(null=False)
 
 
-    
-    
+# FALTA EL ID DEL "Productos_Carrito" PARA ASOCIAR LO QUE LLEVA...
+
+# class Datos_venta(models.Model):
+#     id_venta = models.AutoField(primary_key=True)
+#     monto_pagado = models.IntegerField(null=False)
+#     estado_pago = models.CharField(null=False,max_length=50)
+#     orden_compra = models.CharField(null=False,max_length=50)
+#     sesion_id = models.CharField(null=False,max_length=50)
+#     fecha = models.CharField(null=False,max_length=50)
+#     codigo_autorizacion = models.CharField(null=False,max_length=50)
+
 
