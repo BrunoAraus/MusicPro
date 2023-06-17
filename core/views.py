@@ -192,8 +192,8 @@ def resultado_compra(request):
     comprobante = data.get('authorization_code')
     numero_orden = data.get('buy_order')
 
-    # Todo aquello distinto a este estado 'AUTHORIZED', mandará error.
-    if estado != 'AUTHORIZED':
+    # Todo aquello igual a este estado 'FAILED', mandará error. (existen distintas formas, no solo AUTHORIZED para saber que algo se pagó)
+    if estado == 'FAILED':
         return redirect('/resultado_compra_error') # Redirige a la página de error
     
 
@@ -270,7 +270,7 @@ def transbank(request):
 
         response = get_ws(data, method, type, endpoint)
 
-        if response.get('status') != 'AUTHORIZED':
+        if response.get('status') == 'FAILED':
             return redirect('resultado_compra_error/')
 
         return JsonResponse(response)
@@ -287,7 +287,7 @@ def transbank(request):
 
         response = get_ws(data, method, type, endpoint)
 
-        if response.get('status') != 'AUTHORIZED':
+        if response.get('status') == 'FAILED':
             return redirect('resultado_compra_error/')
 
         return JsonResponse(response)
