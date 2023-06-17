@@ -90,7 +90,7 @@
 
             <form action="{% url 'transbank' %}" method="post">
               {% csrf_token %}
-              <input type="submit" value="Completar Compra">
+              <input type="submit" value="Ir a pagar →" class="btn btn-primary" id="botonPagoTransbank">
             </form>
             
             <!-- TIPO DE PAGO -->

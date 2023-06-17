@@ -438,6 +438,12 @@ th{
     font-weight: bold;
 }
 
+#botonPagoTransbank{
+    width: 15%;
+    height: 50px;
+    margin: 5% 0% 2% 0%;
+}
+
 @media (max-width: 1600px){
 	.datosPago{
         width: 50%;
