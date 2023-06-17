@@ -59,7 +59,20 @@
               <div class="retiroTienda" style="display:none; padding: 20px 0px 20px 0px;">
                 <h1 id="tituloSucursal">Sucursal</h1>
                 <h2 id="tituloDireccion">DuocUC Sede Melipilla</h2>
-                <a href="{% url 'mapa' %}">Ver mapa</a>
+                <!-- <a href="{% url 'mapa' %}">Ver mapa</a> -->
+
+                <div id="map" style="
+                margin: 0px 10px 0px 40px;
+                border-radius: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 500px;
+                width: 90%;">
+                  </div>
+                <script src="{% static 'core/js/mapa.js' %}"></script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+            
               </div>
             </div>
 
