@@ -15,6 +15,11 @@ import uuid
 import json
 # Create your views here.
 
+datos_compra = None
+
+id_sesion = None
+
+
 def mapa(request):
     return render(request, 'core/cliente/mapa.html')
 #Aqui se crea la view que muestra la pagina principal
@@ -207,6 +212,7 @@ def resultado_compra(request):
     # Funcion para eliminar el carrito del usuario.
     carrito = Carrito(request)
     carrito.limpiar()
+    guardar_resultado(monto_pagado,estado,numero_orden,fecha,comprobante)
 
     # Manda los datos del resultado de compra al html
     return render(request, 'core/cliente/resultadoCompra.html', {
@@ -217,6 +223,7 @@ def resultado_compra(request):
         'comprobante': comprobante,
         'numero_orden': numero_orden
     })
+    
 
 def transbank(request):
     baseurl = request.build_absolute_uri('/')
@@ -224,9 +231,12 @@ def transbank(request):
     message = None
 
     # Generar el idSesion único
+    global id_sesion
     id_sesion = str(uuid.uuid4())
 
+
     # Obtener el objeto Datos_compra correspondiente a la compra más reciente
+    global datos_compra
     datos_compra = Datos_compra.objects.latest('id')
 
     # Crear una instancia de la clase Carrito
@@ -307,5 +317,19 @@ def transbank(request):
 
         response = get_ws(data, method, type, endpoint)
         return JsonResponse(response)
-
+    
     return JsonResponse({'message': message})
+
+def guardar_resultado(request,monto_pagado,estado,numero_orden,fecha,comprobante):
+    global id_sesion
+    global datos_compra
+    Datos = Datos_venta(
+        id_compra=datos_compra,
+        monto_pagado=monto_pagado,
+        estado_pago=estado,
+        orden_compra=numero_orden,
+        sesion_id=id_sesion,
+        fecha=fecha,
+        codigo_autorizacion=comprobante
+    )
+    Datos.save()
