@@ -26,15 +26,33 @@ def mapa(request):
 #Esta view realiza un calculo automatico del precio descuento en base al descuento
 #Tambien para redigirir al index cuando se desea con el nombre "principal"
 def principal(request):
+    #API BANCO CENTRAL
+    url = "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=211737212&pass=kilOfk917B1z&firstdate=2023-06-07&lastdate=2023-12-30&timeseries=F073.TCO.PRE.Z.D&function=GetSeries"
+    response = requests.get(url)
+    response = response.json()
+    dolar = response["Series"]["Obs"][0]["value"] #se le asigna el valor "value" a la variable 'dolar'
+
     productos = Producto.objects.all()
     for producto in productos:
         if producto.descuento > 0:
             producto.preciodescuento = producto.precio - (producto.precio * producto.descuento/100)
+            precio1 = producto.preciodescuento
+            precio_dolar_descuento = (precio1 / float(dolar))
+            print(f'precios1: {precio_dolar_descuento}')
         else:
             producto.precio = producto.precio
             producto.preciodescuento = 0
+            precio2 = producto.precio
+            precio_dolar = (precio2 / float(dolar))
+            print(f'precios2: {precio_dolar}')
         producto.save()
-    data = {'productos': productos}
+       
+
+    data = {'productos': productos,        
+            'precio_dolar_descuento': precio_dolar_descuento,
+            'precio_dolar': precio_dolar}
+    
+    print(f'DATA: {data}')
     return render(request, 'core/cliente/principal.html', data)
 
 
@@ -53,8 +71,8 @@ def registro(request):
 def detalle_producto(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     data = {'producto' : producto}
-    return render(request, 'core/cliente/detalle_producto.html', data)
 
+    return render(request, 'core/cliente/detalle_producto.html', data)
 
 
 
@@ -149,6 +167,8 @@ def datosCompra(request):
         contexto["mensaje"] = "Datos Guardados."
     return render(request, 'core/cliente/datosCompra.html', contexto)
 
+def vendedor_principal(request):
+    return render(request, 'core/vendedor/TemplateVendedor.html')
 
 # API TRANSBANK COMPLETA Y SUS FUNCIONES
 def get_ws(data, method, type, endpoint):

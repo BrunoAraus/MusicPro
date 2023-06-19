@@ -151,10 +151,11 @@
         <!-- SI EL USUARIO EN CUESTION SE ENCUENTRA REGISTRADO EN LA PÁGINA, SE HARÁ UN DESCUENTO DEL 20% DEL TOTAL DE SU COMPRA -->
         <tr class="total-carrito">
           {% if user.is_authenticated %}
-          <p class="precioTotal1">Total 20% descuento: ${% money_localize total_carrito_descuento 'clp' %}</p>
-          <p class="precioTotal1" style="text-decoration: line-through; opacity: 60%;">Total: ${% money_localize total_carrito 'clp' %}</p>
+          <p class="precioTotal1" style="margin-bottom: 0px;">Total 20% descuento: ${% money_localize total_carrito_descuento 'clp' %}</p>
+          <p class="precioTotal1" style="margin-top: 0px;">En dólares: {% money_localize total_dolar_descuento 'usd'%}</p>
+          <p class="precioTotal1" style="text-decoration: line-through; opacity: 60%;">Total: ${% money_localize total_carrito 'clp' %} / {% money_localize total_dolar 'usd'%}</p>
           {% else %}
-          <p class="precioTotal1">Total: ${% money_localize total_carrito 'clp' %}</p>
+          <p class="precioTotal1">Total: ${% money_localize total_carrito 'clp' %} / {% money_localize total_dolar 'usd'%}</p>
           {% endif %}
         </tr>
       </div>
