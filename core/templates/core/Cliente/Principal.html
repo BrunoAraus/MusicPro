@@ -51,10 +51,10 @@
             <h5 class="card-title">{{ p.nombre }}</h5>
             <!-- ESTE "IF" ES PARA PREGUNTAR SI EXITEN DESCUENTOS, SI NO EXISTEN, SE MUESTRA EL PRECIO NORMAL, SINO, SE MUESTRA TODO EN DETALLE CUANDO SE DESCUENTA TACHANDO ADEMÁS EL PRECIO ORIGINAL -->
             {% if p.descuento == 0 %}
-            <p class="card-text_precio">${% money_localize p.precio 'CLP' %} / {% money_localize precio_dolar 'usd'%}</p>
+            <p class="card-text_precio">${% money_localize p.precio 'CLP' %} <!--/ {% money_localize precio_dolar 'usd'%}--> </p>
             {% else %}
             <p class="card-text_descuento" style='text-decoration: line-through; color: brown;'>Precio original: ${% money_localize p.precio 'CLP' %}</p>
-            <p class="card-text_precio" style="color: rgb(0, 56, 0)">${% money_localize p.preciodescuento 'CLP' %} / {% money_localize precio_dolar_descuento 'usd'%}</p>
+            <p class="card-text_precio" style="color: rgb(0, 56, 0)">${% money_localize p.preciodescuento 'CLP' %} <!--/ {% money_localize precio_dolar_descuento 'usd'%}--> </p>
             <p class="card-text">Descuento: -{{ p.descuento }}%</p>
             {% endif %}
             <p class="card-text">Stock: {{ p.stock }}</p>

@@ -65,11 +65,11 @@
 				</div>
 				<div class="precio">
 					{% if producto.descuento == 0 %}
-					<p class="preciogrande">${% money_localize producto.precio 'clp' %} / {% money_localize precio_dolar 'usd'%}</p>
+					<p class="preciogrande">${% money_localize producto.precio 'clp' %} / {% money_localize dolar 'usd'%}</p>
 					
 					{% else %}
-					<p class="preciogrande">${% money_localize producto.preciodescuento 'clp' %} / {% money_localize precio_dolar 'usd'%}</p>
-					<p class="precioanterior">${% money_localize producto.precio 'clp' %} / {% money_localize precio_dolar 'usd'%}</p>
+					<p class="preciogrande">${% money_localize producto.preciodescuento 'clp' %} / {% money_localize dolar 'usd'%}</p>
+					<p class="precioanterior">${% money_localize producto.precio 'clp' %} / {% money_localize dolar 'usd'%}</p>
 					{% endif %}
 				</div>
 				<div class="descripcion-producto">
