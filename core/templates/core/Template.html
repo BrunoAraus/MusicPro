@@ -33,116 +33,162 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
         <nav>
-            <div class="nav1">
-                
-                <div class="nav2">
-                    
-                    <div class="logo">
-                        <a href="{% url 'principal' %}">
-                            <img class="imagenLogo" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
-                            <img class="imagenLogo4" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
-                            <img class="imagenLogo2" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
-                            <img class="imagenLogo3" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
-                        </a>
-                    </div>
-                    <div class="enlaces">
-                        <ul class="nav">
-                            <div class="navegador">
-                                <li>
-                                    <form class="d-flex" role="search"> 
-                                        <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Buscar"  id="buscador">
-                                        <button class="btn btn-light" type="submit">
-                                            <img src="{% static 'core/imagenes/busqueda.gif' %}" alt="">
-                                        </button>
-                                    </form>
-                                </li>
-                            </div>
+            <div class="nav1">       
+                <div class="logo">
+                    <a href="{% url 'principal' %}">
+                        <img class="imagenLogo" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+                        <img class="imagenLogo4" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+                        <img class="imagenLogo2" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+                        <img class="imagenLogo3" src="{% static 'core/imagenes/logoSinFondo.png' %}" alt="">
+                    </a>
+                </div>
+                <div class="enlaces">
+                    <ul class="nav">
+                        <div class="navegador">
+                            <li>
+                                <form class="d-flex" role="search"> 
+                                    <input class="form-control me-3" type="search" placeholder="Buscar" aria-label="Buscar"  id="buscador">
+                                    <button class="btn btn-light" type="submit">
+                                        <img src="{% static 'core/imagenes/busqueda.gif' %}" alt="">
+                                    </button>
+                                </form>
+                            </li>
+                        </div>
 
-                            <div class="separacion1"></div>
-                            <!-- ACA VERIFICA SI ESTÁ INICIADO LA SESION, SI NO ESTÁ INICIADO LE MUESTRA QUE INICIE O POR EL CONTRARIO QUE SALGA DE SU SESIÓN-->
+                        <div class="separacion1"></div>
+                        <!-- ACA VERIFICA SI ESTÁ INICIADO LA SESION, SI NO ESTÁ INICIADO LE MUESTRA QUE INICIE O POR EL CONTRARIO QUE SALGA DE SU SESIÓN-->
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="borde" href="{% url 'logout' %}">
+                                <img class="logoEnlace" src="{% static 'core/imagenes/salir.png' %}" alt="">
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="borde" href="{% url 'login' %}">
+                                <img class="logoEnlace" src="{% static 'core/imagenes/usuario.png' %}" alt="">
+                            </a>
+                        </li>
+                        {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="borde" href="#">
+                                <img class="logoEnlace1" src="{% static 'core/imagenes/carrito.png' %}" alt="">
+                            </a>
+                        </li>
+                        
+                        <!-- ACA VA TODO LO RELACIONADO AL CARRITO DE COMPRAS -->
+                        <div
+                            class="contenidoCarrito {% if request.session.carrito.items|length > 0 %} overflow-scroll {% else %} overflow-hidden{% endif %}">
+                            <table class="listaCarrito">
+                                <tbody>
+                                    <!-- SE VERIFICAN QUE HAYAN PRODUCTOS EN EL CARRITO, SI ES ASÍ, LOS ITERA, SINO, MUESTRA QUE ESTÁ VACÍO EL CARRITO DE COMPRAS -->
+                                    {% if request.session.carrito.items %}
+                                    {% for key, value in request.session.carrito.items %}
+                                    <tr>
+                                        <thead>
+                                            <tr>
+                                                <th>Imagen</th>
+                                                <th>Nombre</th>
+                                                <th id="precioAco">Precio</th>
+                                                <th id="cantidad1">Cantidad</th>
+                                            </tr>
+                                        </thead>
+                                        <thead>
+                                            <tr>
+                                                <th><img class="imagenCarrito" src="{{ value.imagen }}"></th>
+                                                <th class="datosTabla">{{ value.nombre }}</th>
+                                                <th class="datosTabla">${% money_localize value.acumulado  'CLP' %}</th>
+                                                <th class="datosTabla3">
+                                                    <a href="{% url 'Add' value.producto_id %}"
+                                                        class="badge btn btn-dark badge-dark">+</a>
+                                                    <span>{{value.cantidad}}</span>
+                                                    <a href="{% url 'Sub' value.producto_id %}"
+                                                        class="badge btn btn-dark badge-dark">-</a>
+                                                        <h1 class="alertaStock">{{value.mensaje}}</h1>
+                                                </th>
+                                                <th class="datosTabla2">
+                                                    <a href="{% url 'Del' value.producto_id %}">
+                                                        <img src="{% static 'core/imagenes/icons8-basura.gif' %}"
+                                                            alt="">
+                                                    </a>
+                                                </th>
+                                                <th class="datosTabla2">
+                                                    <a href="{% url 'detalle_producto' value.producto_id %}">
+                                                        <img src="{% static 'core/imagenes/icons8-información (1).gif' %}"
+                                                            alt="">
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </tr>
+                                    {% endfor %}
+                                    <tr>
+                                        <th class="precioTotal">Total: ${% money_localize total_carrito  'CLP' %} / {% money_localize total_dolar 'usd'%}</th>
+                                    </tr>
+                                    {% else %}
+
+                                    <div class="aviso">
+                                        <img src="{% static 'core/imagenes/empy.gif' %}" id="gifVacio" alt="">
+                                        <h3>Carrito Vacío :/</h2>
+                                    </div>
+
+                                    {% endif %}
+                                </tbody>
+                            </table>
+
+                            <!-- ESTO ES PARA QUE EL BOTÓN DE "COMPRAR" APAREZCA SIEMPRE Y CUANDO HAYAN PRODUCTOS EN EL CARRO -->
+                            {% if request.session.carrito.items %}
                             {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="borde" href="{% url 'logout' %}">
-                                    <img class="logoEnlace" src="{% static 'core/imagenes/salir.png' %}" alt="">
-                                </a>
-                            </li>
+                            <a href="{% url 'datosCompra' %}" class="boton siete">
+                                <div class="icono1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                    </svg>
+                                </div>
+
+                                <span id="texto3">Comprar</span>
+                                <!-- ESTOS SON BOTONES QUE EN UN FUTURO QUIZÁS LOS USEMOS -->
+                                <!-- <a href="{% url 'limpiar' %}" class="btn btn-danger">Limpiar</a> -->
+                                <!-- <a href="{% url 'principal' %}" class="btn btn-success">Guardar</a> -->
+                            </a>
                             {% else %}
-                            <li class="nav-item">
-                                <a class="borde" href="{% url 'login' %}">
-                                    <img class="logoEnlace" src="{% static 'core/imagenes/usuario.png' %}" alt="">
-                                </a>
-                            </li>
-                            {% endif %}
-                            </li>
-                            <li class="nav-item">
-                                <a class="borde" href="#">
-                                    <img class="logoEnlace1" src="{% static 'core/imagenes/carrito.png' %}" alt="">
-                                </a>
-                            </li>
+                                <div class="division4"></div>
+                                
+                                <script>
+                                    $(document).ready(function() {
+                                        // Selecciona el botón "Comprar"
+                                        var btnComprar = $('#texto3').parent();
                             
-                            <!-- ACA VA TODO LO RELACIONADO AL CARRITO DE COMPRAS -->
-                            <div
-                                class="contenidoCarrito {% if request.session.carrito.items|length > 0 %} overflow-scroll {% else %} overflow-hidden{% endif %}">
-                                <table class="listaCarrito">
-                                    <tbody>
-                                        <!-- SE VERIFICAN QUE HAYAN PRODUCTOS EN EL CARRITO, SI ES ASÍ, LOS ITERA, SINO, MUESTRA QUE ESTÁ VACÍO EL CARRITO DE COMPRAS -->
-                                        {% if request.session.carrito.items %}
-                                        {% for key, value in request.session.carrito.items %}
-                                        <tr>
-                                            <thead>
-                                                <tr>
-                                                    <th>Imagen</th>
-                                                    <th>Nombre</th>
-                                                    <th id="precioAco">Precio</th>
-                                                    <th id="cantidad1">Cantidad</th>
-                                                </tr>
-                                            </thead>
-                                            <thead>
-                                                <tr>
-                                                    <th><img class="imagenCarrito" src="{{ value.imagen }}"></th>
-                                                    <th class="datosTabla">{{ value.nombre }}</th>
-                                                    <th class="datosTabla">${% money_localize value.acumulado  'CLP' %}</th>
-                                                    <th class="datosTabla3">
-                                                        <a href="{% url 'Add' value.producto_id %}"
-                                                            class="badge btn btn-dark badge-dark">+</a>
-                                                        <span>{{value.cantidad}}</span>
-                                                        <a href="{% url 'Sub' value.producto_id %}"
-                                                            class="badge btn btn-dark badge-dark">-</a>
-                                                            <h1 class="alertaStock">{{value.mensaje}}</h1>
-                                                    </th>
-                                                    <th class="datosTabla2">
-                                                        <a href="{% url 'Del' value.producto_id %}">
-                                                            <img src="{% static 'core/imagenes/icons8-basura.gif' %}"
-                                                                alt="">
-                                                        </a>
-                                                    </th>
-                                                    <th class="datosTabla2">
-                                                        <a href="{% url 'detalle_producto' value.producto_id %}">
-                                                            <img src="{% static 'core/imagenes/icons8-información (1).gif' %}"
-                                                                alt="">
-                                                        </a>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                        </tr>
-                                        {% endfor %}
-                                        <tr>
-                                            <th class="precioTotal">Total: ${% money_localize total_carrito  'CLP' %} / {% money_localize total_dolar 'usd'%}</th>
-                                        </tr>
-                                        {% else %}
+                                        // Agrega un evento click al botón "Comprar"
+                                        btnComprar.click(function(e) {
+                                            e.preventDefault();
+                            
+                                            // Muestra la alerta Sweet Alert
+                                            Swal.fire({
+                                                title: 'Inicia sesión para obtener descuento del 20%',
+                                                text: "¿Deseas iniciar sesión?",
+                                                showCancelButton: true,
+                                                confirmButtonText: 'Sí, iniciar sesión',
+                                                cancelButtonText: 'No, continuar sin iniciar sesión',
+                                                reverseButtons: true,
+                                                confirmButtonColor: '#28a745', // Cambia el color del botón "Sí, iniciar sesión" a verde
+                                                cancelButtonColor: '#007bff' // Cambia el color del botón "No, continuar sin iniciar sesión" a azul
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    // Redirige a la página de inicio de sesión
+                                                    window.location.href = "{% url 'login' %}";
+                                                } else {
+                                                    // Continúa con la compra sin iniciar sesión
+                                                    window.location.href = "{% url 'datosCompra' %}";
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
 
-                                        <div class="aviso">
-                                            <img src="{% static 'core/imagenes/empy.gif' %}" id="gifVacio" alt="">
-                                            <h3>Carrito Vacío :/</h2>
-                                        </div>
-
-                                        {% endif %}
-                                    </tbody>
-                                </table>
-
-                                <!-- ESTO ES PARA QUE EL BOTÓN DE "COMPRAR" APAREZCA SIEMPRE Y CUANDO HAYAN PRODUCTOS EN EL CARRO -->
-                                {% if request.session.carrito.items %}
-                                {% if user.is_authenticated %}
                                 <a href="{% url 'datosCompra' %}" class="boton siete">
                                     <div class="icono1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -157,60 +203,10 @@
                                     <!-- <a href="{% url 'limpiar' %}" class="btn btn-danger">Limpiar</a> -->
                                     <!-- <a href="{% url 'principal' %}" class="btn btn-success">Guardar</a> -->
                                 </a>
-                                {% else %}
-                                    <div class="division4"></div>
-                                    
-                                    <script>
-                                        $(document).ready(function() {
-                                            // Selecciona el botón "Comprar"
-                                            var btnComprar = $('#texto3').parent();
-                                
-                                            // Agrega un evento click al botón "Comprar"
-                                            btnComprar.click(function(e) {
-                                                e.preventDefault();
-                                
-                                                // Muestra la alerta Sweet Alert
-                                                Swal.fire({
-                                                    title: 'Inicia sesión para obtener descuento del 20%',
-                                                    text: "¿Deseas iniciar sesión?",
-                                                    showCancelButton: true,
-                                                    confirmButtonText: 'Sí, iniciar sesión',
-                                                    cancelButtonText: 'No, continuar sin iniciar sesión',
-                                                    reverseButtons: true,
-                                                    confirmButtonColor: '#28a745', // Cambia el color del botón "Sí, iniciar sesión" a verde
-                                                    cancelButtonColor: '#007bff' // Cambia el color del botón "No, continuar sin iniciar sesión" a azul
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        // Redirige a la página de inicio de sesión
-                                                        window.location.href = "{% url 'login' %}";
-                                                    } else {
-                                                        // Continúa con la compra sin iniciar sesión
-                                                        window.location.href = "{% url 'datosCompra' %}";
-                                                    }
-                                                });
-                                            });
-                                        });
-                                    </script>
-
-                                    <a href="{% url 'datosCompra' %}" class="boton siete">
-                                        <div class="icono1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                                class="bi bi-bag-check-fill" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                    d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                            </svg>
-                                        </div>
-
-                                        <span id="texto3">Comprar</span>
-                                        <!-- ESTOS SON BOTONES QUE EN UN FUTURO QUIZÁS LOS USEMOS -->
-                                        <!-- <a href="{% url 'limpiar' %}" class="btn btn-danger">Limpiar</a> -->
-                                        <!-- <a href="{% url 'principal' %}" class="btn btn-success">Guardar</a> -->
-                                    </a>
-                                {% endif %}
-                                {% endif %}
-                            </div>
-                        </ul>
-                    </div>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </ul>
                 </div>
             </div>
         </nav>
