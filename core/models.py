@@ -66,9 +66,6 @@ class Productos_Carrito(models.Model):
     precio = models.IntegerField(null=False)
     cantidad = models.IntegerField(null=False)
 
-
-# FALTA EL ID DEL "Productos_Carrito" PARA ASOCIAR LO QUE LLEVA...
-
 class Datos_venta(models.Model):
     id_venta = models.AutoField(primary_key=True)
     id_compra = models.ForeignKey(Datos_compra, on_delete=models.CASCADE)
@@ -78,5 +75,3 @@ class Datos_venta(models.Model):
     sesion_id = models.CharField(null=False,max_length=100)
     fecha = models.CharField(null=False,max_length=50)
     codigo_autorizacion = models.CharField(null=False,max_length=50)
-
-

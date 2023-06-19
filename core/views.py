@@ -149,8 +149,8 @@ def datosCompra(request):
         contexto["mensaje"] = "Datos Guardados."
     return render(request, 'core/cliente/datosCompra.html', contexto)
 
-# FALTA CREAR UNA PAGINA QUE MUESTRE SI ESTÁ APROBADO O RECHAZADO
-# FALTA COLOCAR LOS DATOS DE LA TIENDA, ES DECIR, SESSION ID DEL CLIENTE, ORDEN DE COMPRA, EL MONTO QUE LE CORRESPONDE PAGAR... 
+
+# API TRANSBANK COMPLETA Y SUS FUNCIONES
 def get_ws(data, method, type, endpoint):
     if type == 'live':
         TbkApiKeyId = '597055555532'
@@ -173,6 +173,21 @@ def get_ws(data, method, type, endpoint):
 
 def resultado_compra_error(request):
     return render(request, 'core/cliente/resultadoCompraError.html')
+
+def guardar_resultado(request,monto_pagado,estado,numero_orden,fecha,comprobante):
+    global id_sesion
+    global datos_compra
+    if not Datos_venta.objects.filter(orden_compra=numero_orden).exists() or Datos_venta.objects.filter(orden_compra=numero_orden).first().orden_compra != numero_orden:
+        Datos = Datos_venta(
+            id_compra=datos_compra,
+            monto_pagado=monto_pagado,
+            estado_pago=estado,
+            orden_compra=numero_orden,
+            sesion_id=id_sesion,
+            fecha=fecha,
+            codigo_autorizacion=comprobante
+        )
+        Datos.save()
 
 @csrf_exempt
 def resultado_compra(request):
@@ -201,18 +216,12 @@ def resultado_compra(request):
     if estado == 'FAILED':
         return redirect('/resultado_compra_error') # Redirige a la página de error
     
-
-    # Se guardan los valores en Models.py (Datos_venta), asociar ID del Datos_compra
     # Guardar los datos de la venta acá
-
-    
-
-    # Guardar los datos de la venta acá
+    guardar_resultado(request,monto_pagado=monto_pagado, estado=estado, numero_orden=numero_orden, fecha=fecha, comprobante=comprobante)
 
     # Funcion para eliminar el carrito del usuario.
     carrito = Carrito(request)
     carrito.limpiar()
-    guardar_resultado(monto_pagado,estado,numero_orden,fecha,comprobante)
 
     # Manda los datos del resultado de compra al html
     return render(request, 'core/cliente/resultadoCompra.html', {
@@ -320,16 +329,3 @@ def transbank(request):
     
     return JsonResponse({'message': message})
 
-def guardar_resultado(request,monto_pagado,estado,numero_orden,fecha,comprobante):
-    global id_sesion
-    global datos_compra
-    Datos = Datos_venta(
-        id_compra=datos_compra,
-        monto_pagado=monto_pagado,
-        estado_pago=estado,
-        orden_compra=numero_orden,
-        sesion_id=id_sesion,
-        fecha=fecha,
-        codigo_autorizacion=comprobante
-    )
-    Datos.save()
