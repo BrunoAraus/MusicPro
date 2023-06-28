@@ -74,6 +74,22 @@ def detalle_producto(request, producto_id):
 
     return render(request, 'core/cliente/detalle_producto.html', data)
 
+def descontar_stock(request):
+    # Obtener el último ID de compra creado
+    ultimo_id_compra = Datos_compra.objects.latest('id').id
+
+    # Obtener los productos en el carrito de la última compra
+    productos_carrito = Productos_Carrito.objects.filter(id_compra=ultimo_id_compra)
+
+    for producto_carrito in productos_carrito:
+        # Obtener el producto y restar la cantidad del stock
+        producto = Producto.objects.get(id=producto_carrito.producto)
+        cantidad_carrito = producto_carrito.cantidad
+        producto.stock -= cantidad_carrito
+        producto.save()
+
+
+
 
 
 #views para las funciones del carrito de compra
@@ -120,6 +136,7 @@ def filtro_productos(request):
 
 # Aca se redirige al html de transferencia en donde se muestran información de este html.
 def datosTransferencia(request):
+    descontar_stock(request)
     return render(request, 'core/cliente/datosTransferencia.html')
 
 
@@ -157,7 +174,7 @@ def datosCompra(request):
                     producto=producto['producto_id'],
                     nombre=producto['nombre'],
                     precio=producto['acumulado'],
-                    cantidad=producto['cantidad']
+                    cantidad=producto['cantidad'],
                 )
                 nuevo_producto_carrito.save()
             if nueva_compra.tipo_pago == 'Transferencia':
@@ -242,6 +259,7 @@ def resultado_compra(request):
     # Funcion para eliminar el carrito del usuario.
     carrito = Carrito(request)
     carrito.limpiar()
+    descontar_stock(request)
 
     # Manda los datos del resultado de compra al html
     return render(request, 'core/cliente/resultadoCompra.html', {
