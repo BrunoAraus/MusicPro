@@ -5,6 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from core.models import *
 from core.Carrito import *
 from .forms import *
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
 
 # LIBRERIA E IMPORTACIÓN PARA USAR LAS "API'S"
 from django.http import JsonResponse, HttpResponseRedirect
@@ -54,6 +56,28 @@ def principal(request):
     
     print(f'DATA: {data}')
     return render(request, 'core/cliente/principal.html', data)
+
+
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
+
+class CustomLoginView(LoginView):
+    def form_valid(self, form):
+        # Llama al método form_valid del padre para realizar la lógica de inicio de sesión normal
+        response = super().form_valid(form)
+
+        # Verificar si el usuario pertenece a un grupo específico
+        user = self.request.user
+        if user.groups.filter(name__in=['Administrador','Bodeguero','Vendedor','Contador']).exists():
+            return redirect('PaginaGrupos')  # Redireccionar a la página de grupos
+        else:
+            return response
+
+
+
+
+def PaginaGrupos(request):
+    return render(request, 'core/PaginaGrupos.html')
 
 
 #aqui se realiza el registro del usuario 
