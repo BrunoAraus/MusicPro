@@ -1,7 +1,38 @@
-{% extends 'core/Bodeguero/TemplateAdmin.html' %}
+
 {% load static %}
 
 {% block contenido %}
 
+<body>
+    <div class="content">
+        <head>
+            <link rel="stylesheet" href="{% static 'core/css/administrador/registro2.css' %}">
+        </head>
 
+            <div class="tabla">
+                <h1>Listado de Usuarios</h5>
+            <table class="table table-hover">
+                <tr>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Grupo</th>
+                    
+                </tr>
+                {% for i in usuarios %}
+                <tr>
+                    <td>{{i.username}}</td>
+                    <td>{{i.first_name}}</td>
+                    <td>{{i.last_name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.groups.first.name}}</td>
+                    <td><a href="{% url 'modificarUsuario' i.id %}">Modificar</a ></td>
+                    <td><a href="{% url 'eliminarUsuario' i.id %}">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
 {% endblock %}

@@ -7,6 +7,11 @@ from core.Carrito import *
 from .forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
+from django import forms
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.db.models import Q
+
 
 # LIBRERIA E IMPORTACIÓN PARA USAR LAS "API'S"
 from django.http import JsonResponse, HttpResponseRedirect
@@ -73,6 +78,29 @@ class CustomLoginView(LoginView):
         else:
             return response
 
+def GestionarUsuarios(request):
+    usuarios_con_grupo = User.objects.exclude(Q(groups=None) | Q(groups__name='Administrador'))
+    contexto = {'usuarios': usuarios_con_grupo}
+    return render(request, 'core/Administrador/GestionarUsuarios.html', contexto)
+
+def modificarUsuario(request, id):
+    usuario = User.objects.get(id=id)
+    contexto = {'form': RegistroUsuarioForm(instance=usuario)}
+    
+    if request.method == "POST":
+        form = RegistroUsuarioForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            contexto["mensaje"] = "Usuario modificado."
+            contexto['form'] = form
+            return redirect('GestionarUsuarios')
+    
+    return render(request, 'core/Administrador/modificarUsuario.html', contexto)
+
+def eliminarUsuario(request, id):
+    usuario = User.objects.get(id=id)
+    usuario.delete()
+    return redirect(to="GestionarUsuarios")
 
 
 
@@ -91,6 +119,18 @@ def registro(request):
     else:
         form = UserCreationForm()
     return render(request, 'core/registro.html',{'form':form})
+
+
+class RegistroUsuarioForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','username', 'password1', 'password2', 'email', 'groups']
+
+class RegistroUsuarioView(CreateView):
+    template_name = 'core/Administrador/CrearUsuarios.html'
+    form_class = RegistroUsuarioForm
+    success_url = reverse_lazy('PaginaGrupos')
+
 
 def detalle_producto(request, producto_id):
     producto = Producto.objects.get(id=producto_id)

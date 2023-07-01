@@ -19,3 +19,5 @@ class PagoForm(forms.ModelForm):
     class Meta:
         model = Datos_compra
         fields = ['nombre','apellido','correo','celular','nombre_calle','numero_calle','region','tipo_pago']
+
+

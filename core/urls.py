@@ -24,5 +24,9 @@ urlpatterns = [
     path('mapa', mapa, name='mapa'),
     path('resultado_compra_error/', resultado_compra_error, name='resultado_compra_error'),
     path('PaginaGrupos/', PaginaGrupos, name='PaginaGrupos'),
+    path('CrearUsuarios/', RegistroUsuarioView.as_view(), name='CrearUsuarios'),
+    path('GestionarUsuarios/', GestionarUsuarios, name='GestionarUsuarios'),
+    path('eliminarUsuario/<id>', eliminarUsuario, name="eliminarUsuario"),
+    path('modificarUsuario/<id>', modificarUsuario, name="modificarUsuario"),
 ]
 
