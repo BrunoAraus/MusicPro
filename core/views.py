@@ -97,6 +97,10 @@ def modificarUsuario(request, id):
     
     return render(request, 'core/Administrador/modificarUsuario.html', contexto)
 
+def GestionarPrecios(request):
+    contexto = {'producto': Producto.objects.all()}
+    return render(request, 'core/Administrador/GestionarPrecios.html', contexto)
+
 def eliminarUsuario(request, id):
     usuario = User.objects.get(id=id)
     usuario.delete()
@@ -152,7 +156,17 @@ def descontar_stock(request):
         producto.stock -= cantidad_carrito
         producto.save()
 
-
+def EditarPrecios(request, id):
+    producto = Producto.objects.get(id=id)
+    contexto = {'form': ProductoForm(instance=producto)}
+    if request.method == "POST":
+        producto = ProductoForm(request.POST, instance=producto)
+        if producto.is_valid:
+            producto.save()
+            contexto["mensaje"] = "Precio Añadido!."
+            contexto['form'] = producto
+            return redirect('GestionarPrecios')
+    return render(request, 'core/Administrador/EditarPrecios.html', contexto) 
 
 
 

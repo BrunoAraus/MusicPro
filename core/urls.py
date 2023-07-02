@@ -28,5 +28,7 @@ urlpatterns = [
     path('GestionarUsuarios/', GestionarUsuarios, name='GestionarUsuarios'),
     path('eliminarUsuario/<id>', eliminarUsuario, name="eliminarUsuario"),
     path('modificarUsuario/<id>', modificarUsuario, name="modificarUsuario"),
+    path('GestionarPrecios', GestionarPrecios, name="GestionarPrecios"),
+    path('EditarPrecios/<id>', EditarPrecios, name="EditarPrecios"),
 ]
 

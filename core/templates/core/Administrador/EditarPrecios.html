@@ -1,7 +1,25 @@
-{% extends 'core/Bodeguero/TemplateAdmin.html' %}
-{% load static %}
 
+{% load static %}
+{% load crispy_forms_tags %}
 {% block contenido %}
 
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/administrador/registro2.css' %}">
+</head>
 
+<body>
+    <div class="content">
+
+        <div class="espacio1">
+            <h3>Modificar Precio</h3>
+            <form action="" method="post">
+                <!-- ACA TRAE TODO EL FORM NECESARIO PARA REGISTRARSE EN NUESTRA PÁGINA, TIENE VALIDACIONES, SI SE REPITEN USUARIOS, CONTRASEÑAS DEBILES, ETC.. -->
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="botonEnviar">Guardar</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
 {% endblock %}

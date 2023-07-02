@@ -21,3 +21,16 @@ class PagoForm(forms.ModelForm):
         fields = ['nombre','apellido','correo','celular','nombre_calle','numero_calle','region','tipo_pago']
 
 
+class ProductoForm(ModelForm):
+    class Meta:
+        model = Producto
+        fields = ['nombre', 'categoria', 'marca', 'precio']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nombre'].widget.attrs['readonly'] = True
+        self.fields['categoria'].widget.attrs['readonly'] = True
+        self.fields['marca'].widget.attrs['readonly'] = True
+
+
+
