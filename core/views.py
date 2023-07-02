@@ -133,7 +133,7 @@ class RegistroUsuarioForm(UserCreationForm):
 class RegistroUsuarioView(CreateView):
     template_name = 'core/Administrador/CrearUsuarios.html'
     form_class = RegistroUsuarioForm
-    success_url = reverse_lazy('PaginaGrupos')
+    success_url = reverse_lazy('GestionUsuarios')
 
 
 def detalle_producto(request, producto_id):
