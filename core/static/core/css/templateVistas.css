@@ -1,0 +1,119 @@
+*{
+    padding: 0;
+    margin: 0;
+    
+}
+
+.nav1{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    min-height: 170px;
+    width: 100%;
+    background: black;
+    position: fixed;
+    z-index: 9998;
+}
+
+.logo{
+    padding-left: 15%;
+    width: 50%;
+}
+
+.imagenLogo{
+    height: 150px;
+    width: 300px;
+    position: relative;
+}
+
+.imagenLogo4{
+    height: 150px;
+    width: 300px;
+    opacity: 15%;
+    left: 10%;
+    position: absolute;
+}
+
+.imagenLogo2{
+    height: 150px;
+    width: 300px;
+    opacity: 10%;
+    left: 6%;
+    position: absolute;
+}
+
+.imagenLogo3{
+    height: 150px;
+    width: 300px;
+    opacity: 5%;
+    left: 2%;
+    position: absolute;
+}
+
+.enlaces{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10%;
+    width: 100%;
+}
+
+.borde{
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 5px;
+}
+
+.logoEnlace{
+    width: 35px;
+    height: 30px;
+}
+
+.logoEnlace1{
+    width: 35px;
+    height: 30px;
+}
+
+button{
+    --bs-btn-hover-bg: white !important;
+    --bs-btn-active-bg: white !important;
+}
+
+
+@media (max-width: 860px){
+    .imagenLogo4{
+        display: none;
+    }
+    .imagenLogo2{
+        display: none;
+    }
+    .imagenLogo3{
+        display: none;
+    }
+}
+
+
+/* ACA EL FOOTER */
+
+/* 
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+}
+
+.logoFooter{
+    padding-top: 5%;
+    height: 200px;
+    width: 350px;
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+} */

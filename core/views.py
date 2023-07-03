@@ -26,6 +26,8 @@ datos_compra = None
 
 id_sesion = None
 
+def crear_ficha(request):
+    return render(request, 'core/Bodeguero/crearFicha.html')
 
 def mapa(request):
     return render(request, 'core/cliente/mapa.html')

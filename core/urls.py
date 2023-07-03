@@ -34,4 +34,5 @@ urlpatterns = [
     path('VerPeticion/<id>', VerPeticion, name="VerPeticion"),
     path('CrearPeticion', CrearPeticion, name="CrearPeticion"),
     path('eliminarPeticion/<id>', eliminarPeticion, name="eliminarPeticion"),
+    path('crearFicha', crear_ficha, name="crearFicha"),
 ]
