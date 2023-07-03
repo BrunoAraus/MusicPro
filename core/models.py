@@ -75,3 +75,20 @@ class Datos_venta(models.Model):
     sesion_id = models.CharField(null=False,max_length=100)
     fecha = models.CharField(null=False,max_length=50)
     codigo_autorizacion = models.CharField(null=False,max_length=50)
+
+
+class Peticion(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre_peticion = models.CharField(null=False,max_length=100)
+    detalle = models.TextField(null=False,max_length=300)
+    fechas = models.CharField(null=False,max_length=100)
+    tipo = models.CharField(null=False,max_length=100)
+    desempeño = models.CharField(null=True,default='N/A',max_length=150)
+    cancelaciones = models.IntegerField(null=True,default=0)
+    total_venta_mes_1 = models.IntegerField(null=True,default=0)
+    total_venta_mes_2 = models.IntegerField(null=True,default=0)
+    productos_vendidos_mes_1 = models.IntegerField(null=True,default=0)
+    productos_vendidos_mes_2 = models.IntegerField(null=True,default=0)
+    estado = models.CharField(null=True,default='Pendiente',max_length=100)
+
+    

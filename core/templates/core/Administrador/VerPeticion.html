@@ -1,0 +1,25 @@
+{% load static %}
+{% block contenido %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/administrador/registro2.css' %}">
+</head>
+
+<body>
+    <div class="content">
+        <div class="espacio1">
+            <h1>{{peticion.nombre_peticion}}</h1>
+            <h3>{{peticion.estado}}</h3>
+            <h3>{{peticion.fechas}}</h3>
+            <h3>{{peticion.tipo}}</h3>
+            <h3>{{peticion.desempeño}}</h3>
+            <h3>{{peticion.cancelaciones}}</h3>
+            <h3>{{peticion.total_venta_mes_1}}</h3>
+            <h3>{{peticion.total_venta_mes_2}}</h3>
+            <h3>{{peticion.productos_vendidos_mes_1}}</h3>
+            <h3>{{peticion.productos_vendidos_mes_2}}</h3>
+        </div>
+    </div>
+    
+</body>
+{% endblock %}

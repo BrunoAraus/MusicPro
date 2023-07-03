@@ -34,3 +34,21 @@ class ProductoForm(ModelForm):
 
 
 
+
+class PeticionForm(forms.ModelForm):
+    OPCIONES_TIPO = (
+        ('Ventas', 'Ventas'),
+        ('Desempeño', 'Desempeño')
+    )
+    tipo = forms.ChoiceField(choices=OPCIONES_TIPO)
+    
+    class Meta:
+        model = Peticion
+        fields = ['nombre_peticion','detalle','fechas','tipo']
+
+
+
+
+
+
+

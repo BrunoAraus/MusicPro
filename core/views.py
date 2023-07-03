@@ -39,7 +39,7 @@ def principal(request):
     response = response.json()
     dolar = response["Series"]["Obs"][0]["value"] #se le asigna el valor "value" a la variable 'dolar'
 
-    productos = Producto.objects.all()
+    productos = Producto.objects.filter(precio__gt=0)
     for producto in productos:
         if producto.descuento > 0:
             producto.preciodescuento = producto.precio - (producto.precio * producto.descuento/100)
@@ -98,7 +98,7 @@ def modificarUsuario(request, id):
     return render(request, 'core/Administrador/modificarUsuario.html', contexto)
 
 def GestionarPrecios(request):
-    contexto = {'producto': Producto.objects.all()}
+    contexto = Producto.objects.filter(precio=0)
     return render(request, 'core/Administrador/GestionarPrecios.html', contexto)
 
 def eliminarUsuario(request, id):
@@ -106,7 +106,31 @@ def eliminarUsuario(request, id):
     usuario.delete()
     return redirect(to="GestionarUsuarios")
 
+def GestionarDatos(request):
+    peticion_filtro = Peticion.objects.filter(estado='Aceptado')
+    contexto = {'peticion': peticion_filtro}
+    return render(request, 'core/Administrador/GestionarDatos.html', contexto)
 
+
+def eliminarPeticion(request, id):
+    peticion = Peticion.objects.get(id=id)
+    peticion.delete()
+    return redirect(to="GestionarDatos")
+
+def VerPeticion(request, id):
+    peticion_filtro = Peticion.objects.get(id=id)
+    data = {'peticion' : peticion_filtro}
+    return render(request, 'core/Administrador/VerPeticion.html', data)
+
+def CrearPeticion(request):
+    contexto = {'form': PeticionForm()}
+    if request.method == "POST":
+        Peticion = PeticionForm(request.POST)
+        if Peticion.is_valid:
+            Peticion.save()
+            contexto["mensaje"] = "Peticion Creada!."
+            return redirect(to="GestionarDatos")
+    return render(request, 'core/Administrador/CrearPeticion.html',contexto)
 
 def PaginaGrupos(request):
     return render(request, 'core/PaginaGrupos.html')

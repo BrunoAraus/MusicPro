@@ -1,6 +1,42 @@
 {% load static %}
 
 {% block contenido %}
+<body>
+    <div class="content">
+        <head>
+            <link rel="stylesheet" href="{% static 'core/css/administrador/registro2.css' %}">
+        </head>
 
-
+            <div class="tabla">
+                <h1>Listado de Peticiones</h5>
+            <table class="table table-hover">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fechas</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
+                    <th><a href="{% url 'CrearPeticion' %}">Crear</a></th>
+                    
+                </tr>
+                {% for i in peticion %}
+                <tr>
+                    <td>{{i.nombre_peticion}}</td>
+                    <td>{{i.fechas}}</td>
+                    <td>{{i.tipo}}</td>
+                    <td>{{i.estado}}</td>
+                    <td><a href="{% url 'VerPeticion' i.id %}">Leer Peticion</a ></td>
+                    <td><a href="{% url 'eliminarPeticion' i.id %}">Eliminar Peticion</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <a href="{% url 'PaginaGrupos' %}" style="text-decoration: none;  color: white;">
+                <span>
+                    <h1>
+                        Volver
+                    </h1>
+                </span>
+            </a>
+        </div>
+    </div>
+</body>
 {% endblock %}

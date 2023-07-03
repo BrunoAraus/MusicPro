@@ -30,5 +30,8 @@ urlpatterns = [
     path('modificarUsuario/<id>', modificarUsuario, name="modificarUsuario"),
     path('GestionarPrecios', GestionarPrecios, name="GestionarPrecios"),
     path('EditarPrecios/<id>', EditarPrecios, name="EditarPrecios"),
+    path('GestionarDatos', GestionarDatos, name="GestionarDatos"),
+    path('VerPeticion/<id>', VerPeticion, name="VerPeticion"),
+    path('CrearPeticion', CrearPeticion, name="CrearPeticion"),
+    path('eliminarPeticion/<id>', eliminarPeticion, name="eliminarPeticion"),
 ]
-
