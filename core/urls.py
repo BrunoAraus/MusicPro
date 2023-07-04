@@ -41,4 +41,5 @@ urlpatterns = [
     path('modificarProducto/<id>/', modificar_producto, name="modificar_producto"),
     path('crearProducto', crear_ficha_producto, name="crear_ficha_producto"),
     path('eliminar_productos/<id>/', eliminar_productos, name="eliminar_productos"),
+    path('gestionarPedidos', gestionarPedidos, name="gestionarPedidos"),
 ]

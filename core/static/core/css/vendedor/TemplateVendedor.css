@@ -11,9 +11,3 @@ body{
     text-align: center !important;
     vertical-align: middle !important;
 }
-
-.gestion{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}

@@ -349,6 +349,9 @@ def list_productos(request):
     data = {'productos': productos}
     return JsonResponse(data)
 
+def gestionarPedidos(request):
+    return render(request, 'core/vendedor/gestionarPedidos.html')
+
 # API TRANSBANK COMPLETA Y SUS FUNCIONES
 def get_ws(data, method, type, endpoint):
     if type == 'live':
