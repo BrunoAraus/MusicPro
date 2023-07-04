@@ -4,7 +4,7 @@
 }
 
 .contenedor{
-    height: 100%;
+    height: auto;
     width: 100%;
     padding-top: 200px;
     display: flex;
@@ -17,29 +17,59 @@
     flex-direction: column;
     align-items: center;
     width: 60%;
-    height: 120vh; 
+    height: auto; 
     background-color: rgba(0, 0, 0, 0.274);
     border-radius: 40px;
 }
 
-.form-list{
+.card{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* padding: 10px 10px 10px 10px; */
+    border-radius: 40px;
+    height: 40%;
+    width: 80%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
 
-.card{
-    margin-top: 20px;
+.imagenProducto{
+    border-radius: 40px;
+    padding: 10px 30px 10px 10px;
+    width: 240px;
+    height: 220px;
+    /* background-color: blue; */
+}
+
+.OrdenContenido{
+    display: flex;
+    align-items: flex-start;
+}
+
+.espacio1{
+    width: 40%;
+}
+
+.espacio2{
+    width: 40%;
+}
+
+.botonModificar{
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.botones{
+    height: 100%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
-    width: 800px;
-    border-radius: 40px;
+    justify-content: space-between;
 }
 
 .card-body{
-    text-align: center;
-    width: 100%;
+    padding-left: 0px;
 }
 
 .botonVolver{

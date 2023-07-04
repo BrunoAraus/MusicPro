@@ -2,15 +2,66 @@
 {% load static %}
 
 {% block contenido %}
-
 <head>
     <link rel="stylesheet" href="{% static 'core/css/crearFicha.css' %}">
 </head>
 
 <div class="contenedor">
     <div class="contenido">
-        
+        <div class="row">
+            <div class="tamañoDeTodo">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Crear producto</h2>
+                        <hr>
+                        <form action="" method="post" enctype="multipart/form-data" id="crearForm">
+                            {% csrf_token %}
+                            <ul class="form-list">
+                                {% for field in form %}
+                                <li style="display: flex; justify-content: space-between; text-align: justify; padding: 15px 0px 0px 0px;">
+                                    {{ field.label }}
+                                    {{ field }}
+                                    {{ field.errors }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <hr>
+                            <div class="d-flex justify-content-center">
+                                <input type="reset" value="Cancelar" class="btn btn-danger" onclick="goBack()">
+                                &nbsp;
+                                &nbsp;
+                                <input type="submit" value="Crear" class="btn btn-success">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="botonVolver">
+            <a href="{% url 'menuOpcionesBodeguero' %}" style="text-decoration: none; color: white; font-size: 20px;">← Volver</a>
+        </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("crearForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        showAlert();
+    });
+
+    function showAlert() {
+        Swal.fire({
+            title: "Creado con éxito",
+            text: "¡El producto fue creado exitosamente!",
+            icon: "success"
+        }).then(function() {
+            document.getElementById("crearForm").submit();
+        });
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 {% endblock %}

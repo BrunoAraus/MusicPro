@@ -33,8 +33,6 @@ class ProductoForm(ModelForm):
         self.fields['marca'].widget.attrs['readonly'] = True
 
 
-
-
 class PeticionForm(forms.ModelForm):
     OPCIONES_TIPO = (
         ('Ventas', 'Ventas'),
@@ -47,6 +45,17 @@ class PeticionForm(forms.ModelForm):
         fields = ['nombre_peticion','detalle','fechas','tipo']
 
 
+class ModificarProducto(forms.ModelForm):
+
+    class Meta:
+        model = Producto
+        exclude = ['precio', 'preciodescuento', 'descuento']
+
+
+class CrearProductoForm(forms.ModelForm):
+    class Meta:
+        model = Producto
+        exclude = ['precio', 'preciodescuento', 'descuento']
 
 
 

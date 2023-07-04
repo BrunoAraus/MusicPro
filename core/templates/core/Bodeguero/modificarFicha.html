@@ -1,8 +1,65 @@
-{% extends 'core/Bodeguero/templateBodeguero.html' %}
+{% extends 'core/templateVistas.html' %}
 {% load static %}
 
 {% block contenido %}
+{% load crispy_forms_tags %}
 
-<h1> Agregar apartado para modificar fichas de los productos creados (DEBEN LISTARSE Y PONER UN BOTÓN QUE DIGA QUE LOS QUIERE MODIFICAR) </h1>
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/modificarFicha.css' %}">
+</head>
+<div class="contenedor">
+    <div class="contenido">
+        <div class="row">
+            <div class="tamañoDeTodo">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Modificar producto</h2>
+                        <hr>
+                        <form action="" method="post" enctype="multipart/form-data" id="modificarForm">
+                            {% csrf_token %}
+                            <ul class="form-list">
+                                {% for field in form %}
+                                <li style="display: flex; justify-content: space-between; text-align: justify; padding: 15px 0px 0px 0px;">
+                                    {{ field.label }}
+                                    {{ field }}
+                                    {{ field.errors }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <hr>
+                            <div class="d-flex justify-content-center">
+                                <input type="reset" value="Cancelar" class="btn btn-danger" onclick="goBack()">
+                                &nbsp;
+                                &nbsp;
+                                <input type="submit" value="Modificar" class="btn btn-success">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("modificarForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        showAlert();
+    });
+
+    function showAlert() {
+        Swal.fire({
+            title: "Modificado con éxito",
+            text: "¡El producto pudo ser actualizado!",
+            icon: "success"
+        }).then(function() {
+            document.getElementById("modificarForm").submit();
+        });
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 {% endblock %}

@@ -1,7 +1,11 @@
-{% extends 'core/Bodeguero/templateBodeguero.html' %}
+{% extends 'core/templateVistas.html' %}
 {% load static %}
 
 {% block contenido %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/gestionarSalidas.css' %}">
+</head>
 
 <h1> Marcar los productos que pida el vendedor como enviados y eliminar al mismo tiempo la solicitud (Mostrar en el apartado del vendedor una lista de todos los productos enviados)</h1>
 

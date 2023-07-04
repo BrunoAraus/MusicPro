@@ -1,0 +1,78 @@
+{% extends 'core/templateVistas.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/listarProductosBodeguero.css' %}">
+</head>
+
+<div class="contenedor">
+    <div class="contenido">
+        {% for p in productos %}
+            <div class="card">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ p.imagen1 }}" class="imagenProducto">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"> ↓ Especificaciones ↓</h5>
+                  <div class="OrdenContenido">
+                    <div class="espacio1">
+                        <p class="card-text">Id: {{ p.id }}</p>
+                        <p class="card-text">Nombre: {{ p.nombre }}</p>
+                        <p class="card-text">Stock: {{ p.stock }}</p>
+                        <p class="card-text">Categoria: {{ p.categoria }}</p>
+                    </div>
+                    <div class="espacio2">
+                        <p class="card-text">Marca: {{ p.marca }}</p>
+                        <p class="card-text">Dimensiones: {{ p.dimensiones }}</p>
+                    </div>
+
+                    <div class="botones">
+                        <div class="botonModificar">
+                            <a href="{% url 'modificar_producto' p.id %}" class="btn btn-success">Modificar</a>
+                        </div>
+                        <div class="botonModificar">
+                            <button onclick="eliminarProducto('{{ p.id }}')" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %} 
+    </div>
+
+    <div class="botonVolver">
+        <a href="{% url 'menuOpcionesBodeguero' %}" style="text-decoration: none; color: white; font-size: 20px;">← Volver</a>
+    </div>
+    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<script>
+    function eliminarProducto(id){
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Esta acción no se puede deshacer",
+            icon: "question",
+            showCancelButton: true,
+            cancelButtonText: "No",
+            confirmButtonText: "Sí",
+            reverseButtons: true,
+            confirmButtonColor: "green",
+            cancelButtonColor: "red",
+        }).then(function(result){
+            if(result.isConfirmed){
+                window.location.href = "/eliminar_productos/" + id + "/";
+            }
+        });
+    }
+</script>
+
+{% endblock %}

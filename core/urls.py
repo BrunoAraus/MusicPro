@@ -37,4 +37,9 @@ urlpatterns = [
     path('crearFicha', crear_ficha, name="crearFicha"),
     path('vendedor_principal', vendedor_principal, name="vendedor_principal"),
     path('list_productos/', list_productos, name="list_productos"),
+    path('listarProductosBodeguero', listarProductosBodeguero, name="listarProductosBodeguero"),
+    path('menuOpcionesBodeguero', menuOpcionesBodeguero, name="menuOpcionesBodeguero"),
+    path('modificarProducto/<id>/', modificar_producto, name="modificar_producto"),
+    path('crearProducto', crear_ficha_producto, name="crear_ficha_producto"),
+    path('eliminar_productos/<id>/', eliminar_productos, name="eliminar_productos"),
 ]

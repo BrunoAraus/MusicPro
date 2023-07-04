@@ -1,7 +1,11 @@
-{% extends 'core/Bodeguero/templateBodeguero.html' %}
+{% extends 'core/templateVistas.html' %}
 {% load static %}
 
 {% block contenido %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/listarSolicitudes.css' %}">
+</head>
 
 <h1> Para "SOLO" listar las solicitudes del vendedor </h1>
 

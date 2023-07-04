@@ -41,21 +41,3 @@
     text-align: center;
     width: 100%;
 }
-
-.botonVolver{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 120px;
-    height: 80px;
-    background-color: rgba(0, 0, 0, 0.87);
-    border-radius: 20px;
-    bottom: 40%;
-    left: 85%;
-    position: fixed;
-    z-index: 9997;
-}
-
-.botonVolver:hover{
-    background-color: rgb(0, 0, 0);
-}

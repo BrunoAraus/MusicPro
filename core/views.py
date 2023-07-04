@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from core.models import *
 from core.Carrito import *
@@ -26,8 +26,58 @@ datos_compra = None
 
 id_sesion = None
 
+def eliminar_productos(request, id):
+    producto = get_object_or_404(Producto, id=id)
+    producto.delete()
+    messages.success(request, "¡Eliminado correctamente!")
+    return redirect(to="listarProductosBodeguero")
+
+def crear_ficha_producto(request):
+    if request.method == 'POST':
+        form = CrearProductoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listarProductosBodeguero')
+    else:
+        form = CrearProductoForm()
+    
+    context = {'form': form}
+    return render(request, 'core/Bodeguero/crearFicha.html', context)
+
+
+def modificar_producto(request, id):
+
+    producto = get_object_or_404(Producto, id=id)
+    
+    data = {
+        'form': ModificarProducto(instance=producto)
+    }
+
+    if request.method == 'POST':
+        formulario = ModificarProducto(data=request.POST, instance=producto, files=request.FILES)
+
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "¡Modificado correctamente!")
+            return redirect(to="listarProductosBodeguero")
+        data["form"] = formulario
+
+    return render(request, 'core/Bodeguero/modificarFicha.html', data)
+
+
+
+def menuOpcionesBodeguero(request):
+    return render(request, 'core/Bodeguero/menuOpcionesBodeguero.html')
+    
+# BODEGUERO...
+def listarProductosBodeguero(request):
+    productos = Producto.objects.all()
+    data = {'productos' : productos}
+    return render(request, 'core/Bodeguero/listarProductos.html',data)
+
 def crear_ficha(request):
     return render(request, 'core/Bodeguero/crearFicha.html')
+
 
 def mapa(request):
     return render(request, 'core/cliente/mapa.html')
