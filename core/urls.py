@@ -34,7 +34,6 @@ urlpatterns = [
     path('VerPeticion/<id>', VerPeticion, name="VerPeticion"),
     path('CrearPeticion', CrearPeticion, name="CrearPeticion"),
     path('eliminarPeticion/<id>', eliminarPeticion, name="eliminarPeticion"),
-    path('crearFicha', crear_ficha, name="crearFicha"),
     path('vendedor_principal', vendedor_principal, name="vendedor_principal"),
     path('list_productos/', list_productos, name="list_productos"),
     path('listarProductosBodeguero', listarProductosBodeguero, name="listarProductosBodeguero"),

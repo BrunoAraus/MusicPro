@@ -26,6 +26,9 @@ datos_compra = None
 
 id_sesion = None
 
+
+# BODEGUERO...
+
 def eliminar_productos(request, id):
     producto = get_object_or_404(Producto, id=id)
     producto.delete()
@@ -64,20 +67,16 @@ def modificar_producto(request, id):
 
     return render(request, 'core/Bodeguero/modificarFicha.html', data)
 
-
-
 def menuOpcionesBodeguero(request):
     return render(request, 'core/Bodeguero/menuOpcionesBodeguero.html')
     
-# BODEGUERO...
+
 def listarProductosBodeguero(request):
     productos = Producto.objects.all()
     data = {'productos' : productos}
     return render(request, 'core/Bodeguero/listarProductos.html',data)
 
-def crear_ficha(request):
-    return render(request, 'core/Bodeguero/crearFicha.html')
-
+# BODEGUERO...
 
 def mapa(request):
     return render(request, 'core/cliente/mapa.html')
