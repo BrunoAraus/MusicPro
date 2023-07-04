@@ -288,8 +288,17 @@ def datosCompra(request):
         contexto["mensaje"] = "Datos Guardados."
     return render(request, 'core/cliente/datosCompra.html', contexto)
 
+# VISTA VENDEDOR
 def vendedor_principal(request):
-    return render(request, 'core/vendedor/TemplateVendedor.html')
+    productos = Producto.objects.all()    
+    return render(request, 'core/vendedor/TemplateVendedor.html',{
+        "productos": productos
+    })
+
+def list_productos(request):
+    productos = list(Producto.objects.values())
+    data = {'productos': productos}
+    return JsonResponse(data)
 
 # API TRANSBANK COMPLETA Y SUS FUNCIONES
 def get_ws(data, method, type, endpoint):

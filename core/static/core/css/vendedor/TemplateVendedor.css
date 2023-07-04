@@ -2,3 +2,18 @@
     padding: 0;
     margin: 0;
 }
+
+body{
+    padding: 30px;
+}
+
+.centered {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.gestion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
