@@ -58,7 +58,7 @@ class Datos_compra(models.Model):
     numero_calle = models.IntegerField(null=True,default=0)
     region = models.CharField(null=True,max_length=50)
     tipo_pago = models.CharField(null=False,max_length=15)
-    estado = models.CharField(null=False,default='N/A', max_length=50)
+    estado = models.CharField(null=True, default='N/A', max_length=50)
 
 
 class Productos_Carrito(models.Model):
