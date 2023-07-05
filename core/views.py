@@ -26,6 +26,18 @@ datos_compra = None
 
 id_sesion = None
 
+# CONTADOR...
+def VistaContador(request):
+    transferencias=Datos_compra.objects.all()
+    return render(request, 'core/Contador/VistaContador.html',{
+        "transferencias":transferencias
+    })
+
+def list_transferencias(request):
+    transferencias = list(Datos_compra.objects.values())
+    data = {'transferencias': transferencias}
+    return JsonResponse(data)
+
 
 # BODEGUERO...
 
