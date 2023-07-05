@@ -1,3 +1,4 @@
+{% extends 'core/templateVistas.html' %}
 {% load static %}
 
 {% block contenido %}
@@ -18,45 +19,47 @@
 </head>
 
 <body>
-    <div class="titulo">
-        <h2>Vendedor</h2>
-    </div>
+    <div class="container">
 
-    <div class="container mt-4">
-        <p style="font-weight: bold;">TABLA CON TODOS LOS PRODUCTOS QUE SE HAYAN EN LA BASE DE DATOS DE LA BODEGA</p>
+        <div class="contenido">
 
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-22">
-                <div class="table-responsive">
-                    <table id="datatable-productos" class="table table-striped">
-                        <caption>
-                            Tabla de Productos
-                        </caption>
-                        <thead>
-                            <tr>
-                                <th class="centered">#</th>
-                                <th class="centered">Nombre</th>
-                                <th class="centered">Stock</th>
-                                <th class="centered">Precio</th>
-                                <th class="centered">Producto Disponible</th>
-                                <th class="centered">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody_productos">
+            <p style="font-weight: bold;">TABLA CON TODOS LOS PRODUCTOS QUE SE HAYAN EN LA BASE DE DATOS DE LA BODEGA</p>
 
-                        </tbody>
-                    </table>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-22">
+                    <div class="table-responsive">
+                        <table id="datatable-productos" class="table table-striped">
+                            <caption>
+                                Tabla de Productos
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <th class="centered">#</th>
+                                    <th class="centered">Nombre</th>
+                                    <th class="centered">Producto Disponible</th>
+                                    <th class="centered">Stock</th>
+                                    <th class="centered">Precio</th>                                
+                                    <!-- <th class="centered">Opciones</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody_productos">
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            <br>
+            <br>
+            <br>
+            
+            <div class="gestion">
+                <a class='btn btn-primary' href="{% url 'gestionarPedidos' %}">GESTIONAR PEDIDOS</a>
+            </div>
+
         </div>
 
-        <br>
-        <br>
-        <br>
-        
-        <div class="gestion">
-            <a class='btn btn-primary' href="{% url 'gestionarPedidos' %}">GESTIONAR PEDIDOS</a>
-        </div>
     </div>
 
     <script src="{% static 'core/js/vendedor/TemplateVendedor.js' %}"></script>
@@ -70,4 +73,5 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 </body>
+
 {% endblock %}

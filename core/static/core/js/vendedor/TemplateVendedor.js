@@ -4,9 +4,9 @@ let dataTableIsInitialized = false;
 const dataTableOptions = {
     lengthMenu: [10, 25, 50, 100, 250, 500],
     columnDefs: [
-        { className: "centered", targets: [0, 1, 2, 3, 4, 5] },
-        { orderable: false, targets: [4, 5] },
-        { searchable: false, targets: [0, 5] }
+        { className: "centered", targets: [0, 1, 2, 3, 4] },
+        { orderable: false, targets: [2] },
+        { searchable: false, targets: [0, 2] }
     ],
     destroy: true,
     language: {
@@ -49,15 +49,12 @@ const listProductos = async () => {
                 <tr>
                     <td>${index + 1}</td>
                     <td>${productos.nombre}</td>
+                    <td>${productos.stock < 1 ? "<i class='fa-solid fa-xmark' style='color: red;'></i>"
+                    : "<i class='fa-solid fa-check' style='color: green;'></i>"}</td>
                     <td>${productos.stock}</td>
                     <td>${productos.precio}</td>
-                    <td>${productos.stock < 1
-                    ? "<i class='fa-solid fa-xmark' style='color: red;'></i>"
-                    : "<i class='fa-solid fa-check' style='color: green;'></i>"}</td>
-                    <td>
-                        <buttom class='btn btn-sm btn-primary'><i class='fa-solid fa-pencil'></i></buttom>
-                        <buttom class='btn btn-sm btn-danger'><i class='fa-solid fa-trash-can'></i></buttom>
-                    </td>
+
+
                 </tr>
             `;
         });
