@@ -16,19 +16,19 @@
                     <th>Categoria</th>
                     <th>Marca</th>
                     <th>Precio</th>
-                    
                 </tr>
                 {% for i in producto %}
-                <tr>
-                    <td>{{i.nombre}}</td>
-                    <td>{{i.categoria}}</td>
-                    <td>{{i.marca}}</td>
-                    <td>{{i.precio}}</td>
-                    <td><a href="{% url 'EditarPrecios' i.id %}">Modificar</a ></td>
-                </tr>
+                    <tr>
+                        <td>{{i.nombre}}</td>
+                        <td>{{i.categoria}}</td>
+                        <td>{{i.marca}}</td>
+                        <td>{{i.precio}}</td>
+                        <td><a href="{% url 'EditarPrecios' i.id %}">Modificar</a ></td>
+                    </tr>
                 {% endfor %}
             </table>
-            <a href="{% url 'PaginaGrupos' %}" style="text-decoration: none;  color: white;">
+            <br><br><br>
+            <a href="{% url 'menuOpcionesAdministrador' %}" style="text-decoration: none;  color: white;">
                 <span>
                     <h1>
                         Volver

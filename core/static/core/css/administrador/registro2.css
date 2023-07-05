@@ -28,7 +28,6 @@ body{
   color: #fff;
 }
 
-
 .espacio1{
   display: flex;
   flex-direction: column;
@@ -42,18 +41,12 @@ form{
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-
-span:hover{
-  font-size: 17px;
-  color: rgb(23, 193, 223);
+  align-items: center;
 }
 
 .botonEnviar{
   position: relative;
   top: 5%;
-  left: 35%;
   background-color: #ffffff; /* Color de fondo */
   border: none; /* Sin borde */
   box-shadow: 0px 2px 30px black;
@@ -69,10 +62,22 @@ span:hover{
   width: 30%;
 }
 
-.botonEnviar:hover{
-  background-color: black;
-  color: white;
-  border: solid white 2px;
+.botonEnviar2{
+  position: relative;
+  bottom: 2%;
+  top: 5%;
+  background-color: #ffffff; /* Color de fondo */
+  box-shadow: 0px 2px 30px black;
+  color: black; /* Color de texto */
+  padding: 15px 32px; /* Espacio interno */
+  text-align: center; /* Alineación de texto */
+  text-decoration: none; /* Sin decoración de texto */
+  display: inline-block; /* Elemento en línea */
+  font-size: 10px; /* Tamaño de fuente */
+  margin: 4px 2px; /* Margen externo */
+  border-radius: 10px; /* Borde redondeado */
+  width: 22%;
+  height: 3%;
 }
 
 #id_username{
@@ -109,9 +114,10 @@ span:hover{
   display: flex;
   text-align: center;
   flex-direction: column;
-  margin-left: 43%;
-  width: 15%;
-  height: 70%;
+  width: 30%;
+  height: 90%;
+  padding: 0% 0% 0% 0%;
+  margin: 2% 0% 0% 0%;
 }
 
 #id_first_name{
@@ -124,12 +130,69 @@ span:hover{
   width: 30%;
 }
 
+.helptext{
+  display: none;
+}
+
+#id_email{
+  margin-top: 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  height: 30px;
+  width: 30%;
+}
+
+#id_last_name{
+  margin-top: 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  height: 30px;
+  width: 30%;
+}
+
+#id_nombre{
+  margin-top: 10px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  height: 30px;
+  width: 100%;
+}
+
+#id_marca{
+  margin-top: 10px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  height: 30px;
+  width: 100%;
+}
+
+#id_precio{
+  margin-top: 10px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  height: 30px;
+  width: 100%;
+}
+
 .asteriskField{
   display: none;
 }
 
 label{
-  margin-top: 40px;
+  margin-top: 0px;
   font-family: 'Gill Sans', 'Gill Sans MT';
   font-weight: bold;
 }
@@ -137,16 +200,19 @@ label{
 li{
   display: flex;
   justify-content: center;
-  text-align: center;
-  justify-content: center;
-  font-size: 15px;
+  text-align: right;
+  font-size: 12px;
   padding-bottom: 8px;
   padding-top: 8px;
   color: rgba(255, 255, 255, 0.822);
 }
 
 p{
+  width: 80%;
   padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .controls{

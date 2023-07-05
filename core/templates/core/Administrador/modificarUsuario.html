@@ -10,12 +10,28 @@
     <div class="content">
 
         <div class="espacio1">
-            <h3>Modificar Usuario</h3>
             <form action="" method="post">
+                <h3 style="font-size: 30px;">Modificar Usuario</h3>
+                <br><br>
                 <!-- ACA TRAE TODO EL FORM NECESARIO PARA REGISTRARSE EN NUESTRA PÁGINA, TIENE VALIDACIONES, SI SE REPITEN USUARIOS, CONTRASEÑAS DEBILES, ETC.. -->
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="botonEnviar">Enviar</button>
+                
+                <button type="submit" class="botonEnviar">
+                    <h1 style="color: black; font-family: Arial, Helvetica, sans-serif; font-size: 18px;">
+                        Enviar
+                    </h1>
+                </button>
+                <br>
+                <a href="{% url 'GestionarUsuarios' %}" class="botonEnviar2">
+                    <span>
+                        <h1 style="color: black; font-family: Arial, Helvetica, sans-serif;">
+                            Volver
+                        </h1>
+                    </span>
+                </a>
+                <br>
+                <br>
             </form>
         </div>
     </div>
