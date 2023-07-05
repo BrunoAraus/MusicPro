@@ -26,6 +26,22 @@ datos_compra = None
 
 id_sesion = None
 
+# RUTAS DE LOS MENÚ DE CADA VISTA...
+
+def menuOpcionesVendedor(request):
+    return render(request, 'core/Vendedor/menuOpcionesVendedor.html')
+
+def menuOpcionesAdministrador(request):
+    return render(request, 'core/Administrador/menuOpcionesAdministrador.html')
+
+def menuOpcionesContador(request):
+    return render(request, 'core/Contador/menuOpcionesContador.html')
+
+def menuOpcionesBodeguero(request):
+    return render(request, 'core/Bodeguero/menuOpcionesBodeguero.html')
+
+# RUTAS DE LOS MENÚ DE CADA VISTA...
+
 # CONTADOR...
 def VistaContador(request):
     transferencias=Datos_compra.objects.all()
@@ -78,10 +94,6 @@ def modificar_producto(request, id):
         data["form"] = formulario
 
     return render(request, 'core/Bodeguero/modificarFicha.html', data)
-
-def menuOpcionesBodeguero(request):
-    return render(request, 'core/Bodeguero/menuOpcionesBodeguero.html')
-    
 
 def listarProductosBodeguero(request):
     productos = Producto.objects.all()
@@ -137,13 +149,13 @@ class CustomLoginView(LoginView):
         # Verificar si el usuario pertenece a un grupo específico
         user = self.request.user
         if user.groups.filter(name__in=['Administrador']).exists():
-            return redirect('PaginaGrupos')
+            return redirect('menuOpcionesAdministrador')
         elif user.groups.filter(name__in=['Bodeguero']).exists():
             return redirect('menuOpcionesBodeguero')
         elif user.groups.filter(name__in=['Vendedor']).exists():
-            return redirect('vendedor_principal')
+            return redirect('menuOpcionesVendedor')
         elif user.groups.filter(name__in=['Contador']).exists():
-            return redirect('PaginaGrupos')
+            return redirect('menuOpcionesContador')
         else:
             return response
 

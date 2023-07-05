@@ -1,0 +1,29 @@
+{% extends 'core/templateVistas.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/menuOpcionesBodeguero.css' %}">
+</head>
+
+<div class="contenedor">
+    <div class="contenido">
+        <div class="container">
+            <div class="row g-5">
+              <div class="col-6">
+                <div class="p-3 border bg-light" style="border-radius: 40px; text-align: center;">
+                    <a href="{% url 'vendedor_principal' %}" style="text-decoration: none; color: black;">Visualizar productos</a>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="p-3 border bg-light" style="border-radius: 40px; text-align: center;">
+                    <a href="{% url 'gestionarPedidos' %}" style="text-decoration: none; color: black;">Gestión de pedidos</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'core/templateVistas.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/menuOpcionesBodeguero.css' %}">
+</head>
+
+<div class="contenedor">
+    <div class="contenido">
+        <div class="container">
+            <div class="row g-5">
+              <div>
+                <div class="p-3 border bg-light" style="border-radius: 40px; text-align: center;">
+                    <a href="{% url 'VistaContador' %}" style="text-decoration: none; color: black;">Validar transferencias</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endblock %}
