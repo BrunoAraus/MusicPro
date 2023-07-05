@@ -10,10 +10,9 @@
     <div class="contenido">
 
         <div class="espacio1">
-            <!-- ACA, GRACIAS A DJANGO Y SUS FORMULARIOS, TIENE ACCESO A TODOS LOS USUARIOS, CLAVES, ETC. EL "{{ form|crispy}}" TRAE TODO EL FORM PARA UN USUARIO -->
             <form action="" method="post">
                 {% csrf_token %}
-                {{ form|crispy}}
+                {{ form|crispy }}
                 <button type="submit" class="botonEnviar">Enviar</button>
             </form>
         </div>

@@ -20,6 +20,9 @@ class PagoForm(forms.ModelForm):
         model = Datos_compra
         fields = ['nombre','apellido','correo','celular','nombre_calle','numero_calle','region','tipo_pago']
 
+class ReadOnlyWidget(forms.TextInput):
+    def render(self, name, value, attrs=None, renderer=None):
+        return value or ''
 
 class ProductoForm(ModelForm):
     class Meta:
@@ -29,7 +32,7 @@ class ProductoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['nombre'].widget.attrs['readonly'] = True
-        self.fields['categoria'].widget.attrs['readonly'] = True
+        self.fields['categoria'].widget = ReadOnlyWidget()
         self.fields['marca'].widget.attrs['readonly'] = True
 
 

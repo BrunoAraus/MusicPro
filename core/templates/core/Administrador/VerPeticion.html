@@ -7,18 +7,42 @@
 
 <body>
     <div class="content">
-        <div class="espacio1">
-            <h1>{{peticion.nombre_peticion}}</h1>
-            <h3>{{peticion.estado}}</h3>
-            <h3>{{peticion.fechas}}</h3>
-            <h3>{{peticion.tipo}}</h3>
-            <h3>{{peticion.desempeño}}</h3>
-            <h3>{{peticion.cancelaciones}}</h3>
-            <h3>{{peticion.total_venta_mes_1}}</h3>
-            <h3>{{peticion.total_venta_mes_2}}</h3>
-            <h3>{{peticion.productos_vendidos_mes_1}}</h3>
-            <h3>{{peticion.productos_vendidos_mes_2}}</h3>
+        <div class="espacio1" style="text-align: center;">
+            <h1>Nombre: {{peticion.nombre_peticion}}</h1>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Estado: {{peticion.estado}}</h3>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Fechas: {{peticion.fechas}}</h3>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Tipo: {{peticion.tipo}}</h3>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Desempeño: {{peticion.desempeño}}</h3>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Cancelaciones: {{peticion.cancelaciones}}</h3>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Venta del mes 1: {{peticion.total_venta_mes_1}}</h3>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Venta del mes 2: {{peticion.total_venta_mes_2}}</h3>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Pedidos del mes 1: {{peticion.productos_vendidos_mes_1}}</h3>
+            <div style="width: 100%; height: 20px;"></div>
+            <h3>Pedidos del mes 2: {{peticion.productos_vendidos_mes_2}}</h3>
+
+            <div style="width: 100%; height: 20px;"></div>
+            <div style="width: 100%; height: 20px;"></div>
+
+          
+            <a href="{% url 'GestionarDatos' %}" style="text-decoration: none;  color: white;">
+                <span>
+                    <h1>
+                        ~ Volver ~ 
+                    </h1>
+                </span>
+            </a>
+            
         </div>
+
+        
     </div>
     
 </body>

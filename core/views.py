@@ -136,8 +136,14 @@ class CustomLoginView(LoginView):
 
         # Verificar si el usuario pertenece a un grupo específico
         user = self.request.user
-        if user.groups.filter(name__in=['Administrador','Bodeguero','Vendedor','Contador']).exists():
-            return redirect('PaginaGrupos')  # Redireccionar a la página de grupos
+        if user.groups.filter(name__in=['Administrador']).exists():
+            return redirect('PaginaGrupos')
+        elif user.groups.filter(name__in=['Bodeguero']).exists():
+            return redirect('menuOpcionesBodeguero')
+        elif user.groups.filter(name__in=['Vendedor']).exists():
+            return redirect('vendedor_principal')
+        elif user.groups.filter(name__in=['Contador']).exists():
+            return redirect('PaginaGrupos')
         else:
             return response
 
@@ -161,7 +167,8 @@ def modificarUsuario(request, id):
     return render(request, 'core/Administrador/modificarUsuario.html', contexto)
 
 def GestionarPrecios(request):
-    contexto = Producto.objects.filter(precio=0)
+    precio_filtro = Producto.objects.filter(precio=0)
+    contexto = {'producto': precio_filtro}
     return render(request, 'core/Administrador/GestionarPrecios.html', contexto)
 
 def eliminarUsuario(request, id):
@@ -220,7 +227,7 @@ class RegistroUsuarioForm(UserCreationForm):
 class RegistroUsuarioView(CreateView):
     template_name = 'core/Administrador/CrearUsuarios.html'
     form_class = RegistroUsuarioForm
-    success_url = reverse_lazy('GestionUsuarios')
+    success_url = reverse_lazy('GestionarUsuarios')
 
 
 def detalle_producto(request, producto_id):
