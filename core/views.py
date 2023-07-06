@@ -253,7 +253,7 @@ from django.db.models import Q
 def estado_venta(request):
     filtro = Datos_compra.objects.filter(Q(estado='Aceptado') & Q(validacion='N/A'))
     contexto = {'peticion': filtro}
-    return render(request, 'core/Vendedor/gestionarVentas.html', contexto)
+    return render(request, 'core/Vendedor/gestionarPedidos.html', contexto)
 
 def validar_ventas(request, id):
     filtro_validar = Datos_compra.objects.get(id=id)
@@ -339,7 +339,7 @@ def rechazar_transferencia(request, id):
 def ver_peticiones(request):
     peticiones = Peticion.objects.filter(estado='Pendiente')
     contexto = {'peticion': peticiones}
-    return render(request, 'core/Vendedor/gestionarPedidos.html', contexto)
+    return render(request, 'core/Vendedor/verPeticiones.html', contexto)
 
 def modificar_peticion(request, id):
     peticion = Peticion.objects.get(id=id)
@@ -487,6 +487,11 @@ def vendedor_principal(request):
 def list_productos(request):
     productos = list(Producto.objects.values())
     data = {'productos': productos}
+    return JsonResponse(data)
+
+def list_pedidos(request):
+    pedidos = list(Datos_compra.objects.values())
+    data = {'pedidos': pedidos}
     return JsonResponse(data)
 
 # API TRANSBANK COMPLETA Y SUS FUNCIONES

@@ -49,7 +49,7 @@ const listProductos = async () => {
                 <tr>
                     <td>${index + 1}</td>
                     <td>${productos.nombre}</td>
-                    <td>${productos.stock < 1 ? "<i class='fa-solid fa-xmark' style='color: red;'></i>"
+                    <td>${productos.stock <= 0 || productos.stock <= 0 ? "<i class='fa-solid fa-xmark' style='color: red;'></i>"
                     : "<i class='fa-solid fa-check' style='color: green;'></i>"}</td>
                     <td>${productos.stock}</td>
                     <td>${productos.precio}</td>

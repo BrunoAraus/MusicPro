@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block contenido %}
+
 <head>
     <title>Vendedor</title>
     <link rel="stylesheet" href="{% static 'core/css/vendedor/TemplateVendedor.css' %}">
@@ -15,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!--Sweetalert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
-    
+
 </head>
 
 <body>
@@ -23,7 +24,8 @@
 
         <div class="contenido">
 
-            <p style="font-weight: bold;">TABLA CON TODOS LOS PRODUCTOS QUE SE HAYAN EN LA BASE DE DATOS DE LA BODEGA</p>
+            <p style="font-weight: bold;">TABLA CON TODOS LOS PRODUCTOS QUE SE HAYAN EN LA BASE DE DATOS DE LA BODEGA
+            </p>
 
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-22">
@@ -38,7 +40,7 @@
                                     <th class="centered">Nombre</th>
                                     <th class="centered">Producto Disponible</th>
                                     <th class="centered">Stock</th>
-                                    <th class="centered">Precio</th>                                
+                                    <th class="centered">Precio</th>
                                     <!-- <th class="centered">Opciones</th> -->
                                 </tr>
                             </thead>
@@ -47,20 +49,17 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
-                <a href="{% url 'menuOpcionesVendedor' %}" style="text-decoration: none;  color: white;">
-                    <span>
-                        <h1>
-                            Volver
-                        </h1>
-                    </span>
-                </a>
             <br>
             <br>
-            <br>
+            <a href="{% url 'menuOpcionesVendedor' %}" style="text-decoration: none; color: black; font-size: 2rem;">
+                <span>☜</span>
+            </a>
+
+
 
         </div>
 

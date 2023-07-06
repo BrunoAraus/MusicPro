@@ -1,0 +1,64 @@
+{% load static %}
+{% block contenido %}
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/administrador/registro8.css' %}">
+    <title>Vendedor</title>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="tabla">
+                <h1>Listar peticiones</h1>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre peticion </th>
+                        <th>Detalle</th>
+                        <th>Fechas</th>
+                        <th>Tipo</th>
+                        <th>Desempeño</th>
+                        <th>Cancelaciones</th>
+                        <th>Total venta mes 1</th>
+                        <th>Total venta mes 2</th>
+                        <th>Productos vendidos mes 1</th>
+                        <th>Productos vendidos mes 2</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                    {% for i in peticion %}
+                        <tr>
+                            <td>{{i.id}}</td>
+                            <td>{{i.nombre_peticion}}</td>
+                            <td>{{i.detalle}}</td>
+                            <td>{{i.fechas}}</td>
+                            <td>{{i.tipo}}</td>
+                            <td>{{i.desempeño}}</td>
+                            <td>{{i.cancelaciones}}</td>
+                            <td>{{i.total_venta_mes_1}}</td>
+                            <td>{{i.total_venta_mes_2}}</td>
+                            <td>{{i.productos_vendidos_mes_1}}</td>
+                            <td>{{i.productos_vendidos_mes_2}}</td>
+                            <td>{{i.estado}}</td>
+                            <td>
+                                <button type="submit" class="btn btn-success">
+                                    <a href="{% url 'modificar_peticion' i.id %}" style="text-decoration: none;">✏️</a>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br><br><br>
+                <a href="{% url 'menuOpcionesVendedor' %}" style="text-decoration: none;  color: white;">
+                    <span>
+                        <h1>
+                            Volver
+                        </h1>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

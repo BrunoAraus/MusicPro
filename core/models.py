@@ -9,7 +9,7 @@ class Profile(models.Model):
 
 class Categoria(models.Model):
     idCategoria = models.AutoField(primary_key=True)
-    nombreCategoria = models.CharField(max_length=20)
+    nombreCategoria = models.CharField(max_length=50)
 
     def __str__(self) -> str:
         return self.nombreCategoria
@@ -84,10 +84,10 @@ class Datos_venta(models.Model):
 class Peticion(models.Model):
     id = models.AutoField(primary_key=True)
     nombre_peticion = models.CharField(null=False,max_length=100)
-    detalle = models.TextField(null=False,max_length=300)
+    detalle = models.TextField(null=False,max_length=800)
     fechas = models.CharField(null=False,max_length=100)
     tipo = models.CharField(null=False,max_length=100)
-    desempeño = models.CharField(null=True,default='N/A',max_length=150)
+    desempeño = models.CharField(null=True,default='N/A',max_length=500)
     cancelaciones = models.IntegerField(null=True,default=0)
     total_venta_mes_1 = models.IntegerField(null=True,default=0)
     total_venta_mes_2 = models.IntegerField(null=True,default=0)

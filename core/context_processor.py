@@ -6,7 +6,7 @@ def total_carrito(request):
     total2 = 0
 
     #API BANCO CENTRAL
-    url = "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=211737212&pass=kilOfk917B1z&firstdate=2023-06-07&lastdate=2023-12-30&timeseries=F073.TCO.PRE.Z.D&function=GetSeries"
+    url = "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx?user=211737212&pass=kilOfk917B1z&firstdate=2023-06-02&lastdate=2023-12-30&timeseries=F073.TCO.PRE.Z.D&function=GetSeries"
     response = requests.get(url)
     response = response.json()
     dolar = response["Series"]["Obs"][0]["value"] #se le asigna el valor "value" a la variable 'dolar'
