@@ -20,19 +20,14 @@ class PagoForm(forms.ModelForm):
         model = Datos_compra
         fields = ['nombre','apellido','correo','celular','nombre_calle','numero_calle','region','tipo_pago']
 
-class ReadOnlyWidget(forms.TextInput):
-    def render(self, name, value, attrs=None, renderer=None):
-        return value or ''
-
 class ProductoForm(ModelForm):
     class Meta:
         model = Producto
-        fields = ['nombre', 'categoria', 'marca', 'precio']
+        fields = ['nombre', 'marca', 'precio']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['nombre'].widget.attrs['readonly'] = True
-        self.fields['categoria'].widget = ReadOnlyWidget()
         self.fields['marca'].widget.attrs['readonly'] = True
 
 
@@ -46,6 +41,12 @@ class PeticionForm(forms.ModelForm):
     class Meta:
         model = Peticion
         fields = ['nombre_peticion','detalle','fechas','tipo']
+
+class PeticionForm2(forms.ModelForm):
+    
+    class Meta:
+        model = Peticion
+        fields = ['desempeño', 'cancelaciones', 'total_venta_mes_1', 'total_venta_mes_2', 'productos_vendidos_mes_1', 'productos_vendidos_mes_2']
 
 
 class ModificarProducto(forms.ModelForm):

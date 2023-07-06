@@ -1,12 +1,40 @@
-{% extends 'core/templateVistas.html' %}
 {% load static %}
 
 {% block contenido %}
-
 <head>
-    <link rel="stylesheet" href="{% static 'core/css/bodeguero/gestionarSalidas.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/administrador/registro7.css' %}">
 </head>
 
-<h1> Marcar los productos que pida el vendedor como enviados y eliminar al mismo tiempo la solicitud (Mostrar en el apartado del vendedor una lista de todos los productos enviados)</h1>
 
+<body>
+    <div class="content">
+            <div class="tabla">
+                <h1>Listado de ordenes</h1>
+            <table class="table table-hover">
+                <tr>
+                    <th>Id pedido</th>
+                    <th>Producto</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                </tr>
+                {% for i in peticion %}
+                    <tr>
+                        <td>{{i.id_compra}}</td>
+                        <td>{{i.producto}}</td>
+                        <td>{{i.nombre}}</td>
+                        <td>{{i.cantidad}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <br><br><br>
+            <a href="{% url 'listar_ordenes' %}" style="text-decoration: none;  color: white;">
+                <span>
+                    <h1>
+                        Volver
+                    </h1>
+                </span>
+            </a>
+        </div>
+    </div>
+</body>
 {% endblock %}

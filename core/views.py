@@ -261,10 +261,81 @@ def descontar_stock(request):
         producto.stock -= cantidad_carrito
         producto.save()
 
+from django.db.models import Q
+
 def estado_venta(request):
-    filtro = Datos_compra.objects.filter(estado='Aceptado')
+    filtro = Datos_compra.objects.filter(Q(estado='Aceptado') & Q(validacion='N/A'))
     contexto = {'peticion': filtro}
-    return render(request, 'core/Vendedor/gestionarVentas.html', contexto) 
+    return render(request, 'core/Vendedor/gestionarVentas.html', contexto)
+
+def validar_ventas(request, id):
+    filtro_validar = Datos_compra.objects.get(id=id)
+    filtro_validar.validacion = 'Aceptado'
+    filtro_validar.save()
+
+    return redirect(to="estado_venta")
+
+def rechazado_ventas(request, id):
+    filtro_validar = Datos_compra.objects.get(id=id)
+    filtro_validar.validacion = 'Rechazado'
+    filtro_validar.save()
+
+    return redirect(to="estado_venta")
+
+# BODEGUERO....
+
+def listar_ordenes(request):
+    filtro = Datos_compra.objects.filter(Q(enviado='N/A') & Q(validacion='Aceptado'))
+    contexto = {'peticion': filtro}
+    return render(request, 'core/Bodeguero/listarPedidos.html', contexto)
+
+def ver_carrito(request, id):
+    filtro = Productos_Carrito.objects.filter(id_compra=id)
+    contexto = {'peticion': filtro}
+    return render(request, 'core/Bodeguero/gestionarSalidas.html',contexto)
+
+def validar_enviado(request, id):
+    filtro_validar = Datos_compra.objects.get(id=id)
+    filtro_validar.enviado = 'Aceptado'
+    filtro_validar.save()
+
+    return redirect(to="listar_ordenes")
+
+def rechazado_enviado(request, id):
+    filtro_validar = Datos_compra.objects.get(id=id)
+    filtro_validar.enviado = 'Rechazado'
+    filtro_validar.save()
+
+    return redirect(to="listar_ordenes")
+
+# BODEGUERO....
+
+# VISUALIZAR PETICIONES
+def ver_peticiones(request):
+    peticiones = Peticion.objects.filter(estado='Pendiente')
+    contexto = {'peticion': peticiones}
+    return render(request, 'core/Vendedor/gestionarPedidos.html', contexto)
+
+def modificar_peticion(request, id):
+    peticion = Peticion.objects.get(id=id)
+    contexto = {'form': PeticionForm2(instance=peticion)}
+    
+    if request.method == "POST":
+        form = PeticionForm2(request.POST, instance=peticion)
+        if form.is_valid():
+            form.save()
+            peticion.estado = 'Aceptado'
+            peticion.save()
+            contexto["mensaje"] = "¡Peticion respondida!"
+            contexto['form'] = form
+            return redirect('ver_peticiones')
+    
+    return render(request, 'core/Vendedor/modificarPeticion.html', contexto)
+
+
+
+
+
 
 def aceptarWebPay(request):
     ultimo_id_compra = Datos_compra.objects.latest('id').id
@@ -278,7 +349,7 @@ def EditarPrecios(request, id):
     contexto = {'form': ProductoForm(instance=producto)}
     if request.method == "POST":
         producto = ProductoForm(request.POST, instance=producto)
-        if producto.is_valid:
+        if producto.is_valid():
             producto.save()
             contexto["mensaje"] = "Precio Añadido!."
             contexto['form'] = producto
@@ -392,9 +463,6 @@ def list_productos(request):
     productos = list(Producto.objects.values())
     data = {'productos': productos}
     return JsonResponse(data)
-
-def gestionarPedidos(request):
-    return render(request, 'core/vendedor/gestionarPedidos.html')
 
 # API TRANSBANK COMPLETA Y SUS FUNCIONES
 def get_ws(data, method, type, endpoint):
