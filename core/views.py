@@ -42,19 +42,6 @@ def menuOpcionesBodeguero(request):
 
 # RUTAS DE LOS MENÚ DE CADA VISTA...
 
-# CONTADOR...
-def VistaContador(request):
-    transferencias=Datos_compra.objects.all()
-    return render(request, 'core/Contador/VistaContador.html',{
-        "transferencias":transferencias
-    })
-
-def list_transferencias(request):
-    transferencias = list(Datos_compra.objects.values())
-    data = {'transferencias': transferencias}
-    return JsonResponse(data)
-
-
 # BODEGUERO...
 
 def eliminar_productos(request, id):
@@ -309,6 +296,44 @@ def rechazado_enviado(request, id):
     return redirect(to="listar_ordenes")
 
 # BODEGUERO....
+
+
+
+# CONTADOR....
+
+# CONTADOR...
+def VistaContador(request):
+    transferencias = Datos_compra.objects.filter(estado='Pendiente')
+    contexto = {'peticion': transferencias}
+    return render(request, 'core/Contador/VistaContador.html', contexto)
+
+def ver_carrito_t(request, id):
+    filtro = Productos_Carrito.objects.filter(id_compra=id)
+    contexto = {'peticion': filtro}
+    suma = 0
+    for carrito in filtro:
+        suma += carrito.precio
+    contexto['suma'] = suma
+    return render(request, 'core/Contador/verProductosCarrito.html', contexto)
+
+def validar_transferencia(request, id):
+    filtro_validar = Datos_compra.objects.get(id=id)
+    filtro_validar.estado = 'Aceptado'
+    filtro_validar.save()
+
+    return redirect(to="VistaContador")
+
+def rechazar_transferencia(request, id):
+    filtro_validar = Datos_compra.objects.get(id=id)
+    filtro_validar.estado = 'Rechazado'
+    filtro_validar.save()
+
+    return redirect(to="VistaContador")
+
+# CONTADOR....
+
+
+
 
 # VISUALIZAR PETICIONES
 def ver_peticiones(request):

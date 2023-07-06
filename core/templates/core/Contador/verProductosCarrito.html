@@ -1,0 +1,45 @@
+{% load static %}
+{% load djmoney %}
+{% block contenido %}
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/administrador/registro7.css' %}">
+</head>
+
+
+<body>
+    <div class="content">
+            <div class="tabla">
+                <h1>Listado de ordenes</h1>
+            <table class="table table-hover">
+                <tr>
+                    <th>Id pedido</th>
+                    <th>Producto</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                </tr>
+                {% for i in peticion %}
+                    <tr>
+                        <td>{{i.id_compra}}</td>
+                        <td>{{i.producto}}</td>
+                        <td>{{i.nombre}}</td>
+                        <td>{% money_localize i.precio 'CLP' %}</td>
+                        <td>{{i.cantidad}}</td>
+                    </tr>
+                {% endfor %}
+                <h1>
+                    Total: ${% money_localize suma 'CLP' %}
+                </h1>
+            </table>
+            <br><br><br>
+            <a href="{% url 'VistaContador' %}" style="text-decoration: none;  color: white;">
+                <span>
+                    <h1>
+                        Volver
+                    </h1>
+                </span>
+            </a>
+        </div>
+    </div>
+</body>
+{% endblock %}

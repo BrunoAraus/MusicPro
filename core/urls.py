@@ -50,9 +50,11 @@ urlpatterns = [
     path('ver_peticiones', ver_peticiones, name="ver_peticiones"),
     path('VistaContador', VistaContador, name='VistaContador'),
     path('modificar_peticion/<id>/', modificar_peticion, name="modificar_peticion"),
-    path('list_transferencias/', list_transferencias, name='list_transferencias'),
     path('validar_ventas/<id>/', validar_ventas, name="validar_ventas"),
     path('rechazado_ventas/<id>/', rechazado_ventas, name="rechazado_ventas"),
     path('validar_enviado/<id>/', validar_enviado, name="validar_enviado"),
     path('rechazado_enviado/<id>/', rechazado_enviado, name="rechazado_enviado"),
+    path('ver_carrito_t/<id>/', ver_carrito_t, name="ver_carrito_t"),
+    path('validar_transferencia/<id>/', validar_transferencia, name="validar_transferencia"),
+    path('rechazar_transferencia/<id>/', rechazar_transferencia, name="rechazar_transferencia"),
 ]
