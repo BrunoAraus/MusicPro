@@ -193,7 +193,6 @@ def GestionarDatos(request):
     contexto = {'peticion': peticion_filtro}
     return render(request, 'core/Administrador/GestionarDatos.html', contexto)
 
-
 def eliminarPeticion(request, id):
     peticion = Peticion.objects.get(id=id)
     peticion.delete()
@@ -262,6 +261,18 @@ def descontar_stock(request):
         producto.stock -= cantidad_carrito
         producto.save()
 
+def estado_venta(request):
+    filtro = Datos_compra.objects.filter(estado='Aceptado')
+    contexto = {'peticion': filtro}
+    return render(request, 'core/Vendedor/gestionarVentas.html', contexto) 
+
+def aceptarWebPay(request):
+    ultimo_id_compra = Datos_compra.objects.latest('id').id
+    datos_validados = Datos_compra.objects.filter(id=ultimo_id_compra)
+    datos_validados = Datos_compra.objects.get(id=ultimo_id_compra)
+    datos_validados.estado = 'Aceptado'
+    datos_validados.save()
+
 def EditarPrecios(request, id):
     producto = Producto.objects.get(id=id)
     contexto = {'form': ProductoForm(instance=producto)}
@@ -272,9 +283,7 @@ def EditarPrecios(request, id):
             contexto["mensaje"] = "Precio Añadido!."
             contexto['form'] = producto
             return redirect('GestionarPrecios')
-    return render(request, 'core/Administrador/EditarPrecios.html', contexto) 
-
-
+    return render(request, 'core/Administrador/EditarPrecios.html', contexto)
 
 #views para las funciones del carrito de compra
 #aqui estan los modulos agregar, eliminar, restar, limpiar del carrito
@@ -336,6 +345,8 @@ def datosCompra(request):
             if request.user.is_authenticated:
                 nueva_compra = datos.save(commit=False)
                 nueva_compra.user = request.user
+                if nueva_compra.tipo_pago == 'Transferencia':
+                    nueva_compra.estado = 'Pendiente'
                 nueva_compra.save()
             else:
                 # Aquí se utiliza el nombre del formulario para nombrar al usuario temporal
@@ -349,6 +360,8 @@ def datosCompra(request):
                     username=username, password=password)
                 nueva_compra = datos.save(commit=False)
                 nueva_compra.user = user
+                if nueva_compra.tipo_pago == 'Transferencia':
+                    nueva_compra.estado = 'Pendiente'
                 nueva_compra.save()
             carrito = Carrito(request)
             productos_carrito = carrito.carrito.values()  # Obtener los productos del carrito
@@ -455,6 +468,7 @@ def resultado_compra(request):
     # Funcion para eliminar el carrito del usuario.
     carrito = Carrito(request)
     carrito.limpiar()
+    aceptarWebPay(request)
     descontar_stock(request)
 
     # Manda los datos del resultado de compra al html

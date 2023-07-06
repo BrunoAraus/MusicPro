@@ -1,0 +1,41 @@
+{% load static %}
+
+{% block contenido %}
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/administrador/registro2.css' %}">
+</head>
+
+
+<body>
+    <div class="content">
+            <div class="tabla">
+                <h1>Listado de productos</h5>
+            <table class="table table-hover">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Marca</th>
+                    <th>Precio</th>
+                </tr>
+                {% for i in peticion %}
+                    <tr>
+                        <td>{{i.nombre}}</td>
+                        <td>{{i.user}}</td>
+                        <td>{{i.estado }}</td>
+                        <td>{{i.tipo_pago }}</td>
+                        <!-- <td><a href="{% url 'EditarPrecios' i.id %}">Modificar</a ></td> -->
+                    </tr>
+                {% endfor %}
+            </table>
+            <br><br><br>
+            <a href="{% url 'menuOpcionesVendedor' %}" style="text-decoration: none;  color: white;">
+                <span>
+                    <h1>
+                        Volver
+                    </h1>
+                </span>
+            </a>
+        </div>
+    </div>
+</body>
+{% endblock %}

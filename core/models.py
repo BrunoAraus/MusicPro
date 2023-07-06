@@ -59,6 +59,8 @@ class Datos_compra(models.Model):
     region = models.CharField(null=True,max_length=50)
     tipo_pago = models.CharField(null=False,max_length=15)
     estado = models.CharField(null=True, default='N/A', max_length=50)
+    validacion = models.CharField(null=True, default='N/A', max_length=50)
+    enviado = models.CharField(null=True, default='N/A', max_length=50)
 
 
 class Productos_Carrito(models.Model):
@@ -92,5 +94,3 @@ class Peticion(models.Model):
     productos_vendidos_mes_1 = models.IntegerField(null=True,default=0)
     productos_vendidos_mes_2 = models.IntegerField(null=True,default=0)
     estado = models.CharField(null=True,default='Pendiente',max_length=100)
-
-    
